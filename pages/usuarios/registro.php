@@ -1,3 +1,5 @@
+<?php
+?>
 <div class="container-fluid fondo">
     <form class="form-signin">
         <h3 class="form-signin-heading">Inicio de Sesión</h3>
@@ -19,7 +21,8 @@
             -	El sistema le enviara un correo para verificar que su dirección es correcta.
             -	Lea el correo y confirme su registro.
             A partir de este momento puede ingresar al sistema usando su nombre de usuario y contraseña.
-            <p><a class="btn btn-lg btn-success" href="#" role="button">Crear nueva cuenta</a></p>
+            <p><a class="btn btn-lg btn-success" href="index.php?page=usuarios.registro" role="button">Crear nueva cuenta</a></p>
         </div>
     </form>
 </div>
+

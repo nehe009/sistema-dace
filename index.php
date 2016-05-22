@@ -1,4 +1,7 @@
-<?php include("includes/top_page.php"); ?>
+<?php 
+require("includes/funciones.php");
+include("includes/top_page.php"); 
+?>
 <div class="container-fluid fondo02">		
     <header class="">    	
 	<?php include("includes/header.php"); ?>        

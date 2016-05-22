@@ -2,8 +2,10 @@
 if (!isset($_GET['page'])) {
     include("pages/inicio.php");
     } else {
-        if (file_exists("pages/".$_GET['page'].".php")) {
-            include("pages/".$_GET['page'].".php");
+        
+        $pagina = str_replace(".","/",$_GET['page']);        
+        if (file_exists("pages/".$pagina.".php")) {
+            include("pages/".$pagina.".php");
             } else {
                 include("includes/url_incorrecta.php");
             }
