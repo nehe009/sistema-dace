@@ -1,5 +1,7 @@
 <?php 
+require("config.inc.php");
 require("includes/funciones.php");
+include('lib/adodb/adodb.inc.php'); # load code common to ADOdb
 include("includes/top_page.php"); 
 ?>
 <div class="container-fluid fondo02">		

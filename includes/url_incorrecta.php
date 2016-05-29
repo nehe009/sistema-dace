@@ -1,3 +1,5 @@
-<h1>
-<?php echo "ERROR: URL INCORRECTA";?>
-</h1>
+<div class="page-header">
+    <div class="alert alert-danger" role="alert">
+        <strong>Error:</strong> URL incorrecta.
+    </div>
+</div>
