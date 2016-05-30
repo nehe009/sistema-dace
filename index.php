@@ -1,4 +1,5 @@
 <?php 
+session_start();
 require("config.inc.php");
 require("includes/funciones.php");
 include('lib/adodb/adodb.inc.php'); # load code common to ADOdb

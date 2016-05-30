@@ -2,16 +2,12 @@
     <form class="form-signin" action="index.php?page=usuarios.registro" method="post">
         <h3 class="form-signin-heading">Registro de Usuarios</h3>
 	<label for="inputCedula" class="sr-only">Cédula:</label>
-        <input type="number" id="inputCedula" class="form-control" placeholder="Cédula" required autofocus>
+        <input type="number" id="inputCedula" name="inputCedula" class="form-control" placeholder="Cédula" required autofocus autocomplete="off">
 	<label for="inputEmail" class="sr-only">Correo Electrónico</label>
-	<input type="email" id="inputEmail" class="form-control" placeholder="Correo Electronico" required>
-        
+	<input type="email" id="inputEmail" name="inputEmail" class="form-control" placeholder="Correo Electronico" required>
         <label for="inputEmail" class="sr-only">Captcha</label>
-	<input type="text" id="inputCaptcha" class="form-control" placeholder="Captcha" required>
-        
-        <div class="checkbox" align="center">
-            <img src="lib/captcha.php?tp=login" class="img-rounded" />
-	</div>
+	<input type="text" id="inputCaptcha" name="inputCaptcha" class="form-control" placeholder="Captcha" required autocomplete="off">
+        <div class="checkbox" align="center"><img src="lib/captcha.php?tp=login" class="img-rounded" /></div>
         <button class="btn btn-lg btn-primary btn-block" type="submit" name="ok">Entrar</button>
 	<br>
     </form>

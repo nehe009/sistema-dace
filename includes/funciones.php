@@ -10,4 +10,14 @@ function evitarEjecucionScript() {
     }
 }
 
+
+function mensajeError($mensaje) {
+    #Muestra mensaje de error
+    echo '<div class="page-header">
+        <div class="alert alert-danger" role="alert">
+        <strong>Error:</strong> '.$mensaje.'        
+        <a href="'.$_SERVER['REQUEST_URI'].'">Atrás</a></div></div>
+        ';
+}
+
 ?>

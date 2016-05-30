@@ -6,7 +6,7 @@ if (!isset($_GET['page'])) {
         if (file_exists("pages/".$pagina.".php")) {
             include("pages/".$pagina.".php");
             } else {
-                include("includes/url_incorrecta.php");
+                mensajeError("URL incorrecta.");
             }                   
     }
 ?>
