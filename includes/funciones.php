@@ -11,13 +11,18 @@ function evitarEjecucionScript() {
 }
 
 
-function mensajeError($mensaje) {
+function mensajeError($mensaje, $link) {
     #Muestra mensaje de error
     echo '<div class="page-header">
         <div class="alert alert-danger" role="alert">
         <strong>Error:</strong> '.$mensaje.'        
-        <a href="'.$_SERVER['REQUEST_URI'].'">Atrás</a></div></div>
+        
         ';
+    if ($link=="inicio"){
+        echo '<a href="index.php">Ir a Inicio</a></div></div>';        
+    }else{
+        echo '<a href="'.$_SERVER['REQUEST_URI'].'">Volver Atrás</a></div></div>';
+    }
 }
 
 ?>
