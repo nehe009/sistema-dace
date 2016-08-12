@@ -12,6 +12,7 @@
           <ul class="nav navbar-nav">
             <li class="active"><a href="index.php">Inicio</a></li>
             <li><a href="index.php?page=usuarios.login">Iniciar Sesion</a></li>
+            <li><a href="index.php?page=usuarios.nuevo">Registro de Usuarios</a></li>
             <li><a href="index.php?page=usuarios.registro">Contacto</a></li>
           </ul>
         </div>

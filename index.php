@@ -1,8 +1,12 @@
 <?php 
 session_start();
+#librerias usadas en el sistema.
+require('lib/adodb/adodb.inc.php'); # load code common to ADOdb
+require ('lib/PHPMailer/PHPMailerAutoload.php');
+#configuraciones y funciones propias del sistema.
 require("config.inc.php");
 require("includes/funciones.php");
-include('lib/adodb/adodb.inc.php'); # load code common to ADOdb
+#estructura de la pagina
 include("includes/top_page.php"); 
 ?>
 <div class="container-fluid fondo02">		
