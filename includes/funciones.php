@@ -1,12 +1,15 @@
 <?php
-function evitarEjecucionScript() {
- // Esta funcion evita que se ejecuten directamente desde el navegador de los script's que se encuentran en /pages
-    $scriptname = pathinfo($_SERVER['PHP_SELF']);
-    if($scriptname['basename'] != "index.php"){
-    $uri = 'http://';
-    $uri .= $_SERVER['HTTP_HOST'];
-    header('Location: ../');
-    exit;
+function auditoriaUsuarios($cedula,$accion) {
+    #Revisa y ejecuta conexion con la base de datos.
+    $conn = &ADONewConnection(db_engine);  
+    @$conn->PConnect(db_host,db_user,db_password,db_database);# connect to MySQL
+    if (!$conn->isConnected()){ die("Problema con la BD");}
+    #direccion ip del visitante
+    $ip = $_SERVER ['REMOTE_ADDR'];
+    $sql="INSERT INTO `auditoria_usuarios` (id, cedula_usuario, ip, fecha, accion) VALUES ('NULL', '$cedula', '$ip', NOW(), '$accion')";
+    #inserto registro en la base de datos.    
+    if ($conn->Execute($sql) === false){
+        mensajeError("Registro de auditoria ha fallado.", 'inicio');
     }
 }
 
@@ -23,7 +26,7 @@ function mensajeError($mensaje, $link) {
 }
 
 function mensajeSuccess($mensaje, $link) {
-    #Muestra mensaje de error
+    #Muestra mensaje
     echo '<div class="page-header">
         <div class="alert alert-success" role="alert">
         <strong>Listo:</strong> '.$mensaje.' ';

@@ -1,11 +1,11 @@
 <?php
-
+#Evita ejecucion individual del script.
+if (!defined("ROOT_INDEX")){ die("");}
 #Declaracion de variables
 $profesor = '0';
 $administrativo='0';
-$estudiante='0';
-    
-    #Comprobamos si se a pulsado el boton OK
+$estudiante='0';    
+#Comprobamos si se a pulsado el boton OK
 if(isset($_POST['ok'])){
     #extraigo variables POST
     extract($_POST);        
@@ -14,14 +14,6 @@ if(isset($_POST['ok'])){
         mensajeError("Captcha incorrecto.",null);
         goto error;
     }        
-    #inicio conexion con la base de datos.
-    $conn = &ADONewConnection(db_engine);  
-    @$conn->PConnect(db_host,db_user,db_password,db_database);# connect to MySQL
-    if (!$conn->isConnected()){
-        mensajeError("El sistema está en mantenimiento. Vuelva más tarde.",'inicio');
-        goto error;
-    }
-
     #chequeo si la cedula se encuentre en la bd de estudiantes, profesores o administrativo.
     if(!empty($conn->getRow("SELECT id FROM estudiantes WHERE ced_est=$inputCedula"))){
         $estudiante=2048;
@@ -79,7 +71,6 @@ $mail->Username = 'mail_user';         // SMTP username
 $mail->Password = 'mail_pass';         // SMTP password
 $mail->SMTPSecure = 'mail_encrypt';      // Enable TLS encryption, `ssl` also accepted
 $mail->Port = mail_port;             // TCP port to connect to
-
 $mail->setFrom(mail_from);
 $mail->addAddress($inputEmail);     // Add a recipient
 $mail->addReplyTo(mail_from);
@@ -94,25 +85,24 @@ $cuerpo .="\n Enlace de activación: ";
 $cuerpo .= "<a href='site_url/index.php?page=usuarios.activacion&amp;codigo=".$clave_act."'>ACTIVAR CUENTA</a> \n";
 $cuerpo .="Por favor haga clik en el enlace indicado para activar su cuenta.";
 $mail->Body = $cuerpo;
-
 #envio el correo electronico.
     if(!$mail->send()) {
-        mensajeError("Hemos tenido un problema.",null);
-        goto error;
+        mensajeError("Hemos tenido un problema para enviarte el correo de activación.",null);
+        //goto error;
     }    
 #inserto registro en la base de datos.    
     if ($conn->Execute($sql) === false){ 
         mensajeError("El registro ha fallado.",null);
-        } else {
+       } else {
             mensajeSuccess("Para terminar el proceso de registro revise su correo electrónico.",'inicio');
         }
+#auditoria de usuarios
+auditoriaUsuarios($inputCedula,'reg user');
 #salida para los errores.
 error:
-
 } else { #si no se pulso ok se muestra formulario de registro
-    include("pages/usuarios/formRegistro.html");
+    include("formRegistro.html");
     }
-
 ?>
 
 

@@ -1,14 +1,7 @@
 <?php
-
+if (!defined("ROOT_INDEX")){ die("");}
 if (isset($_GET['codigo'])){
     $idval= dechex(crc32($_GET['codigo']));
-    #inicio conexion con la base de datos.
-    $conn = &ADONewConnection(db_engine);  
-    @$conn->PConnect(db_host,db_user,db_password,db_database);# connect to MySQL
-    if (!$conn->isConnected()){
-        mensajeError("El sistema está en mantenimiento. Vuelva más tarde.",'inicio');
-        goto error;
-    }
     #chequeo si el codigo de activacion existe.
     if(empty($conn->getRow("SELECT id FROM usuarios WHERE clave_activacion = '$idval'"))){
         mensajeError("Código de activación incorrecto.",'inicio');

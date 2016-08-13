@@ -1,3 +1,4 @@
+if (!defined("ROOT_INDEX")){ die("");}
 <div class="container-fluid fondo">
     <form class="form-signin">
         <h3 class="form-signin-heading">Inicio de Sesión</h3>
