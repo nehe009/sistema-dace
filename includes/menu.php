@@ -11,9 +11,25 @@
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
             <li class="active"><a href="index.php">Inicio</a></li>
-            <li><a href="index.php?page=usuarios.login">Iniciar Sesion</a></li>
-            <li><a href="index.php?page=usuarios.nuevo">Registro de Usuarios</a></li>
-            <li><a href="index.php?page=usuarios.registro">Contacto</a></li>
+            
+<?php 
+
+if (isset($sesion_usuario)){
+    if($permisos_usuario["estudiante"]==1){echo('<li><a href="index.php?page=estudiante">Estudiante</a></li>');}
+    if($permisos_usuario["profesor"]==1){echo('<li><a href="index.php?page=profesor">Profesor</a></li>');}
+    if($permisos_usuario["administrativo"]==1){echo('<li><a href="index.php?page=administrativo">Administrativo</a></li>');}
+    echo('<li><a href="index.php?page=usuarios.cerrarsesion">Cerrar sesión</a></li>');
+} else {
+    echo('<li><a href="index.php?page=usuarios.nuevo">Registro de Usuarios</a></li>'); 
+    echo('<li><a href="index.php?page=usuarios.login">Iniciar Sesion</a></li>');                
+}
+
+
+?>
+            
+            
+            
+            
           </ul>
         </div>
 </div>
