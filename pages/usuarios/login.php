@@ -42,14 +42,13 @@ if(isset($_POST['ok'])){
     #consulta permisos de usuario
     $permisos_usuario=$conn->getRow("SELECT * FROM usuarios_permisos WHERE cedula_usuario='$datos_usuario[ced_usu]'");    
     #almaceno los datos del usuario en un objeto sesion.
-    $_SESSION["sesion_usuario"]= $datos_usuario;
+    $_SESSION["sesion_usuario"] = $datos_usuario;
     #almaceno los permisos del usuario en un objeto sesion.
-    $_SESSION["permisos_usuario"]= $permisos_usuario;
+    $_SESSION["permisos_usuario"] = $permisos_usuario;
     #auditoria de usuarios
     auditoriaUsuarios($datos_usuario["ced_usu"],'inicio sesion');
     #Vuelve a la pagina principal
-    header('Location: index.php');
-   
+    header('Location: index.php');   
 } else { #si no se pulso ok se muestra formulario de registro
     include("formLogin.html");
     }

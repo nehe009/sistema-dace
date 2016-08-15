@@ -2,9 +2,10 @@
     <form class="form-signin" action="index.php?page=usuarios.login" method="post">
         <h4 class="form-signin-heading">Inicio de Sesión</h4>
 	<label for="inputUser" class="sr-only">Usuario</label>
-        <input type="text" id="inputUser" name="inputUser" pattern="[A-Za-z0-9]{7,16}" class="form-control" placeholder="Usuario" required autofocus autocomplete="off">
+        <input type="text" id="inputUser" name="inputUser" pattern="[A-Za-z0-9]{7,32}" class="form-control" placeholder="Usuario" required autofocus autocomplete="off">
 	<label for="inputPassword" class="sr-only">Contraseña</label>
-	<input type="password" id="inputPassword" name="inputPassword" pattern="[A-Za-z0-9]{8,16}" class="form-control" placeholder="Contraseña" required autocomplete="off">
+	<br>
+        <input type="password" id="inputPassword" name="inputPassword" pattern="[A-Za-z0-9]{8,32}" class="form-control" placeholder="Contraseña" required autocomplete="off">
         <label for="inputCaptcha" class="sr-only">Captcha</label>
 	<input type="text" id="inputCaptcha" pattern="[A-Za-z0-9]{1,9}" name="inputCaptcha" class="form-control" placeholder="Captcha" required autocomplete="off">
         <div class="checkbox" align="center"><img src="lib/captcha.php?tp=login" class="img-rounded" /></div>
