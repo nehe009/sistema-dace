@@ -25,7 +25,16 @@ if (isset($sesion_usuario)){
 ?>           
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Bienvenido(a).</a></li>
+            <li><a href="#">
+                <?php
+                    if (isset($sesion_usuario)){
+                        echo "Bienvenido(a). ";
+                        echo $sesion_usuario['nombre'];
+                        echo " ";
+                        echo $sesion_usuario['apellido'];
+                    }
+                ?>               
+                </a></li>
           </ul>
         </div>
 </div>

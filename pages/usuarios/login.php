@@ -39,6 +39,15 @@ if(isset($_POST['ok'])){
     $conn->getRow("UPDATE usuarios SET num_sesion=num_sesion+1, fecha_ultimo_acceso=NOW() WHERE id='$iduser[id]'");
     #consulto datos de interes para generar la sesion
     $datos_usuario=$conn->getRow("SELECT id, usuario, ced_usu, num_sesion FROM usuarios WHERE id='$iduser[id]'");
+    #consulto el nombre y apellido de usuario y demas informacion de interes.    
+    $datos_tabla=$conn->getRow("SELECT nom_est as nombre, ape_est as apellido FROM estudiantes WHERE ced_est=$datos_usuario[ced_usu]");
+    if(empty($datos_tabla)){
+        $datos_tabla=$conn->getRow("SELECT nom_prof as nombre, ape_prof as apellido FROM profesores WHERE ced_prof=$datos_usuario[ced_usu]");
+        if(empty($datos_tabla)){
+            $datos_tabla=$conn->getRow("SELECT nom_adm as nombre, ape_adm as apellido FROM administrativo WHERE ced_adm=$datos_usuario[ced_usu]");
+        }
+    }
+    $datos_usuario =  array_merge($datos_usuario,$datos_tabla);
     #consulta permisos de usuario
     $permisos_usuario=$conn->getRow("SELECT * FROM usuarios_permisos WHERE cedula_usuario='$datos_usuario[ced_usu]'");    
     #almaceno los datos del usuario en un objeto sesion.
@@ -48,7 +57,7 @@ if(isset($_POST['ok'])){
     #auditoria de usuarios
     auditoriaUsuarios($datos_usuario["ced_usu"],'inicio sesion');
     #Vuelve a la pagina principal
-    header('Location: index.php');   
+    //header('Location: index.php');   
 } else { #si no se pulso ok se muestra formulario de registro
     include("formLogin.html");
     }
