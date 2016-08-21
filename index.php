@@ -12,12 +12,10 @@ require('lib/adodb/adodb.inc.php'); # load code common to ADOdb
 require ('lib/PHPMailer/PHPMailerAutoload.php');
 #configuraciones del sistema.
 require("config.inc.php");
-#Revisa y ejecuta conexion con la base de datos.
-$conn = &ADONewConnection(db_engine);  
-@$conn->PConnect(db_host,db_user,db_password,db_database);# connect to MySQL
-if (!$conn->isConnected()){ die("Problema con la BD");}
 #funciones propias del sistema
-require("includes/funciones.php");
+require ("includes/funciones.php");
+#Revisa y ejecuta conexion con la base de datos.
+iniciarBD();
 #Carga estructura de la pagina
 include("includes/top_page.php"); 
 ?>

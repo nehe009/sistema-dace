@@ -10,7 +10,7 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="index.php">Inicio</a></li>            
+            <li class=""><a href="index.php">Inicio</a></li>            
 <?php 
 if (isset($sesion_usuario)){
     if($permisos_usuario["estudiante"]==1){echo('<li><a href="index.php?page=estudiante">Estudiante</a></li>');}

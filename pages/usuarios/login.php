@@ -55,7 +55,7 @@ if(isset($_POST['ok'])){
     #almaceno los permisos del usuario en un objeto sesion.
     $_SESSION["permisos_usuario"] = $permisos_usuario;
     #auditoria de usuarios
-    auditoriaUsuarios($datos_usuario["ced_usu"],'inicio sesion');
+    auditoriaUsuarios($datos_usuario["ced_usu"],'inicio sesion',$conn);
     #Vuelve a la pagina principal
     header('Location: index.php');   
 } else { #si no se pulso ok se muestra formulario de registro

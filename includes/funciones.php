@@ -1,9 +1,14 @@
 <?php
-function auditoriaUsuarios($cedula,$accion) {
+
+function iniciarBD() {
     #Revisa y ejecuta conexion con la base de datos.
+    global $conn;
     $conn = &ADONewConnection(db_engine);  
     @$conn->PConnect(db_host,db_user,db_password,db_database);# connect to MySQL
     if (!$conn->isConnected()){ die("Problema con la BD");}
+}
+
+function auditoriaUsuarios($cedula,$accion,$conn) {
     #direccion ip del visitante
     $ip = $_SERVER ['REMOTE_ADDR'];
     $sql="INSERT INTO `auditoria_usuarios` (id, cedula_usuario, ip, fecha, accion) VALUES ('NULL', '$cedula', '$ip', NOW(), '$accion')";

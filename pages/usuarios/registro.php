@@ -107,7 +107,7 @@ $mail->Body = $cuerpo;
             mensajeSuccess("Para terminar el proceso de registro revise su correo electrónico.",'inicio');
         }
 #auditoria de usuarios
-auditoriaUsuarios($inputCedula,'registro usuario');
+auditoriaUsuarios($inputCedula,'registro usuario',$conn);
 } else { #si no se pulso ok se muestra formulario de registro
     include("formRegistro.html");
     }
