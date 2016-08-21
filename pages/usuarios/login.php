@@ -57,7 +57,7 @@ if(isset($_POST['ok'])){
     #auditoria de usuarios
     auditoriaUsuarios($datos_usuario["ced_usu"],'inicio sesion');
     #Vuelve a la pagina principal
-    //header('Location: index.php');   
+    header('Location: index.php');   
 } else { #si no se pulso ok se muestra formulario de registro
     include("formLogin.html");
     }

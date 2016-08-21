@@ -23,18 +23,15 @@ if (isset($sesion_usuario)){
     echo('<li><a href="index.php?page=usuarios.login">Iniciar Sesion</a></li>');                
 }
 ?>           
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">
+          </ul>           
                 <?php
                     if (isset($sesion_usuario)){
-                        echo "Bienvenido(a). ";
+                        echo ('<ul class="nav navbar-nav navbar-right"><li><a href="index.php?page=usuarios.perfil">Bienvenido(a). ');
                         echo $sesion_usuario['nombre'];
                         echo " ";
                         echo $sesion_usuario['apellido'];
+                        echo ('</a></li></ul>');
                     }
                 ?>               
-                </a></li>
-          </ul>
         </div>
 </div>

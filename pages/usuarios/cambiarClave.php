@@ -31,7 +31,8 @@ if(isset($_POST['ok'])){
         mensajeError("El cambio de contraseña ha fallado, contacte un administrador.",null);
         goto error;
        } else {
-            mensajeSuccess("La contraseña se ha cambiado correctamente.",'inicio');
+           auditoriaUsuarios($sesion_usuario['ced_usu'],'cambio clave');
+           mensajeSuccess("La contraseña se ha cambiado correctamente.",'inicio');
        }    
 } else { #si no se pulso ok se muestra formulario de registro
     include("formCambiarClave.html");
