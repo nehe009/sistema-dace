@@ -37,8 +37,8 @@ if(isset($_POST['ok'])){
     } 
     #actualiza numero de sesion y fecha de ultimo acceso
     $conn->getRow("UPDATE usuarios SET num_sesion=num_sesion+1, fecha_ultimo_acceso=NOW() WHERE id='$iduser[id]'");
-    #consulto datos de interes para generar la sesion
-    $datos_usuario=$conn->getRow("SELECT id, usuario, ced_usu, num_sesion FROM usuarios WHERE id='$iduser[id]'");
+    #consulto datos de interes para generar la sesion de la tabla de usuarios
+    $datos_usuario=$conn->getRow("SELECT id, usuario, ced_usu, num_sesion, corr_usu FROM usuarios WHERE id='$iduser[id]'");
     #consulto el nombre y apellido de usuario y demas informacion de interes.    
     $datos_tabla=$conn->getRow("SELECT nom_est as nombre, ape_est as apellido FROM estudiantes WHERE ced_est=$datos_usuario[ced_usu]");
     if(empty($datos_tabla)){
