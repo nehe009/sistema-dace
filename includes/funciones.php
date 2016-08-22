@@ -8,16 +8,6 @@ function iniciarBD() {
     if (!$conn->isConnected()){ die("Problema con la BD");}
 }
 
-function auditoriaUsuarios($cedula,$accion,$conn) {
-    #direccion ip del visitante
-    $ip = $_SERVER ['REMOTE_ADDR'];
-    $sql="INSERT INTO `auditoria_usuarios` (id, cedula_usuario, ip, fecha, accion) VALUES ('NULL', '$cedula', '$ip', NOW(), '$accion')";
-    #inserto registro en la base de datos.    
-    if ($conn->Execute($sql) === false){
-        mensajeError("Registro de auditoria ha fallado.", 'inicio');
-    }
-}
-
 function mensajeError($mensaje, $link) {
     #Muestra mensaje de error
     echo '<div class="page-header">
@@ -54,4 +44,33 @@ function generateCode($characters) {
 	return $code;
 }
 
+function auditoriaUsuarios($cedula,$accion,$conn) {
+    #direccion ip del visitante
+    $ip = $_SERVER ['REMOTE_ADDR'];
+    $sql="INSERT INTO `auditoria_usuarios` (id, cedula_usuario, ip, fecha, accion) VALUES ('NULL', '$cedula', '$ip', NOW(), '$accion')";
+    #inserto registro en la base de datos.    
+    if ($conn->Execute($sql) === false){
+        mensajeError("Registro de auditoria ha fallado.", 'inicio');
+    }
+}
+
+function enviarNotificacionCorreo($correo,$asunto,$mensaje) {
+    $mail = new PHPMailer;
+    $mail->isSMTP();              // Set mailer to use SMTP
+    $mail->Host = 'mail_host';  // Specify SMTP servers
+    $mail->SMTPAuth = true;             // Enable SMTP authentication
+    $mail->Username = 'mail_user';         // SMTP username
+    $mail->Password = 'mail_pass';         // SMTP password
+    $mail->SMTPSecure = 'mail_encrypt';      // Enable TLS encryption, `ssl` also accepted
+    $mail->Port = mail_port;             // TCP port to connect to
+    $mail->setFrom(mail_from);
+    $mail->addAddress($correo);     // Add a recipient
+    $mail->addReplyTo(mail_from);
+    $mail->isHTML(true);                 // Set email format to HTML
+    $mail->Subject = $asunto;
+    $mail->Body = $mensaje;
+    #Envio el correo electronico.
+    $check=$mail->send();    
+    return $check;
+ }
 ?>
