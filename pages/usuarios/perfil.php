@@ -7,6 +7,7 @@ if (!isset($sesion_usuario)) {
     goto error;
 } else {
     include("perfil.html");
+    if($permisos_usuario["estudiante"]==1){include("perfilEstudiante.html");}
 }
 error:
 ?>
