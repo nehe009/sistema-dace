@@ -47,7 +47,7 @@ function generateCode($characters) {
 function obtenerIP(){
 $ip = "";
     if ( $_SERVER [ 'HTTP_CLIENT_IP' ]) $ip = $_SERVER [ 'HTTP_CLIENT_IP' ];
-    else if( $_SERVER [ 'HTTP_X_FORWARDED_FOR' ])$ip = $_SERVER [ 'HTTP_X_FORWARDED_FOR' ];
+    else if( $_SERVER [ 'HTTP_X_FORWARDED_FOR' ]) $ip = $_SERVER [ 'HTTP_X_FORWARDED_FOR' ];
     else if( $_SERVER [ 'HTTP_X_FORWARDED' ]) $ip = $_SERVER [ 'HTTP_X_FORWARDED' ];
     else if( $_SERVER [ 'HTTP_FORWARDED_FOR' ]) $ip = $_SERVER [ 'HTTP_FORWARDED_FOR' ];
     else if( $_SERVER [ 'HTTP_FORWARDED' ]) $ip = $_SERVER [ 'HTTP_FORWARDED' ];
@@ -57,7 +57,7 @@ return $ip ;
 
 function auditoriaUsuarios($cedula,$accion,$conn) {
     #direccion ip del visitante
-    $ip = obtenerIP();
+    @$ip = obtenerIP();
     $sql="INSERT INTO `auditoria_usuarios` (id, cedula_usuario, ip, fecha, accion) VALUES ('NULL', '$cedula', '$ip', NOW(), '$accion')";
     #inserto registro en la base de datos.    
     if ($conn->Execute($sql) === false){
