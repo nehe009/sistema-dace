@@ -67,40 +67,26 @@ if(isset($_POST['ok'])){
     #preparo la consulta sql para permisos
     $sql_permisos="INSERT INTO `usuarios_permisos` (`id`, `cedula_usuario`, `estudiante`, `activo`, `inactivo`, `graduado`, `profesor`, `evaluador`, `jefe_dpto`, `jefe_adm`, `administrativo`, `operador`, `taquilla`, `control_total`) VALUES (NULL, '$inputCedula', b'$estudiante', b'0', b'0', b'0', b'$profesor', b'0', b'0', b'0', b'$administrativo', b'0', b'0', b'0')";
 #se prepara correo electronico a enviar.
-$mail = new PHPMailer;
-$mail->isSMTP();              // Set mailer to use SMTP
-$mail->Host = 'mail_host';  // Specify SMTP servers
-$mail->SMTPAuth = true;             // Enable SMTP authentication
-$mail->Username = 'mail_user';         // SMTP username
-$mail->Password = 'mail_pass';         // SMTP password
-$mail->SMTPSecure = 'mail_encrypt';      // Enable TLS encryption, `ssl` also accepted
-$mail->Port = mail_port;             // TCP port to connect to
-$mail->setFrom(mail_from);
-$mail->addAddress($inputEmail);     // Add a recipient
-$mail->addReplyTo(mail_from);
-$mail->isHTML(true);                 // Set email format to HTML
-$mail->Subject = 'Activación de cuenta y acceso a sistema DACE';
+$asunto = 'Activación de cuenta y acceso a sistema DACE';
 $cuerpo ="Ha sido registrado como usuario de la Aplicación para la Gestión del Rendimiento Académico del DACE de la UPT Aragua. Por favor acceda con el siguiente usuario y clave. gracias \n";
-$cuerpo .= "Usuario: \n";
-$cuerpo .=$inputCedula;
-$cuerpo .= "\n Clave: \n";
-$cuerpo .=$clave;
+$cuerpo .= "Usuario: $inputCedula \n";
+$cuerpo .= "\n Clave: $clave \n";
 $cuerpo .="\n Enlace de activación: ";
 $cuerpo .= "<a href='site_url/index.php?page=usuarios.activacion&amp;codigo=".$clave_act."'>ACTIVAR CUENTA</a> \n";
 $cuerpo .="Por favor haga clik en el enlace indicado para activar su cuenta.";
-$mail->Body = $cuerpo;
 #envio el correo electronico.
-    if(!$mail->send()) {
+$check=enviarNotificacionCorreo($inputEmail,$asunto,$cuerpo);
+    if(!$check) {
         mensajeError("Hemos tenido un problema para enviarte el correo de activación.",null);
-        //goto error;
+        goto error;
     }    
 #inserto registro de usuario en la base de datos.    
-    if ($conn->Execute($sql_usuario) === false){ 
+    if ($conn->Execute($sql_usuario) == false){ 
         mensajeError("El registro de usuario ha fallado.",null);
         goto error;
        }
 #inserto registro de permisos en la base de datos.    
-    if ($conn->Execute($sql_permisos) === false){ 
+    if ($conn->Execute($sql_permisos) == false){ 
         mensajeError("El registro de permisos de usuario ha fallado, contacte un administrador.",null);
         goto error;
        } else {

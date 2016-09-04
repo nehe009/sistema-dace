@@ -1,0 +1,67 @@
+<div class="row">
+<form class="" action="" method="post" name="formDatosPersonales" id="formDatosPersonales" autocomplete="off">
+
+    <center><h4 class="form-signin-heading">DATOS PERSONALES</h4></center>
+
+<fieldset class="col-md-4 form-signin">
+<label for="inputCedula" class="">Cedula de identidad</label>    
+<input type="text" id="inputCedula" name="inputCedula" pattern="[0-9]{7,8}" class="form-control" placeholder="Cedula" required>
+<br>
+<label for="inputApellidos" class="">Apellidos</label>
+<input type="text" id="inputApellidos" name="inputApellidos" pattern="[A-Za-z]{1,32}" class="form-control" placeholder="Apellidos" required>
+<br>
+<label for="inputNombres" class="">Nombres</label>
+<input type="text" id="inputNombres" name="inputNombres" pattern="[A-Za-z]{1,32}" class="form-control" placeholder="Nombres" required>
+<br>
+<label for="inputFechaNacimiento" class="">Fecha de nacimiento</label>
+<input type="date" id="inputFechaNacimiento" name="inputFechaNacimiento" class="form-control" required>
+</fieldset>
+
+<fieldset class="col-md-4 form-signin">
+<label for="inputNacionalidad" class="">Nacionalidad</label>
+<select id="inputNacionalidad" name="inputNacionalidad" class="form-control" required >
+    <option value="">Seleccione</option>
+    <option value="V">Venezolana</option>
+    <option value="E">Extranjera</option>
+    <option value="P">P</option>
+</select>
+<br>
+<label for="inputSexo" class="">Sexo</label>
+<select id="inputSexo" name="inputSexo" class="form-control" required >
+    <option value="">Seleccione</option>
+    <option>Masculino</option>
+    <option>Femenino</option>
+</select>
+<br>
+<label for="inputEstadoCivil" class="">Estado civil</label>
+<select id="inputEstadoCivil" name="inputEstadoCivil" class="form-control" required>
+    <option value="">Seleccione</option>
+    <option>Soltero(a)</option>
+    <option>Casado(a)</option>
+    <option>Concubinato</option>
+    <option>Divorciado(a)</option>
+    <option>Viudo(a)</option>
+</select>
+<br>
+<label for="inputEmail" class="">Correo Electrónico</label>
+<input type="email" id="inputEmail" name="inputEmail" class="form-control" placeholder="Correo Electronico" required>
+</fieldset>
+
+<fieldset class="col-md-4 form-signin">		
+<label>Teléfono</label>
+<input required name="inputTelefono" type="tel" value="" class="form-control">
+<br>
+<label>Facebook</label>
+<input name="inputFacebook" type="text" value="" pattern="[A-Za-z0-9]{1,32}" class="form-control">
+<br>
+<label>Twitter</label>
+<input name="inputTwitter" type="text" value="" pattern="[A-Za-z0-9]{1,32}" class="form-control">
+<br>
+<label>BBM</label>
+<input name="inputBbm" type="text" value="" pattern="[A-Za-z0-9]{1,32}" class="form-control">
+</fieldset>
+
+<button class="btn btn-lg btn-primary btn-block form-signin" type="submit" name="ok">Entrar</button>
+<br>
+</form>
+</div> 

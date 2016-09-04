@@ -9,6 +9,8 @@ if (!isset($sesion_usuario)) {
 
 #Comprobamos si se a pulsado el boton OK
 if(isset($_POST['ok'])){
+    #extraigo variables POST
+    extract($_POST);
 
 
 } else {

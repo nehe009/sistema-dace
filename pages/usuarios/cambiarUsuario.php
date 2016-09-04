@@ -28,7 +28,10 @@ if(isset($_POST['ok'])){
         mensajeError("El cambio de usuario ha fallado, contacte un administrador.",null);
         goto error;
        } else {
-           auditoriaUsuarios($sesion_usuario['ced_usu'],'cambio usuaio',$conn);
+           #guardo auditoria.
+           auditoriaUsuarios($sesion_usuario['ced_usu'],'cambio usuario',$conn);
+           #envio notificacion de correo.
+           enviarNotificacionCorreo($sesion_usuario['corr_usu'],'Notificacion DACE','Usted ha cambiado el usuario de su cuenta.');
            mensajeSuccess("El usuario se ha cambiado correctamente. Se recomienda cerrar y abrir la sesión nuevamente.",'inicio');
        }    
 } else { #si no se pulso ok se muestra formulario de registro
