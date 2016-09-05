@@ -3,7 +3,7 @@
 if (!defined("ROOT_INDEX")){ die("");}
 #chequea si la sesion ya esta cerrada
 if (!isset($sesion_usuario)) {
-    mensajeError("Ya has cerrado sesión.",'inicio');
+    mensajeError("Ya has cerrado sesión.",'inicio','Ir a Inicio');
     goto error;
 }
 #Procedimiento para eliminar sesion

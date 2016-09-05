@@ -3,7 +3,7 @@
 if (!defined("ROOT_INDEX")){ die("");}
 #chequea si ya inicio sesion
 if (!isset($sesion_usuario)) {
-    mensajeError("No has iniciado sesión.",'inicio');
+    mensajeError("No has iniciado sesión.",'inicio','Ir a Inicio');
     goto error;
 }
 #Comprobamos si se a pulsado el boton OK
@@ -34,8 +34,8 @@ if(isset($_POST['ok'])){
            #guardo auditoria.
            auditoriaUsuarios($sesion_usuario['ced_usu'],'cambio clave',$conn);
            #envio notificacion de correo.
-           enviarNotificacionCorreo($sesion_usuario['corr_usu'],'Notificacion DACE','Usted ha cambiado el usuario de su cuenta.');
-           mensajeSuccess("La contraseña se ha cambiado correctamente.",'inicio');
+           enviarNotificacionCorreo($sesion_usuario['corr_usu'],'Notificacion DACE','Usted ha cambiado la contraseña de su cuenta.');
+           mensajeSuccess("La contraseña se ha cambiado correctamente.",'inicio','Ir a Inicio');
        }    
 } else { #si no se pulso ok se muestra formulario de registro
     include("formCambiarClave.html");

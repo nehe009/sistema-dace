@@ -3,7 +3,7 @@
 if (!defined("ROOT_INDEX")){ die("");}
 #chequea si ya inicio sesion
 if (!isset($sesion_usuario)) {
-    mensajeError("No has iniciado sesión.",'inicio');
+    mensajeError("No has iniciado sesión.",'inicio','Ir a Inicio');
     goto error;    
 } 
 

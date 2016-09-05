@@ -3,7 +3,7 @@
 if (!defined("ROOT_INDEX")){ die("");}
 #chequea si ya inicio sesion
 if (!isset($sesion_usuario)) {
-    mensajeError("No has iniciado sesión.",'inicio');
+    mensajeError("No has iniciado sesión.",'inicio','Ir a Inicio');
     goto error;
 }
 #Comprobamos si se a pulsado el boton OK
@@ -24,7 +24,7 @@ if(isset($_POST['ok'])){
     #consulta de actualizacion de nueva clave
     $sql="UPDATE usuarios SET usuario='$inputNewUser1' WHERE ced_usu='$sesion_usuario[ced_usu]'";
     #inserto nueva clave en la base de datos.    
-    if ($conn->Execute($sql) === false){ 
+    if ($conn->Execute($sql) == false){ 
         mensajeError("El cambio de usuario ha fallado, contacte un administrador.",null);
         goto error;
        } else {
@@ -32,7 +32,7 @@ if(isset($_POST['ok'])){
            auditoriaUsuarios($sesion_usuario['ced_usu'],'cambio usuario',$conn);
            #envio notificacion de correo.
            enviarNotificacionCorreo($sesion_usuario['corr_usu'],'Notificacion DACE','Usted ha cambiado el usuario de su cuenta.');
-           mensajeSuccess("El usuario se ha cambiado correctamente. Se recomienda cerrar y abrir la sesión nuevamente.",'inicio');
+           mensajeSuccess("El usuario se ha cambiado correctamente. Se recomienda cerrar y abrir la sesión nuevamente.",'usuarios.cerrarsesion','Cerrar sesión');
        }    
 } else { #si no se pulso ok se muestra formulario de registro
     include("formCambiarUsuario.html");

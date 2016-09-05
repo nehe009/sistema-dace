@@ -18,11 +18,18 @@ if(isset($_POST['ok'])){
     #convierte caracteres no compatibles
     $inputUser=htmlspecialchars($inputUser); 
     #calcula el hash de la clave introducida
-    $inputPassword=sha1(md5($inputPassword));    
-    #chequea si el usuario y la contraseña existen en la base de datos.
-    $iduser=$conn->getRow("SELECT id, activo, bloqueo FROM usuarios WHERE usuario='$inputUser' AND cla_usu='$inputPassword'");
-    if(empty($iduser)){
+    $inputPassword=sha1(md5($inputPassword)); 
+    #chequea si el usuario existen en la base de datos.
+    if(empty($conn->getRow("SELECT id FROM usuarios WHERE usuario='$inputUser'"))){
         mensajeError("Este usuario no está registrado.",null);
+        goto error;
+    }
+    #chequea si el usuario y la contraseña coinciden en la base de datos.
+    $iduser=$conn->getRow("SELECT id, activo, bloqueo, inicio_sesion_fallidos FROM usuarios WHERE usuario='$inputUser' AND cla_usu='$inputPassword'");
+    if(empty($iduser)){
+        #actualiza numero de sesion fallida
+        $conn->getRow("UPDATE usuarios SET inicio_sesion_fallidos=inicio_sesion_fallidos+1 WHERE usuario='$inputUser'");
+        mensajeError("La contraseña es incorrecta.",null);
         goto error;
     }
     #chequeo si el usuario ha sido activado
@@ -34,9 +41,14 @@ if(isset($_POST['ok'])){
     if($iduser["bloqueo"]==1){
         mensajeError("Este usuario está bloqueado.",null);
         goto error;
-    } 
-    #actualiza numero de sesion y fecha de ultimo acceso
-    $conn->getRow("UPDATE usuarios SET num_sesion=num_sesion+1, fecha_ultimo_acceso=NOW() WHERE id='$iduser[id]'");
+    }
+    #chequeo si el usuario ha superados el limite de inicios de sesion fallidos.
+    if($iduser["inicio_sesion_fallidos"]>=6){
+        mensajeError("Este usuario ha superado el límite de intento de sesiones fallidos.",'usuarios.recuperar','Recuperar datos de acceso');
+        goto error;
+    }
+    #actualiza numero de sesion, fecha de ultimo acceso y resetea intentos fallidos de inicio.
+    $conn->getRow("UPDATE usuarios SET num_sesion=num_sesion+1, fecha_ultimo_acceso=NOW(),inicio_sesion_fallidos=0 WHERE id='$iduser[id]'");
     #consulto datos de interes para generar la sesion de la tabla de usuarios
     $datos_usuario=$conn->getRow("SELECT id, usuario, ced_usu, num_sesion, corr_usu FROM usuarios WHERE id='$iduser[id]'");
     #consulto el nombre y apellido de usuario y demas informacion de interes.    

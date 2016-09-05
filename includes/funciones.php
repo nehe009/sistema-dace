@@ -8,27 +8,27 @@ function iniciarBD() {
     if (!$conn->isConnected()){ die("Problema con la BD");}
 }
 
-function mensajeError($mensaje, $link) {
+function mensajeError($mensaje, $url, $title=null) {
     #Muestra mensaje de error
     echo '<div class="page-header">
         <div class="alert alert-danger" role="alert">
         <strong>Error:</strong> '.$mensaje.' ';
-    if ($link=="inicio"){
-        echo '<a href="index.php"> Ir a Inicio</a></div></div>';        
+    if ($url==null){
+        echo '<a href="'.$_SERVER['REQUEST_URI'].'">Volver Atrás</a></div></div>';    
     }else{
-        echo '<a href="'.$_SERVER['REQUEST_URI'].'"> Volver Atrás</a></div></div>';
+        echo '<a href="index.php?page='.$url.'">'.$title.'</a></div></div>'; 
     }
 }
 
-function mensajeSuccess($mensaje, $link) {
+function mensajeSuccess($mensaje, $url, $title=null) {
     #Muestra mensaje
     echo '<div class="page-header">
         <div class="alert alert-success" role="alert">
         <strong>Listo:</strong> '.$mensaje.' ';
-    if ($link=="inicio"){
-        echo '<a href="index.php"> Ir a Inicio</a></div></div>';        
+    if ($url==null){
+        echo '<a href="'.$_SERVER['REQUEST_URI'].'">Volver Atrás</a></div></div>';    
     }else{
-        echo '<a href="'.$_SERVER['REQUEST_URI'].'"> Volver Atrás</a></div></div>';
+        echo '<a href="index.php?page='.$url.'">'.$title.'</a></div></div>'; 
     }
 }
 

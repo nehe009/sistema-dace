@@ -3,7 +3,7 @@
 if (!defined("ROOT_INDEX")){ die("");}
 #chequea si ya inicio sesion
 if (isset($sesion_usuario)) {
-    mensajeError("Ya has iniciado sesión.",'inicio');
+    mensajeError("Ya has iniciado sesión.",'inicio','Ir a Inicio');
     goto error;
 }
 #Declaracion de variables
@@ -71,8 +71,8 @@ $asunto = 'Activación de cuenta y acceso a sistema DACE';
 $cuerpo ="Ha sido registrado como usuario de la Aplicación para la Gestión del Rendimiento Académico del DACE de la UPT Aragua. Por favor acceda con el siguiente usuario y clave. gracias \n";
 $cuerpo .= "Usuario: $inputCedula \n";
 $cuerpo .= "\n Clave: $clave \n";
-$cuerpo .="\n Enlace de activación: ";
-$cuerpo .= "<a href='site_url/index.php?page=usuarios.activacion&amp;codigo=".$clave_act."'>ACTIVAR CUENTA</a> \n";
+$cuerpo .="\n Codigo de activación: $clave_act";
+$cuerpo .= "Enlace de activación: <a href='site_url/index.php?page=usuarios.activacion&amp;codigo=".$clave_act."'>ACTIVAR CUENTA</a> \n";
 $cuerpo .="Por favor haga clik en el enlace indicado para activar su cuenta.";
 #envio el correo electronico.
 $check=enviarNotificacionCorreo($inputEmail,$asunto,$cuerpo);
@@ -90,7 +90,7 @@ $check=enviarNotificacionCorreo($inputEmail,$asunto,$cuerpo);
         mensajeError("El registro de permisos de usuario ha fallado, contacte un administrador.",null);
         goto error;
        } else {
-            mensajeSuccess("Para terminar el proceso de registro revise su correo electrónico.",'inicio');
+            mensajeSuccess("Para terminar el proceso de registro revise su correo electrónico.",'inicio','Ir a Inicio');
         }
 #auditoria de usuarios
 auditoriaUsuarios($inputCedula,'registro usuario',$conn);
