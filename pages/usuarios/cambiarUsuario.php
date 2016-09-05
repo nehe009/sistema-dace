@@ -21,7 +21,12 @@ if(isset($_POST['ok'])){
         mensajeError("El usuario actual es incorrecto.",null);
         goto error;
     }
-    #consulta de actualizacion de nueva clave
+    #chequea si el nuevo nombre usuario existe en la base de datos.
+    if(!empty($conn->getRow("SELECT id FROM usuarios WHERE usuario='$inputNewUser1'"))){
+        mensajeError("Este nombre de usuario ya está registrado.",null);
+        goto error;
+    }
+    #consulta de actualizacion de nuevo usuario
     $sql="UPDATE usuarios SET usuario='$inputNewUser1' WHERE ced_usu='$sesion_usuario[ced_usu]'";
     #inserto nueva clave en la base de datos.    
     if ($conn->Execute($sql) == false){ 
