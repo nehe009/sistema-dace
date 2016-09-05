@@ -1,13 +1,13 @@
-<form class="form-signin" action="index.php?page=usuarios.login" method="post">
+<form class="form-signin" action="index.php?page=usuarios.login" method="post" autocomplete="off">
     <center>
     <h4 class="form-signin-heading">Inicio de Sesión</h4>
     <label for="inputUser" class="sr-only">Usuario</label>
-    <input type="text" id="inputUser" name="inputUser" pattern="[A-Za-z0-9]{6,32}" class="form-control" placeholder="Usuario" required autofocus autocomplete="off">
+    <input type="text" id="inputUser" name="inputUser" pattern="[A-Za-z0-9]{6,32}" class="form-control" placeholder="Usuario" required autofocus >
     <label for="inputPassword" class="sr-only">Contraseña</label>
     <br>
-    <input type="password" id="inputPassword" name="inputPassword" pattern="[A-Za-z0-9]{8,32}" class="form-control" placeholder="Contraseña" required autocomplete="off">
+    <input type="password" id="inputPassword" name="inputPassword" pattern="[A-Za-z0-9]{8,32}" class="form-control" placeholder="Contraseña" required>
     <label for="inputCaptcha" class="sr-only">Captcha</label>
-    <input type="text" id="inputCaptcha" pattern="[A-Za-z0-9]{1,9}" name="inputCaptcha" class="form-control" placeholder="Captcha" required autocomplete="off">
+    <input type="text" id="inputCaptcha" pattern="[A-Za-z0-9]{1,9}" name="inputCaptcha" class="form-control" placeholder="Captcha" required>
     <div class="checkbox" align="center"><img src="lib/captcha.php?tp=login" class="img-rounded" /></div>
     <button class="btn btn-lg btn-primary btn-block" type="submit" name="ok">Entrar</button>
     <br>

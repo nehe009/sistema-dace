@@ -1,10 +1,10 @@
-<form class="form-signin" action="index.php?page=usuarios.recuperar" method="post">
+<form class="form-signin" action="index.php?page=usuarios.recuperar" method="post" autocomplete="off">
     <center><h4 class="form-signin-heading">Recuperar datos de acceso</h4></center>
     <label for="inputCedula" class="sr-only">Cedula de identidad</label>    
-    <input type="text" id="inputCedula" name="inputCedula" pattern="[0-9]{7,8}" class="form-control" placeholder="Cedula" required autocomplete="off">
+    <input type="text" id="inputCedula" name="inputCedula" pattern="[0-9]{7,8}" class="form-control" placeholder="Cedula" required>
     <br>
     <label for="inputCaptcha" class="sr-only">Captcha</label>
-    <input type="text" id="inputCaptcha" pattern="[A-Za-z0-9]{1,9}" name="inputCaptcha" class="form-control" placeholder="Captcha" required autocomplete="off">
+    <input type="text" id="inputCaptcha" pattern="[A-Za-z0-9]{1,9}" name="inputCaptcha" class="form-control" placeholder="Captcha" required>
     <div class="checkbox" align="center"><img src="lib/captcha.php?tp=recuperar" class="img-rounded" /></div>
     <button class="btn btn-lg btn-primary btn-block" type="submit" name="ok">Entrar</button>
     <br>

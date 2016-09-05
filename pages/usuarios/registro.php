@@ -90,7 +90,7 @@ $check=enviarNotificacionCorreo($inputEmail,$asunto,$cuerpo);
         mensajeError("El registro de permisos de usuario ha fallado, contacte un administrador.",null);
         goto error;
        } else {
-            mensajeSuccess("Para terminar el proceso de registro revise su correo electrónico.",'inicio','Ir a Inicio');
+            mensajeSuccess("Para terminar el proceso de registro revise su correo electrónico.",'usuarios.activacion','Activar cuenta');
         }
 #auditoria de usuarios
 auditoriaUsuarios($inputCedula,'registro usuario',$conn);

@@ -1,5 +1,5 @@
 <?php
-
+#Funcion que inicia conexion con la base de datos.
 function iniciarBD() {
     #Revisa y ejecuta conexion con la base de datos.
     global $conn;
@@ -7,7 +7,7 @@ function iniciarBD() {
     @$conn->PConnect(db_host,db_user,db_password,db_database);# connect to MySQL
     if (!$conn->isConnected()){ die("Problema con la BD");}
 }
-
+#funcion que genera mensaje de error
 function mensajeError($mensaje, $url, $title=null) {
     #Muestra mensaje de error
     echo '<div class="page-header">
@@ -19,7 +19,7 @@ function mensajeError($mensaje, $url, $title=null) {
         echo '<a href="index.php?page='.$url.'">'.$title.'</a></div></div>'; 
     }
 }
-
+#funcion que genera mensaje de exito
 function mensajeSuccess($mensaje, $url, $title=null) {
     #Muestra mensaje
     echo '<div class="page-header">
@@ -31,7 +31,7 @@ function mensajeSuccess($mensaje, $url, $title=null) {
         echo '<a href="index.php?page='.$url.'">'.$title.'</a></div></div>'; 
     }
 }
-
+#funcion que genera codigos aleatorios, usados para contraseñas temporales
 function generateCode($characters) {
 /* list all possible characters, similar looking characters and vowels have been removed */
     $possible = '23456789bcdfghjkmnpqrstvwxyzBCDFGHJKMNPQRSTVWXYZ';
@@ -43,7 +43,7 @@ function generateCode($characters) {
 	}
 	return $code;
 }
-
+#funcion para obtener posible ip de un usuario conectado.
 function obtenerIP(){
 $ip = "";
     if ( $_SERVER [ 'HTTP_CLIENT_IP' ]) $ip = $_SERVER [ 'HTTP_CLIENT_IP' ];
@@ -54,7 +54,7 @@ $ip = "";
     else if ( $_SERVER [ 'REMOTE_ADDR' ]) $ip = $_SERVER [ 'REMOTE_ADDR' ];
 return $ip ;
 }
-
+#funcion que guarda auditoria d usuarios
 function auditoriaUsuarios($cedula,$accion,$conn) {
     #direccion ip del visitante
     @$ip = obtenerIP();
@@ -64,7 +64,7 @@ function auditoriaUsuarios($cedula,$accion,$conn) {
         mensajeError("Registro de auditoria ha fallado.", 'inicio');
     }
 }
-
+#funcion que envia notificaciones de correo.
 function enviarNotificacionCorreo($correo,$asunto,$mensaje) {
     $mail = new PHPMailer;
     $mail->isSMTP();              // Set mailer to use SMTP

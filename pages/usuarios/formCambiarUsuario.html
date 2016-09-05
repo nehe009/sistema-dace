@@ -1,14 +1,14 @@
-    <form class="form-signin" action="index.php?page=usuarios.cambiarUsuario" method="post">
+    <form class="form-signin" action="index.php?page=usuarios.cambiarUsuario" method="post" autocomplete="off">
         <h4 class="form-signin-heading">Cambio de Usuario</h4>
 	<p>El Usuario debe tener de 8 a 32 caracteres compuestos por letras y números.</p>
         <label for="inputPassword" class="sr-only">Usuario Actual</label>
-	<input type="text" id="inputPassword" name="inputNewUser" pattern="[A-Za-z0-9]{6,32}" class="form-control" placeholder="Usuario actual" required autocomplete="off">
+	<input type="text" id="inputPassword" name="inputNewUser" pattern="[A-Za-z0-9]{6,32}" class="form-control" placeholder="Usuario actual" required>
         <br>
         <label for="inputNewPassword1" class="sr-only">Nuevo Usuario</label>
-	<input type="text" id="inputNewPassword1" name="inputNewUser1" pattern="[A-Za-z0-9]{6,32}" class="form-control" placeholder="Nuevo Usuario" required autocomplete="off">
+	<input type="text" id="inputNewPassword1" name="inputNewUser1" pattern="[A-Za-z0-9]{6,32}" class="form-control" placeholder="Nuevo Usuario" required>
 	<br>
         <label for="inputNewPassword2" class="sr-only">Repita Nuevo Usuario</label>
-	<input type="text" id="inputNewPassword2" name="inputNewUser2" pattern="[A-Za-z0-9]{6,32}" class="form-control" placeholder="Repita Nuevo Usuario" required autocomplete="off">
+	<input type="text" id="inputNewPassword2" name="inputNewUser2" pattern="[A-Za-z0-9]{6,32}" class="form-control" placeholder="Repita Nuevo Usuario" required>
         <br>
         <button class="btn btn-lg btn-primary btn-block" type="submit" name="ok">Entrar</button>
 	<br>
