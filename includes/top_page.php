@@ -10,6 +10,7 @@
     <title>Plantilla para DACE</title>
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-datepicker.min.css" rel="stylesheet">
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <link href="css/ie10-viewport-bug-workaround.css" rel="stylesheet">
     <!-- Custom styles for this template -->
@@ -21,7 +22,7 @@
     <!--[if lt IE 9]>
       <script src="js/html5shiv.min.js"></script>
       <script src="js/respond.min.js"></script>
-    <![endif]-->
+    <![endif]-->    
   </head>
 <body>
 <noscript><meta http-equiv="refresh" content="0; nojs.php" /></noscript>

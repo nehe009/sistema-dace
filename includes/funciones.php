@@ -84,4 +84,10 @@ function enviarNotificacionCorreo($correo,$asunto,$mensaje) {
     $check=$mail->send();    
     return $check;
  }
+ #funcion para abrir plantillas html con datos php incrustrados
+ function mostrarTemplate($plantilla, $variables){
+	extract($variables);
+	eval("?>".$plantilla."<?");
+}
+
 ?>

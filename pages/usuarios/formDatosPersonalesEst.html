@@ -1,0 +1,141 @@
+<form class="" action="" method="post" name="formDatosPersonales" id="formDatosPersonales" autocomplete="off">
+<div class="row">
+<center><h4 class="form-signin-heading">DATOS PERSONALES</h4></center>
+<div class="col-md-4 form-signin">
+<label for="inputCedula" class="">Cédula:</label>
+<input type="text" id="inputCedula" name="inputCedula" pattern="[0-9]{7,8}" class="form-control" placeholder="Cédula" value="<?=$ced_est?>" required disabled>
+<label for="inputApellidos" class="">Apellidos</label>
+<input type="text" id="inputApellidos" name="inputApellidos" pattern="[A-Z a-z]{1,32}" class="form-control" placeholder="Apellidos" value="<?=$ape_est?>" onKeyUp='this.value=this.value.toUpperCase()' required>
+<label for="inputNombres" class="">Nombres</label>
+<input type="text" id="inputNombres" name="inputNombres" pattern="[A-Z a-z]{1,32}" class="form-control" placeholder="Nombres" value="<?=$nom_est?>" onKeyUp='this.value=this.value.toUpperCase()' required>
+</div>
+<div class="col-md-4 form-signin">
+<label for="inputFechaNacimiento" class="">Fecha de nacimiento</label>
+<input type="text" id="inputFechaNacimiento" name="inputFechaNacimiento" class="form-control" placeholder="Fecha de nacimiento" value="<?=$fecha_nac?>" required>
+<label for="inputNacionalidad" class="">Nacionalidad</label>
+<select id="inputNacionalidad" name="inputNacionalidad" class="form-control" onchange="Nacionalidad();" required>
+    <option value="<?=$nac_est?>">Seleccione</option>
+    <option value="V">Venezolana</option>
+    <option value="E">Extranjera</option>
+</select>
+<label for="inputSexo" class="">Sexo</label>
+<select id="inputSexo" name="inputSexo" class="form-control" required>
+    <option value="<?=$sexo?>">Seleccione</option>
+    <option value="M">Masculino</option>
+    <option value="F">Femenino</option>
+</select>
+</div>
+<div class="col-md-4 form-signin">    
+<label for="inputEstadoCivil" class="">Estado civil</label>
+<select id="inputEstadoCivil" name="inputEstadoCivil" class="form-control" required>
+    <option value="<?=$edo_civil?>">Seleccione</option>
+    <option value="S">Soltero(a)</option>
+    <option value="C">Casado(a)</option>
+    <option value="D">Divorciado(a)</option>
+    <option value="V">Viudo(a)</option>
+</select>
+<label for="inputEmail" class="">Correo Electrónico</label>
+<input type="email" id="inputEmail" name="inputEmail" class="form-control" placeholder="Correo Electronico" value="<?=$correo?>" required>
+<label>Teléfono</label>
+<input name="inputTelefono" type="tel" class="form-control" placeholder="Teléfono" value="<?=$telf_est?>" required>
+</div>
+</div> 
+<div class="row">    
+<div class="col-md-4 form-signin">
+<h4 class="form-signin-heading">LUGAR DE NACIMIENTO</h4>
+<label for="inputPaisNacimiento" class="">Pais de Nacimiento</label>
+<input type="text" id="inputPaisNacimiento" value="<?=$pais?>" name="inputPaisNacimiento" pattern="[A-Z a-z]{1,32}" class="form-control" placeholder="País de nacimiento" onchange="PaisNacimiento();" required>
+<label for="inputEstadoNacimiento" class="">Estado</label>
+<input type="text" id="inputEstadoNacimiento" value="<?=$edo_nac?>" name="inputEstadoNacimiento" pattern="[A-Z a-z]{1,32}" class="form-control" placeholder="Estado de Nacimiento" required>    
+<label for="inputCiudadNacimiento" class="">Ciudad</label>
+<input type="text" id="inputCiudadNacimiento" value="<?=$lugarn?>" name="inputCiudadNacimiento" pattern="[A-Z a-z]{1,32}" class="form-control" placeholder="Ciudad de Nacimiento" required> 
+</div>
+<div class="col-md-4 form-signin">    
+<h4 class="form-signin-heading">DIRECCIÓN DE HABITACIÓN</h4>
+<label for="inputEstadoHabitacion" class="">Estado</label>
+<input type="text" id="inputEstadoHabitacion" value="<?=$estado_direccion?>" name="inputEstadoHabitacion" pattern="[A-Z a-z]{1,32}" class="form-control" placeholder="Estado de Habitación" required>    
+<label for="inputMunicipioHabitacion" class="">Municipio</label>
+<input type="text" id="inputMunicipioHabitacion" value="<?=$mun_direccion?>" name="inputMunicipioHabitacion" pattern="[A-Z a-z]{1,32}" class="form-control" placeholder="Municipio" required>
+<label for="inputParroquiaHabitacion" class="">Parroquia</label>
+<input type="text" id="inputParroquiaHabitacion" value="<?=$mun_direccion?>" name="inputParroquiaHabitacion" pattern="[A-Z a-z]{1,32}" class="form-control" placeholder="Parroquia" required>    
+</div>
+<div class="col-md-4 form-signin">
+<h4 class="form-signin-heading">DIRECCIÓN DE HABITACIÓN</h4>
+<label for="inputCiudadHabitacion" class="">Ciudad</label>
+<input type="text" id="inputCiudadHabitacion" value="<?=$ciuh?>" name="inputCiudadHabitacion" pattern="[A-Z a-z]{1,32}" class="form-control" placeholder="Ciudad" required>    
+<label for="inputDireccion" class="">Dirección</label>
+<textarea name="inputDireccion" maxlength="200" class="form-control"  placeholder="Dirección de Habitación" required ><?=$dir_est?></textarea>   
+</div>
+</div>    
+<div class="row">
+<div class="col-md-4 form-signin">
+<h4 class="form-signin-heading">EDUCACIÓN DIVERSIFICADA</h4>
+<label for="inputLiceo" class="">Liceo</label>
+<input type="text" id="inputLiceo" name="inputLiceo" pattern="[A-Z a-z]{1,32}" class="form-control" placeholder="Liceo" required> 
+<label for="inputLiceoUbicacion" class="">Ubicación</label>
+<input type="text" id="inputLiceoUbicacion" name="inputLiceoUbicacion" pattern="[A-Z a-z]{1,32}" class="form-control" placeholder="Ubicación" required> 
+<label for="inputAñoGrado" class="">Año de grado</label>
+<input type="text" id="inputAnoGrado" name="inputAñoGrado" value="<?=$grado?>" pattern="[0-9]{1,32}" class="form-control" placeholder="Año de grado" required> 
+<label for="inputTipoPlantel" class="">Plantel</label>
+<select id="inputTipoPlantel" name="inputTipoPlantel" class="form-control" required >
+    <option value="">Seleccione</option>
+    <option value="PUBLICO">Publico</option>
+    <option value="PRIVADO">Privado</option>
+</select>
+<label for="inputTitulo" class="">Título obtenido</label>
+<select id="inputTitulo" name="inputTitulo" class="form-control" required >
+    <option value="">Seleccione</option>
+    <option value="CS">Ciencias</option>
+    <option value="HU">Humanidades</option>
+    <option value="CO">Comercial</option>
+    <option value="EI">Educ. Industrial</option>
+    <option value="BI">Br. Integral</option>
+    <option value="EA">Educ. Agropecuario</option>
+    <option value="CB">Educ. Cs. Basicas</option>
+    <option value="BA">Br. Asistencial</option>
+</select>
+</div>
+<div class="col-md-4 form-signin">    
+<h4 class="form-signin-heading">DATOS LABORALES</h4>
+<label for="inputTrabaja" class="">Trabaja?</label>
+<select onchange="Trabaja();" id="inputTrabaja" name="inputTrabaja" class="form-control" required >
+    <option value="0">No</option>
+    <option value="1">SI</option>
+</select>
+<label for="inputEmpresa" class="">Empresa</label>
+<input disabled type="text" id="inputEmpresa" name="inputEmpresa" pattern="[A-Z a-z.0-9]{1,32}" class="form-control" placeholder="Empresa" required >
+<label for="inputEmpresaTelefono" class="">Telefono</label>
+<input disabled type="text" id="inputEmpresaTelefono" name="inputEmpresaTelefono" pattern="[0-9]{1,32}" class="form-control" placeholder="Telefono" required>
+<label for="inputEmpresaDireccion" class="">Dirección</label>
+<input disabled type="text" id="inputEmpresaDireccion" name="inputEmpresaDireccion" pattern="[A-Za-z]{1,32}" class="form-control" placeholder="Dirección" required>
+<label for="inputEmpresaDepartamento" class="">Departamento</label>
+<input disabled type="text" id="inputEmpresaDepartamento" name="inputEmpresaDepartamento" pattern="[A-Za-z]{1,32}" class="form-control" placeholder="Departamento" required>
+<label for="inputEmpresaCargo" class="">Cargo</label>
+<input disabled type="text" id="inputEmpresaCargo" name="inputEmpresaCargo" pattern="[A-Za-z]{1,32}" class="form-control" placeholder="Cargo" required>
+
+</div>
+
+<div class="col-md-4 form-signin">    
+<h4 class="form-signin-heading">SALUD</h4>
+<label for="inputDiscapacidad" class="">Presenta alguna Discapacidad?</label>
+<select onchange="Discapacidad();" id="inputDiscapacidad" name="inputDiscapacidad" class="form-control" required >
+    <option value="">Seleccione</option>
+    <option value="0">No</option>
+    <option value="1">SI</option>
+</select>
+<label for="inputTipoDiscapacidad" class="">Tipo</label>
+<select onchange="tipoDiscapacidad();" id="inputTipoDiscapacidad" name="inputTipoDiscapacidad" class="form-control" required >
+    <option value="">Seleccione</option>
+    <option value="Motora">Motora</option>
+    <option value="Auditiva">Auditiva</option>
+    <option value="Visual">Visual</option>
+    <option value="Psicosocial">Psicosocial</option>
+    <option value="Cognitiva">Cognitiva</option>
+</select>
+
+</div>
+</div>   
+<button class="btn btn-lg btn-primary btn-block form-signin" type="submit" name="ok" >Entrar</button>
+<br>
+</form>
+
