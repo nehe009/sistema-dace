@@ -11,12 +11,7 @@ if($permisos_usuario["administrativo"]!=1){
     mensajeError("No tienes permisos para entrar aqui.",'inicio');
     goto error;
     }
-
-
-
-
-
-
+include("menuAdministrativo.html");
 #salida para los errores.
 error:
 ?>

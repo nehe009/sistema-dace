@@ -11,12 +11,7 @@ if($permisos_usuario["estudiante"]!=1){
     mensajeError("No tienes permisos para entrar aqui.",'inicio');
     goto error;
     }
-
-
-
-
-
-
+include("menuEstudiantes.html");
 #salida para los errores.
 error:
 ?>
