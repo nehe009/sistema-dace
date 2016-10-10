@@ -2,9 +2,9 @@
 <div class="row">
 <center><h4 class="form-signin-heading">DATOS PERSONALES</h4></center>
 <div class="col-md-4 form-signin">
-<label for="inputCedula" class="">Cédula:</label>
+<label for="inputCedula" class="">Cédula</label>
 <input type="text" id="inputCedula" name="inputCedula" pattern="[0-9]{7,8}" class="form-control" placeholder="Cédula" value="<?=$ced_est?>" required disabled>
-<label for="inputApellidos" class="">Apellidos</label>
+<label for="inputApellidos" class="">Apellidos *</label>
 <input type="text" id="inputApellidos" name="inputApellidos" pattern="[A-Z a-z]{1,32}" class="form-control" placeholder="Apellidos" value="<?=$ape_est?>" onKeyUp='this.value=this.value.toUpperCase()' required>
 <label for="inputNombres" class="">Nombres</label>
 <input type="text" id="inputNombres" name="inputNombres" pattern="[A-Z a-z]{1,32}" class="form-control" placeholder="Nombres" value="<?=$nom_est?>" onKeyUp='this.value=this.value.toUpperCase()' required>
@@ -36,9 +36,9 @@
 </select>
 <label for="inputAfrodescendiente" class="">Es Afrodescendiente?</label>
 <select id="inputAfrodescendiente" name="inputAfrodescendiente" class="form-control" required>
-    <option value="<?=$sexo?>">Seleccione</option>
-    <option value="S">Si</option>
-    <option value="N">No</option>
+    <option value="<?=$afrodes?>">Seleccione</option>
+    <option value="0">No</option>
+    <option value="1">Si</option>
 </select>
 <label>Teléfono</label>
 <input name="inputTelefono" type="tel" class="form-control" placeholder="Teléfono" value="<?=$telf_est?>" required>
@@ -108,15 +108,15 @@
     <option value="1">SI</option>
 </select>
 <label for="inputEmpresa" class="">Empresa</label>
-<input disabled type="text" id="inputEmpresa" value="<?=$empresa?>" name="inputEmpresa" pattern="[A-Z a-z.,0-9]{1,32}" class="form-control" placeholder="Empresa" required >
+<input disabled type="text" id="inputEmpresa" value="<?=$empresa?>" name="inputEmpresa" pattern="[A-Z a-z.,0-9]{1,32}" class="form-control" placeholder="Empresa" >
 <label for="inputEmpresaTelefono" class="">Telefono</label>
-<input disabled type="text" id="inputEmpresaTelefono" value="<?=$telefono?>" name="inputEmpresaTelefono" pattern="[0-9]{1,32}" class="form-control" placeholder="Telefono" required>
+<input disabled type="text" id="inputEmpresaTelefono" value="<?=$telefono?>" name="inputEmpresaTelefono" pattern="[0-9]{1,32}" class="form-control" placeholder="Telefono" >
 <label for="inputEmpresaDireccion" class="">Dirección</label>
-<input disabled type="text" id="inputEmpresaDireccion" value="<?=$direccion?>" name="inputEmpresaDireccion" pattern="[A-Za-z0-9 ,.]{1,100}" class="form-control" placeholder="Dirección" required>
+<input disabled type="text" id="inputEmpresaDireccion" value="<?=$direccion?>" name="inputEmpresaDireccion" pattern="[A-Za-z0-9 ,.]{1,100}" class="form-control" placeholder="Dirección">
 <label for="inputEmpresaDepartamento" class="">Departamento</label>
-<input disabled type="text" id="inputEmpresaDepartamento" value="<?=$departamento?>" name="inputEmpresaDepartamento" pattern="[A-Za-z]{1,32}" class="form-control" placeholder="Departamento" required>
+<input disabled type="text" id="inputEmpresaDepartamento" value="<?=$departamento?>" name="inputEmpresaDepartamento" pattern="[A-Za-z]{1,32}" class="form-control" placeholder="Departamento" >
 <label for="inputEmpresaCargo" class="">Cargo</label>
-<input disabled type="text" id="inputEmpresaCargo" value="<?=$cargo?>" name="inputEmpresaCargo" pattern="[A-Za-z]{1,32}" class="form-control" placeholder="Cargo" required>
+<input disabled type="text" id="inputEmpresaCargo" value="<?=$cargo?>" name="inputEmpresaCargo" pattern="[A-Za-z]{1,32}" class="form-control" placeholder="Cargo">
 </div>
 <div class="col-md-4 form-signin">    
 <h4 class="form-signin-heading">SALUD</h4>
@@ -134,6 +134,8 @@
     <option value="Visual">Visual</option>
     <option value="Psicosocial">Psicosocial</option>
     <option value="Cognitiva">Cognitiva</option>
+    <option value="No Aplica">No Aplica</option>
+    <option value="No tiene">No Tiene</option>
 </select>
 
 </div>

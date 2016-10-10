@@ -13,9 +13,9 @@
             <li class="hidden-xs"><a href="index.php">Inicio</a></li>            
 <?php 
 if (isset($sesion_usuario)){
-    if($permisos_usuario["estudiante"]==1){echo('<li><a href="index.php?page=estudiante">Estudiante</a></li>');}
-    if($permisos_usuario["profesor"]==1){echo('<li><a href="index.php?page=profesor">Profesor</a></li>');}
-    if($permisos_usuario["administrativo"]==1){echo('<li><a href="index.php?page=administrativo">Administrativo</a></li>');}
+    if($permisos_usuario["estudiante"]==1){include("pages/menuEstudiantes.html");}
+    if($permisos_usuario["profesor"]==1){include("pages/menuAdministrativo.html");}
+    if($permisos_usuario["administrativo"]==1){include("pages/menuProfesor.html");}
     echo('<li><a href="index.php?page=usuarios.perfil">Mi Perfil</a></li>');
     echo('<li><a href="index.php?page=usuarios.cerrarsesion">Cerrar sesión</a></li>');
 } else {

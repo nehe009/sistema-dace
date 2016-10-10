@@ -5,6 +5,7 @@ if(!empty($_SESSION["sesion_usuario"])){
 $sesion_usuario = $_SESSION["sesion_usuario"];
 $permisos_usuario = $_SESSION["permisos_usuario"];
 }
+#error_reporting(0); #Nivel de reporte de errores
 #define el index principal para evitar ejecucion de otros script indivicuales.
 define("ROOT_INDEX", 1);
 #librerias usadas en el sistema.

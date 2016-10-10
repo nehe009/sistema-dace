@@ -8,7 +8,10 @@
     <input type="password" id="inputPassword" name="inputPassword" pattern="[A-Za-z0-9]{8,32}" class="form-control" placeholder="Contraseña" required>
     <label for="inputCaptcha" class="sr-only">Captcha</label>
     <input type="text" id="inputCaptcha" pattern="[A-Za-z0-9]{1,9}" name="inputCaptcha" class="form-control" placeholder="Captcha" required>
-    <div class="checkbox" align="center"><img src="lib/captcha.php?tp=login" class="img-rounded" /></div>
+    <div class="checkbox" align="center">   
+        <label>Resuelve el problema matemático</label><br>
+        <img src="lib/captcha.php?tp=login" class="img-rounded" />
+    </div>
     <button class="btn btn-lg btn-primary btn-block" type="submit" name="ok">Entrar</button>
     <br>
     <div class=""><a href="index.php?page=usuarios.recuperar">¿Olvidó su nombre de usuario y contraseña?</a></div>
