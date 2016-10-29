@@ -1,2 +1,14 @@
-<label for="inputEmail" class="">Correo Electrónico</label>
-<input type="email" id="inputEmail" name="inputEmail" class="form-control" placeholder="Correo Electronico" value="<?=$correo?>" required>
+    <form class="form-signin" action="index.php?page=usuarios.cambiarCorreo" method="post" autocomplete="off">
+        <center>
+        <h4 class="form-signin-heading">Cambio de Correo Electrónico</h4>
+	<p>El correo electrónico tiene que ser  válido, de lo contrario podrías perder acceso a tu cuenta.</p>
+        <label for="inputEmail" class="sr-only">Correo Electrónico Actual</label>
+	<input type="email" id="inputEmail" name="inputEmail" class="form-control" placeholder="Correo Electronico Actual" value="" required><br>
+        <label for="inputEmail1" class="sr-only">Nuevo Correo Electrónico</label>
+	<input type="email" id="inputEmail1" name="inputEmail1" class="form-control" placeholder="Nuevo Correo Electrónico" value="" required><br>
+        <label for="inputEmail2" class="sr-only">Nuevo Correo Electrónico</label>
+	<input type="email" id="inputEmail2" name="inputEmail2" class="form-control" placeholder="Repite Correo Electrónico" value="" required><br>
+        <button class="btn btn-lg btn-primary btn-block" type="submit" name="ok">Entrar</button>
+	<br>
+        </center>
+    </form>
