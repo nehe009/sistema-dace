@@ -89,6 +89,14 @@ function tipoDiscapacidad(){
     }else if (valorSeleccionado=="V") {
         lista.selectedIndex=4;         
     }
+    // Afrodescendiente???
+    var lista = document.getElementById("inputAfrodescendiente");
+    var valorSeleccionado = lista.options[lista.selectedIndex].value; 
+    if(valorSeleccionado=="0"){
+        lista.selectedIndex=1;
+    }else if (valorSeleccionado=="1") {
+        lista.selectedIndex=2;
+    }
     //tipo de plantel
     var lista = document.getElementById("inputTipoPlantel");
     var valorSeleccionado = lista.options[lista.selectedIndex].value; 
@@ -154,14 +162,4 @@ function tipoDiscapacidad(){
         lista.selectedIndex=6;         
     }else if (valorSeleccionado=="No tiene") {
         lista.selectedIndex=7;         
-    }
-    // Afrodescendiente???
-    var lista = document.getElementById("inputAfrodescendiente");
-    var valorSeleccionado = lista.options[lista.selectedIndex].value; 
-    if(valorSeleccionado=="0"){
-        lista.selectedIndex=1;
-        //Discapacidad();
-    }else if (valorSeleccionado=="1") {
-        lista.selectedIndex=2;
-        //Discapacidad();
     }

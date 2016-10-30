@@ -1,10 +1,13 @@
-<form class="" action="" method="post" name="formDatosPersonales" id="formDatosPersonales" autocomplete="off">
+<form class="" action="<?=$_SERVER['REQUEST_URI']?>" method="post" name="formDatosPersonales" id="formDatosPersonales" autocomplete="off">
 <div class="row">
-<center><h4 class="form-signin-heading">DATOS PERSONALES</h4></center>
+<center>
+    <h4 class="form-signin-heading">DATOS PERSONALES</h4>
+    <p>Todos los campos del formulario son obligatorios.</p>
+</center>
 <div class="col-md-4 form-signin">
 <label for="inputCedula" class="">Cédula</label>
 <input type="text" id="inputCedula" name="inputCedula" pattern="[0-9]{7,8}" class="form-control" placeholder="Cédula" value="<?=$ced_est?>" required disabled>
-<label for="inputApellidos" class="">Apellidos *</label>
+<label for="inputApellidos" class="">Apellidos</label>
 <input type="text" id="inputApellidos" name="inputApellidos" pattern="[A-Z a-z]{1,32}" class="form-control" placeholder="Apellidos" value="<?=$ape_est?>" onKeyUp='this.value=this.value.toUpperCase()' required>
 <label for="inputNombres" class="">Nombres</label>
 <input type="text" id="inputNombres" name="inputNombres" pattern="[A-Z a-z]{1,32}" class="form-control" placeholder="Nombres" value="<?=$nom_est?>" onKeyUp='this.value=this.value.toUpperCase()' required>
@@ -40,8 +43,8 @@
     <option value="0">No</option>
     <option value="1">Si</option>
 </select>
-<label>Teléfono</label>
-<input name="inputTelefono" type="tel" class="form-control" placeholder="Teléfono" value="<?=$telf_est?>" required>
+<label for="inputTelefono" class="">Teléfono</label>
+<input id="inputTelefono" name="inputTelefono" type="text" pattern="[0-9]{10,11}" class="form-control" placeholder="Teléfono" value="<?=$telf_est?>" required>
 </div>
 </div> 
 <div class="row">    
@@ -61,7 +64,7 @@
 <label for="inputMunicipioHabitacion" class="">Municipio</label>
 <input type="text" id="inputMunicipioHabitacion" value="<?=$mun_direccion?>" name="inputMunicipioHabitacion" pattern="[A-Z a-z]{1,32}" class="form-control" placeholder="Municipio" required>
 <label for="inputParroquiaHabitacion" class="">Parroquia</label>
-<input type="text" id="inputParroquiaHabitacion" value="<?=$mun_direccion?>" name="inputParroquiaHabitacion" pattern="[A-Z a-z]{1,32}" class="form-control" placeholder="Parroquia" required>    
+<input type="text" id="inputParroquiaHabitacion" value="" name="inputParroquiaHabitacion" pattern="[A-Z a-z]{1,32}" class="form-control" placeholder="Parroquia" required disabled>    
 </div>
 <div class="col-md-4 form-signin">
 <h4 class="form-signin-heading">DIRECCIÓN DE HABITACIÓN</h4>
@@ -70,77 +73,7 @@
 <label for="inputDireccion" class="">Dirección</label>
 <textarea name="inputDireccion" maxlength="200" class="form-control"  placeholder="Dirección de Habitación" required ><?=$dir_est?></textarea>   
 </div>
-</div>    
-<div class="row">
-<div class="col-md-4 form-signin">
-<h4 class="form-signin-heading">EDUCACIÓN DIVERSIFICADA</h4>
-<label for="inputLiceo" class="">Liceo</label>
-<input type="text" id="inputLiceo" value="<?=$instituto?>" name="inputLiceo" pattern="[A-Z a-z]{1,32}" class="form-control" placeholder="Liceo" required> 
-<label for="inputLiceoUbicacion" class="">Ubicación</label>
-<input type="text" id="inputLiceoUbicacion" value="<?=$ubicacion?>" name="inputLiceoUbicacion" pattern="[A-Z a-z,.]{1,32}" class="form-control" placeholder="Ubicación" required> 
-<label for="inputAñoGrado" class="">Año de grado</label>
-<input type="text" id="inputAnoGrado" name="inputAñoGrado" value="<?=$grado?>" pattern="[0-9]{1,32}" class="form-control" placeholder="Año de grado" required> 
-<label for="inputTipoPlantel" class="">Plantel</label>
-<select id="inputTipoPlantel" name="inputTipoPlantel" class="form-control" required >
-    <option value="<?=$tipo_plantel?>">Seleccione</option>
-    <option value="PUBLICO">Publico</option>
-    <option value="PRIVADO">Privado</option>
-</select>
-<label for="inputTitulo" class="">Título obtenido</label>
-<select id="inputTitulo" name="inputTitulo" class="form-control" required >
-    <option value="<?=$titulo_obtenido?>">Seleccione</option>
-    <option value="CS">Ciencias</option>
-    <option value="HU">Humanidades</option>
-    <option value="CO">Comercial</option>
-    <option value="EI">Educ. Industrial</option>
-    <option value="BI">Br. Integral</option>
-    <option value="EA">Educ. Agropecuario</option>
-    <option value="CB">Educ. Cs. Basicas</option>
-    <option value="BA">Br. Asistencial</option>
-</select>
 </div>
-<div class="col-md-4 form-signin">    
-<h4 class="form-signin-heading">DATOS LABORALES</h4>
-<label for="inputTrabaja" class="">Trabaja?</label>
-<select onchange="Trabaja();" id="inputTrabaja" name="inputTrabaja" class="form-control" required >
-    <option value="<?=$trabajo?>">Seleccione</option>
-    <option value="0">No</option>
-    <option value="1">SI</option>
-</select>
-<label for="inputEmpresa" class="">Empresa</label>
-<input disabled type="text" id="inputEmpresa" value="<?=$empresa?>" name="inputEmpresa" pattern="[A-Z a-z.,0-9]{1,32}" class="form-control" placeholder="Empresa" >
-<label for="inputEmpresaTelefono" class="">Telefono</label>
-<input disabled type="text" id="inputEmpresaTelefono" value="<?=$telefono?>" name="inputEmpresaTelefono" pattern="[0-9]{1,32}" class="form-control" placeholder="Telefono" >
-<label for="inputEmpresaDireccion" class="">Dirección</label>
-<input disabled type="text" id="inputEmpresaDireccion" value="<?=$direccion?>" name="inputEmpresaDireccion" pattern="[A-Za-z0-9 ,.]{1,100}" class="form-control" placeholder="Dirección">
-<label for="inputEmpresaDepartamento" class="">Departamento</label>
-<input disabled type="text" id="inputEmpresaDepartamento" value="<?=$departamento?>" name="inputEmpresaDepartamento" pattern="[A-Za-z]{1,32}" class="form-control" placeholder="Departamento" >
-<label for="inputEmpresaCargo" class="">Cargo</label>
-<input disabled type="text" id="inputEmpresaCargo" value="<?=$cargo?>" name="inputEmpresaCargo" pattern="[A-Za-z]{1,32}" class="form-control" placeholder="Cargo">
-</div>
-<div class="col-md-4 form-signin">    
-<h4 class="form-signin-heading">SALUD</h4>
-<label for="inputDiscapacidad" class="">Presenta alguna Discapacidad?</label>
-<select onchange="Discapacidad();" id="inputDiscapacidad" name="inputDiscapacidad" class="form-control" required >
-    <option value="<?=$disca_est?>">Seleccione</option>
-    <option value="0">No</option>
-    <option value="1">SI</option>
-</select>
-<label for="inputTipoDiscapacidad" class="">Tipo</label>
-<select onchange="tipoDiscapacidad();" id="inputTipoDiscapacidad" name="inputTipoDiscapacidad" class="form-control" required >
-    <option value="<?=$tipo_disc?>">Seleccione</option>
-    <option value="Motora">Motora</option>
-    <option value="Auditiva">Auditiva</option>
-    <option value="Visual">Visual</option>
-    <option value="Psicosocial">Psicosocial</option>
-    <option value="Cognitiva">Cognitiva</option>
-    <option value="No Aplica">No Aplica</option>
-    <option value="No tiene">No Tiene</option>
-</select>
-
-</div>
-</div>   
 <button class="btn btn-lg btn-primary btn-block form-signin" type="submit" name="ok" >Entrar</button>
 <br>
 </form>
-

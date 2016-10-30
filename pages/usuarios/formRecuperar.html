@@ -1,4 +1,4 @@
-<form class="form-signin" action="index.php?page=usuarios.recuperar" method="post" autocomplete="off">
+<form class="form-signin" action="<?=$_SERVER['REQUEST_URI']?>" method="post" autocomplete="off">
     <center><h4 class="form-signin-heading">Recuperar datos de acceso</h4></center>
     <label for="inputCedula" class="sr-only">Cedula de identidad</label>    
     <input type="text" id="inputCedula" name="inputCedula" pattern="[0-9]{7,8}" class="form-control" placeholder="Cedula" required>

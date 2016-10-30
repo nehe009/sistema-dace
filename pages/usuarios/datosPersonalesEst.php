@@ -15,22 +15,22 @@ if(!$permisos_usuario["estudiante"]==1){
 if(isset($_POST['ok'])){
     #extraigo variables POST
     extract($_POST);
-    
-    echo $inputCedula;
-
-
+    #consulta de actualizacion de datos
+    $sql="UPDATE estudiantes SET ape_est='$inputApellidos', nom_est='$inputNombres', fecha_nac='$inputFechaNacimiento', nac_est='$inputNacionalidad', sexo='$inputSexo', edo_civil='$inputEstadoCivil', afrodes='$inputAfrodescendiente', telf_est='$inputTelefono', pais='$inputPaisNacimiento', edo_nac='$inputEstadoNacimiento', lugarn='$inputCiudadNacimiento', estado_direccion='$inputEstadoHabitacion', mun_direccion='$inputMunicipioHabitacion', ciuh='$inputCiudadHabitacion', dir_est='$inputDireccion' WHERE ced_est='$sesion_usuario[ced_usu]'";
+    #inserto datos en la base de datos.    
+    if ($conn->Execute($sql) == false){ 
+        mensajeError("Actualizacion de datos fallida, contacte un administrador.",null);
+        goto error;
+       } else {
+           #guardo auditoria.
+           auditoriaUsuarios($sesion_usuario['ced_usu'],'actualizar datos',$conn);
+           mensajeSuccess("Los datos se han actualizado correctamente. Se recomienda cerrar y abrir la sesión nuevamente.",'usuarios.cerrarsesion','Cerrar sesión');
+       }
 } else {
     #consulto datos de la tabla estudiantes para cargarlos en el formulario.
     $datosestudiantes=$conn->getRow("SELECT * FROM estudiantes WHERE ced_est='$sesion_usuario[ced_usu]'");
-    $est_datos=$conn->getRow("SELECT * FROM est_datos WHERE ced_est='$sesion_usuario[ced_usu]'");
-    $datosestudiantes=array_merge($datosestudiantes, $est_datos);
-    echo '<pre>';
-    print_r($datosestudiantes);
-    echo '</pre>';
-    #cargo la plantilla d formularios html, convierto a array y luego a string
-    $template = implode("", file('pages\usuarios\formDatosPersonalesEst.html'));
-    #muestro plantilla sustituyendo los datos de la bd
-    mostrarTemplate($template, $datosestudiantes);
+    extract($datosestudiantes);
+    include("formDatosPersonalesEst.html");
 }
 error:
 ?>
