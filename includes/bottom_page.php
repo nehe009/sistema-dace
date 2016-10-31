@@ -6,6 +6,8 @@
 <script src="js/bootstrap-datepicker.es.min.js"></script>
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 <script src="js/ie10-viewport-bug-workaround.js"></script>
+<script src="js/funciones.js"></script>
 <script src="js/formDatosPersonalesEst.js"></script>
+<script src="js/formEstudioSocioEconomico.js"></script>
 </body>
 </html>

@@ -1,0 +1,50 @@
+<form class="" action="<?=$_SERVER['REQUEST_URI']?>" method="post" name="formEstudioSocioEconomico" id="formEstudioSocioEconomico" autocomplete="off">
+<div class="row">
+<center>
+    <h4 class="form-signin-heading">Estudio Socio-Económico</h4>
+    <p>Todos los campos del formulario son obligatorios.</p>
+</center>
+    
+<div class="col-md-4 form-signin">
+<h4 class="form-signin-heading">DATOS LABORALES</h4>
+<label for="inputTrabaja" class="">Trabaja?</label>
+<select onchange="trabaja();" id="inputTrabaja" name="inputTrabaja" class="form-control" required >
+    <option value="<?=$trabajo?>">Seleccione</option>
+    <option value="0">No</option>
+    <option value="1">SI</option>
+</select>
+<label for="inputEmpresa" class="">Empresa</label>
+<input type="text" id="inputEmpresa" value="<?=$empresa?>" name="inputEmpresa" pattern="[A-Z a-z.,0-9]{1,32}" class="form-control" placeholder="Empresa" required>
+<label for="inputEmpresaTelefono" class="">Telefono</label>
+<input type="text" id="inputEmpresaTelefono" value="<?=$telefono?>" name="inputEmpresaTelefono" pattern="[0-9]{1,32}" class="form-control" placeholder="Telefono" required>
+<label for="inputEmpresaDireccion" class="">Dirección</label>
+<input type="text" id="inputEmpresaDireccion" value="<?=$direccion?>" name="inputEmpresaDireccion" pattern="[A-Za-z0-9 ,.]{1,100}" class="form-control" placeholder="Dirección" required>
+<label for="inputEmpresaDepartamento" class="">Departamento</label>
+<input type="text" id="inputEmpresaDepartamento" value="<?=$departamento?>" name="inputEmpresaDepartamento" pattern="[A-Za-z]{1,32}" class="form-control" placeholder="Departamento" required>
+<label for="inputEmpresaCargo" class="">Cargo</label>
+<input type="text" id="inputEmpresaCargo" value="<?=$cargo?>" name="inputEmpresaCargo" pattern="[A-Za-z]{1,32}" class="form-control" placeholder="Cargo" required>
+</div>
+<div class="col-md-4 form-signin">    
+<h4 class="form-signin-heading">SALUD</h4>
+<label for="inputDiscapacidad" class="">Presenta alguna Discapacidad?</label>
+<select onchange="Discapacidad();" id="inputDiscapacidad" name="inputDiscapacidad" class="form-control" required >
+    <option value="<?=$disca_est?>">Seleccione</option>
+    <option value="0">No</option>
+    <option value="1">SI</option>
+</select>
+<label for="inputTipoDiscapacidad" class="">Tipo</label>
+<select onchange="tipoDiscapacidad();" id="inputTipoDiscapacidad" name="inputTipoDiscapacidad" class="form-control" required >
+    <option value="<?=$tipo_disc?>">Seleccione</option>
+    <option value="Motora">Motora</option>
+    <option value="Auditiva">Auditiva</option>
+    <option value="Visual">Visual</option>
+    <option value="Psicosocial">Psicosocial</option>
+    <option value="Cognitiva">Cognitiva</option>
+    <option value="No Aplica">No Aplica</option>
+    <option value="No tiene">No Tiene</option>
+</select>
+</div>
+</div>
+<button class="btn btn-lg btn-primary btn-block form-signin" type="submit" name="ok" >Entrar</button>
+<br>
+</form>
