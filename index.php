@@ -1,4 +1,5 @@
 <?php
+ob_start();
 #manejo de sesiones del sistema
 session_start();
 if(!empty($_SESSION["sesion_usuario"])){
@@ -20,10 +21,13 @@ iniciarBD();
 #Carga estructura de la pagina
 include("includes/top_page.php"); 
 ?>
-<div class="container-fluid fondo02">		
-    <header class=""><?php include("includes/header.php"); ?></header>     
-    <nav class="navbar navbar-default navbar-static-top" role="navigation"><?php include("includes/menu.php"); ?></nav>		    
-    <section class="container-fluid fondo"><?php include("includes/pages.php"); ?></section>		
-    <footer class="container"><?php include("includes/footer.php"); ?></footer>        
+<div class="container-fluid fondo02">
+    <header class=""><?php include("includes/header.php"); ?></header>
+    <nav class="navbar navbar-default navbar-static-top" role="navigation"><?php include("includes/menu.php"); ?></nav>
+    <section class="container-fluid fondo"><?php include("includes/pages.php"); ?></section>
+    <footer class="container"><?php include("includes/footer.php"); ?></footer>
 </div>
-<?php include("includes/bottom_page.php"); ?>
+<?php
+include("includes/bottom_page.php");
+ob_end_flush();
+?>

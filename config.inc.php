@@ -14,5 +14,4 @@ define("mail_encrypt", "ssl");
 define("mail_user", "root");
 define("mail_pass", "");
 define("mail_from", "root@localhost");
-
 ?>

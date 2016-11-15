@@ -10,8 +10,8 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="hidden-xs"><a href="index.php">Inicio</a></li>            
-<?php 
+            <li class="hidden-xs"><a href="index.php">Inicio</a></li>
+<?php
 if (isset($sesion_usuario)){
     if($permisos_usuario["estudiante"]==1){include("pages/menuEstudiantes.html");}
     if($permisos_usuario["profesor"]==1){include("pages/menuAdministrativo.html");}
@@ -19,12 +19,12 @@ if (isset($sesion_usuario)){
     echo('<li><a href="index.php?page=usuarios.perfil">Mi Perfil</a></li>');
     echo('<li><a href="index.php?page=usuarios.cerrarsesion">Cerrar sesión</a></li>');
 } else {
-    echo('<li><a href="index.php?page=usuarios.nuevo">Registro de Usuarios</a></li>'); 
-    echo('<li><a href="index.php?page=usuarios.login">Iniciar Sesion</a></li>');                
+    echo('<li><a href="index.php?page=usuarios.nuevo">Registro de Usuarios</a></li>');
+    echo('<li><a href="index.php?page=usuarios.login">Iniciar Sesion</a></li>');
 }
-?>           
-          </ul>           
-                <?php
+?>
+          </ul>
+<?php
                     if (isset($sesion_usuario)){
                         echo ('<ul class="nav navbar-nav navbar-right"><li><a href="index.php?page=usuarios.perfil">Bienvenido(a). ');
                         echo $sesion_usuario['nombre'];
@@ -32,6 +32,6 @@ if (isset($sesion_usuario)){
                         echo $sesion_usuario['apellido'];
                         echo ('</a></li></ul>');
                     }
-                ?>               
+?>
         </div>
 </div>
