@@ -22,16 +22,17 @@ if(isset($_GET['id']) && is_numeric($_GET['id'])){
     extract($_GET);
     #validar usuarios antes de eliminar
     if($sesion_usuario['ced_usu']==$id){
-        mensajeError("No puedes bloquear este usuario.", "usuarios.buscarUsuario","Atras");
+        mensajeError("No puedes eliminar este usuario.", "usuarios.buscarUsuario","Atras");
         goto error;
     }
-    #consulta para bloquear usuario
-    $consulta=$conn->getRow("UPDATE usuarios SET bloqueo=1 WHERE ced_usu='$id'");
+    #consulta para eliminar usuario  permisos
+    $conn->getRow("DELETE FROM usuarios_permisos WHERE cedula_usuario='$id'");
+    $consulta=$conn->getRow("DELETE FROM usuarios WHERE ced_usu='$id'");
         if(empty($consulta)){
-           auditoriaUsuarios($sesion_usuario['ced_usu'],'bloquear usuario '.$id.'',$conn);
-           mensajeSuccess("Usuario bloqueado correctamente.", "usuarios.buscarUsuario","Atras");
+            auditoriaUsuarios($sesion_usuario['ced_usu'],'desbloquear usuario '.$id.'',$conn);
+           mensajeSuccess("Usuario eliminado correctamente.", "usuarios.buscarUsuario","Atras");
         } else {
-            mensajeError("No se ha podido bloquear al usuario.", "usuarios.buscarUsuario","Atras");
+            mensajeError("No se ha podido eliminar al usuario.", "usuarios.buscarUsuario","Atras");
         }
     } else {
     mensajeError("Usuario no valido.",'inicio','Ir a Inicio');
