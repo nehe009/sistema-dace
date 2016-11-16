@@ -16,11 +16,18 @@ if(!$permisos_usuario["control_total"]==1){
     mensajeError("No tienes permiso para entrar a este módulo.",'inicio','Ir a Inicio');
     goto error;
 }
+#chequeo si id existe y es numerica
 if(isset($_GET['id']) && is_numeric($_GET['id'])){
+    #extrae valor de la variable
     extract($_GET);
-    echo $id;
-            
-} else {
+    #
+    $consulta=$conn->getRow("UPDATE usuarios SET bloqueo=1 WHERE ced_usu='$id'");
+        if(empty($consulta)){
+           mensajeSuccess("Usuario bloqueado correctamente.", "usuarios.buscarUsuario","Atras");
+        } else {
+            mensajeError("No se ha podido bloquear al usuario.", "usuarios.buscarUsuario","Atras");
+        }
+    } else {
     mensajeError("Usuario no valido.",'inicio','Ir a Inicio');
     goto error;
 }

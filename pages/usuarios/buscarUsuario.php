@@ -27,7 +27,7 @@ if(isset($_POST['ok'])){
 $datos = $conn->getAll($sql);
 
  if(empty($datos)){
-     mensajeError("Este usuario no está registrado.", "inicio");
+     mensajeError("Este usuario no está registrado.", null);
     goto error;
  }
 #muestro cabecera de tabla de datos
@@ -45,7 +45,7 @@ foreach ($datos as &$usuarios) {
     #chequeo los estados de cada cuenta.
     if($usuarios["bloqueo"]==1){$estado="Bloqueado";} else {$estado="Activo";}
     #muestro la informacion de cada cuenta
-    echo '<tr><td><a class="glyphicon glyphicon-user" title="Permisos de usuario" href="index.php?page=usuarios.permisos&amp;id='.$usuarios["id"].'"></a>&nbsp;<a class="glyphicon glyphicon-lock" title="Bloquear" href="index.php?page=usuarios.bloquear&amp;id='.$usuarios["id"].'"></a>&nbsp;<a class="glyphicon glyphicon-remove" title="Eliminar" href="index.php?page=usuarios.eliminar&amp;id='.$usuarios["id"].'"></a></td><td>'.$usuarios["ced_usu"].'</td><td>'.$usuarios["corr_usu"].'</td><td>'.$usuarios["usuario"].'</td><td>'.$usuarios["fecha_registro"].'</td><td>'.$usuarios["fecha_activacion"].'</td><td>'.$usuarios["fecha_ultimo_acceso"].'</td><td>'.$estado.'</td></tr>';
+    echo '<tr><td><a class="glyphicon glyphicon-user" title="Permisos de usuario" href="index.php?page=usuarios.permisos&amp;id='.$usuarios["ced_usu"].'"></a>&nbsp;<a class="glyphicon glyphicon-lock" title="Bloquear" href="index.php?page=usuarios.bloquear&amp;id='.$usuarios["ced_usu"].'"></a>&nbsp;<a class="glyphicon glyphicon-remove" title="Eliminar" href="index.php?page=usuarios.eliminar&amp;id='.$usuarios["ced_usu"].'"></a></td><td>'.$usuarios["ced_usu"].'</td><td>'.$usuarios["corr_usu"].'</td><td>'.$usuarios["usuario"].'</td><td>'.$usuarios["fecha_registro"].'</td><td>'.$usuarios["fecha_activacion"].'</td><td>'.$usuarios["fecha_ultimo_acceso"].'</td><td>'.$estado.'</td></tr>';
  unset($usuarios);
 }
 #cierro la tabla
