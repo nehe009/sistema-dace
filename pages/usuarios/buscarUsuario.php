@@ -43,9 +43,16 @@ echo '
 #Muestro los datos en la tabla
 foreach ($datos as &$usuarios) {
     #chequeo los estados de cada cuenta.
-    if($usuarios["bloqueo"]==1){$estado="Bloqueado";} else {$estado="Activo";}
+    if($usuarios["bloqueo"]==1){
+        $estado="Bloqueado";
+        $acciones='<a class="glyphicon glyphicon-lock" title="Desbloquear" href="index.php?page=usuarios.desbloquear&amp;id='.$usuarios["ced_usu"].'"></a>';
+        } else {
+            $estado="Activo";
+            $acciones='<a class="glyphicon glyphicon-lock" title="Bloquear" href="index.php?page=usuarios.bloquear&amp;id='.$usuarios["ced_usu"].'"></a>';
+            
+        }
     #muestro la informacion de cada cuenta
-    echo '<tr><td><a class="glyphicon glyphicon-user" title="Permisos de usuario" href="index.php?page=usuarios.permisos&amp;id='.$usuarios["ced_usu"].'"></a>&nbsp;<a class="glyphicon glyphicon-lock" title="Bloquear" href="index.php?page=usuarios.bloquear&amp;id='.$usuarios["ced_usu"].'"></a>&nbsp;<a class="glyphicon glyphicon-remove" title="Eliminar" href="index.php?page=usuarios.eliminar&amp;id='.$usuarios["ced_usu"].'"></a></td><td>'.$usuarios["ced_usu"].'</td><td>'.$usuarios["corr_usu"].'</td><td>'.$usuarios["usuario"].'</td><td>'.$usuarios["fecha_registro"].'</td><td>'.$usuarios["fecha_activacion"].'</td><td>'.$usuarios["fecha_ultimo_acceso"].'</td><td>'.$estado.'</td></tr>';
+    echo '<tr><td><a class="glyphicon glyphicon-user" title="Permisos de usuario" href="index.php?page=usuarios.permisos&amp;id='.$usuarios["ced_usu"].'"></a>&nbsp;'.$acciones.'&nbsp;<a class="glyphicon glyphicon-remove" title="Eliminar" href="index.php?page=usuarios.eliminar&amp;id='.$usuarios["ced_usu"].'"></a></td><td>'.$usuarios["ced_usu"].'</td><td>'.$usuarios["corr_usu"].'</td><td>'.$usuarios["usuario"].'</td><td>'.$usuarios["fecha_registro"].'</td><td>'.$usuarios["fecha_activacion"].'</td><td>'.$usuarios["fecha_ultimo_acceso"].'</td><td>'.$estado.'</td></tr>';
  unset($usuarios);
 }
 #cierro la tabla

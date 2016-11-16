@@ -20,13 +20,13 @@ if(!$permisos_usuario["control_total"]==1){
 if(isset($_GET['id']) && is_numeric($_GET['id'])){
     #extrae valor de la variable
     extract($_GET);
-    #consulta para bloquear usuario
-    $consulta=$conn->getRow("UPDATE usuarios SET bloqueo=1 WHERE ced_usu='$id'");
+    #consulta para desbloquear usuario
+    $consulta=$conn->getRow("UPDATE usuarios SET bloqueo=0 WHERE ced_usu='$id'");
         if(empty($consulta)){
-           auditoriaUsuarios($sesion_usuario['ced_usu'],'bloquear usuario '.$id.'',$conn);
-           mensajeSuccess("Usuario bloqueado correctamente.", "usuarios.buscarUsuario","Atras");
+            auditoriaUsuarios($sesion_usuario['ced_usu'],'desbloquear usuario '.$id.'',$conn);
+           mensajeSuccess("Usuario desbloqueado correctamente.", "usuarios.buscarUsuario","Atras");
         } else {
-            mensajeError("No se ha podido bloquear al usuario.", "usuarios.buscarUsuario","Atras");
+            mensajeError("No se ha podido desbloquear al usuario.", "usuarios.buscarUsuario","Atras");
         }
     } else {
     mensajeError("Usuario no valido.",'inicio','Ir a Inicio');
