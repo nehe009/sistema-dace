@@ -76,7 +76,7 @@ $cuerpo .= "Enlace de activación: <a href='site_url/index.php?page=usuarios.act
 $cuerpo .="Por favor haga clik en el enlace indicado para activar su cuenta.";
 #envio el correo electronico.
 $check=enviarNotificacionCorreo($inputEmail,$asunto,$cuerpo);
-    if(!$check) {
+    if($check==false) {
         mensajeError("Hemos tenido un problema para enviarte el correo de activación.",null);
         goto error;
     }    

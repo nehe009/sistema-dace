@@ -68,20 +68,24 @@ function auditoriaUsuarios($cedula,$accion,$conn) {
 function enviarNotificacionCorreo($correo,$asunto,$mensaje) {
     $mail = new PHPMailer;
     $mail->isSMTP();              // Set mailer to use SMTP
-    $mail->Host = 'mail_host';  // Specify SMTP servers
+    $mail->SMTPDebug = 3;
+    $mail->Host = mail_host;  // Specify SMTP servers
     $mail->SMTPAuth = true;             // Enable SMTP authentication
-    $mail->Username = 'mail_user';         // SMTP username
-    $mail->Password = 'mail_pass';         // SMTP password
-    $mail->SMTPSecure = 'mail_encrypt';      // Enable TLS encryption, `ssl` also accepted
+    $mail->SMTPOptions = array('ssl' => array('verify_peer' => false, 'verify_peer_name' => false, 'allow_self_signed' => true));
+    $mail->Username = mail_user;         // SMTP username
+    $mail->Password = mail_pass;         // SMTP password
+    $mail->SMTPSecure = mail_encrypt;      // Enable TLS encryption, `ssl` also accepted
     $mail->Port = mail_port;             // TCP port to connect to
-    $mail->setFrom(mail_from);
+    $mail->setFrom(mail_from, "No responder");
     $mail->addAddress($correo);     // Add a recipient
-    $mail->addReplyTo(mail_from);
-    $mail->isHTML(true);                 // Set email format to HTML
+    $mail->addReplyTo(mail_from, "No responder");
     $mail->Subject = $asunto;
-    $mail->Body = $mensaje;
+    $mail->MsgHTML($mensaje);
     #Envio el correo electronico.
-    $check=$mail->send();    
-    return $check;
- }
+    if(!$mail->Send()) {
+        return false;
+        } else {
+            return true;
+}
+}
 ?>

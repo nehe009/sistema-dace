@@ -35,7 +35,7 @@ $inputEmail=$datosUser['corr_usu'];
     $cuerpo .="\n";
     #envio el correo electronico.
     $check=enviarNotificacionCorreo($inputEmail,$asunto,$cuerpo);
-    if(!$check) {
+    if($check==false) {
         mensajeError("Hemos tenido un problema para enviarte el correo de recuperacion.",null);
         goto error;
     }   
