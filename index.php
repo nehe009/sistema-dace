@@ -7,7 +7,7 @@ $sesion_usuario = $_SESSION["sesion_usuario"];
 $permisos_usuario = $_SESSION["permisos_usuario"];
 }
 #error_reporting(0); #Nivel de reporte de errores
-#define el index principal para evitar ejecucion de otros script indivicuales.
+#define el index principal para evitar ejecucion de otros script individuales.
 define("ROOT_INDEX", 1);
 #librerias usadas en el sistema.
 require('lib/adodb/adodb.inc.php'); # load code common to ADOdb
@@ -16,6 +16,8 @@ require ('lib/PHPMailer/PHPMailerAutoload.php');
 require("config.inc.php");
 #funciones propias del sistema
 require ("includes/funciones.php");
+#funcion que revisa url procedente
+chequeaURL();
 #Revisa y ejecuta conexion con la base de datos.
 iniciarBD();
 #Carga estructura de la pagina

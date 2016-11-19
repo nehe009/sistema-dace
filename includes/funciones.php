@@ -88,4 +88,8 @@ function enviarNotificacionCorreo($correo,$asunto,$mensaje) {
             return true;
 }
 }
+#funcion que revisa dominio
+function chequeaURL() {
+   if ($_SERVER['SERVER_NAME']!= site_url){ die("URL Incorrecta");}
+}
 ?>

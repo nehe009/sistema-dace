@@ -7,7 +7,7 @@ define("db_password", "");
 define("db_database", "departamento");
 /* configuracion del sitio */
 define("site_url", "localhost");
-#configuracion para envio de correo electronico.
+/* configuracion para envio de correo electronico */
 define("mail_host", "localhost");
 define("mail_port", "587");
 define("mail_encrypt", "tls");
