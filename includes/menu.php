@@ -13,9 +13,9 @@
             <li class="hidden-xs"><a href="index.php">Inicio</a></li>
 <?php
 if (isset($sesion_usuario)){
-    if($permisos_usuario["estudiante"]==1){include("pages/menuEstudiantes.html");}
-    if($permisos_usuario["profesor"]==1){include("pages/menuAdministrativo.html");}
-    if($permisos_usuario["administrativo"]==1){include("pages/menuProfesor.html");}
+    if($permisos_usuario["estudiante"]==1){echo('<li><a href="index.php?page=menu.estudiante">Estudiante</a></li>');}
+    if($permisos_usuario["profesor"]==1){echo('<li><a href="index.php?page=menu.profesor">Profesor</a></li>');}
+    if($permisos_usuario["administrativo"]==1){echo('<li><a href="index.php?page=menu.administrativo">Administrativo</a></li>');}
     echo('<li><a href="index.php?page=usuarios.perfil">Mi Perfil</a></li>');
     echo('<li><a href="index.php?page=usuarios.cerrarsesion">Cerrar sesión</a></li>');
 } else {
@@ -28,7 +28,7 @@ if (isset($sesion_usuario)){
                     if (isset($sesion_usuario)){
                         echo ('<ul class="nav navbar-nav navbar-right"><li><a href="index.php?page=usuarios.perfil">Bienvenido(a). ');
                         echo $sesion_usuario['nombre'];
-                        echo " ";
+                        echo "&nbsp;";
                         echo $sesion_usuario['apellido'];
                         echo ('</a></li></ul>');
                     }
