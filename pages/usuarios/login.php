@@ -62,6 +62,10 @@ if(isset($_POST['ok'])){
     $datos_usuario =  array_merge($datos_usuario,$datos_tabla);
     #consulta permisos de usuario
     $permisos_usuario=$conn->getRow("SELECT * FROM usuarios_permisos WHERE cedula_usuario='$datos_usuario[ced_usu]'");    
+    if(empty($permisos_usuario)){
+        mensajeError("Este usuario no tiene permisos asignados.",null);
+        goto error;
+    }
     #almaceno los datos del usuario en un objeto sesion.
     $_SESSION["sesion_usuario"] = $datos_usuario;
     #almaceno los permisos del usuario en un objeto sesion.

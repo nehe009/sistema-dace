@@ -20,7 +20,7 @@ if (isset($sesion_usuario)){
     echo('<li><a href="index.php?page=usuarios.cerrarsesion">Cerrar sesión</a></li>');
 } else {
     echo('<li><a href="index.php?page=usuarios.nuevo">Registro de Usuarios</a></li>');
-    echo('<li><a href="index.php?page=usuarios.login">Iniciar Sesion</a></li>');
+    echo('<li><a href="index.php?page=usuarios.login">Iniciar Sesión</a></li>');
 }
 ?>
           </ul>

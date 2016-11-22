@@ -1,4 +1,8 @@
 <?php
+/* Informacion de la pagina web */
+define("web_title", "Sistema integral de control de estudios de la UPT Aragua");
+define("web_description", "");
+define("web_author", "");
 /* configuracion de la base de datos */
 define("db_host", "localhost");
 define("db_engine", "mysqli");

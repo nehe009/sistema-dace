@@ -4,10 +4,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content="<?=web_description?>">
+    <meta name="author" content="<?=web_author?>">
     <link rel="icon" href="favicon.ico">
-    <title>Plantilla para DACE</title>
+    <title><?=web_title?></title>
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/bootstrap-datepicker.min.css" rel="stylesheet">

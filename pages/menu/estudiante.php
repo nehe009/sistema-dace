@@ -19,7 +19,7 @@ if($permisos_usuario["activo"]==1){
     $array = array(
         'menuConsultasEstudiantiles.html', 
         );
-        echo '<h4>Menú de Estudiante</h4>';
+        echo '<h4></h4>';
 mostrarMenuUsuarios($array);
 }
 if($permisos_usuario["inactivo"]==1){
