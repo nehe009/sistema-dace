@@ -27,7 +27,7 @@ if(isset($_POST['ok'])){
 $datos = $conn->getAll($sql);
 
  if(empty($datos)){
-     mensajeError("Este usuario no está registrado.", null);
+     mensajeError("Este usuario no está registrado.", "inicio");
     goto error;
  }
 #muestro cabecera de tabla de datos

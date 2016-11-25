@@ -68,12 +68,13 @@ if(isset($_POST['ok'])){
     $sql_permisos="INSERT INTO `usuarios_permisos` (`id`, `cedula_usuario`, `estudiante`, `activo`, `inactivo`, `graduado`, `profesor`, `evaluador`, `jefe_dpto`, `jefe_adm`, `administrativo`, `operador`, `taquilla`, `control_total`) VALUES (NULL, '$inputCedula', b'$estudiante', b'0', b'0', b'0', b'$profesor', b'0', b'0', b'0', b'$administrativo', b'0', b'0', b'0')";
 #se prepara correo electronico a enviar.
 $asunto = 'Activación de cuenta y acceso a sistema DACE';
-$cuerpo ="Ha sido registrado como usuario de la Aplicación para la Gestión del Rendimiento Académico del DACE de la UPT Aragua. Por favor acceda con el siguiente usuario y clave. gracias \n";
-$cuerpo .= "Usuario: $inputCedula \n";
-$cuerpo .= "\n Clave: $clave \n";
-$cuerpo .="\n Codigo de activación: $clave_act";
-$cuerpo .= "Enlace de activación: <a href='site_url/index.php?page=usuarios.activacion&amp;codigo=".$clave_act."'>ACTIVAR CUENTA</a> \n";
-$cuerpo .="Por favor haga clik en el enlace indicado para activar su cuenta.";
+$cuerpo = '<p>Ha sido registrado como usuario de la Aplicación para la Gestión del Rendimiento Académico del DACE de la UPT Aragua.</p>'
+        . '<p>Por favor acceda con el siguiente usuario y clave:</p>'
+        . '<p>Usuario: '.$inputCedula.'</p>'
+        . '<p>Clave: '.$clave.'</p>'
+        . '<p>Codigo de activación: '.$clave_act.'</p>'
+        . '<p>Enlace de activación: <a href='.site_url.'/index.php?page=usuarios.activacion&amp;codigo="'.$clave_act.'">ACTIVAR CUENTA</a></p>'
+        . '<p>Por favor haga clik en el enlace indicado para activar su cuenta.</p>';
 #envio el correo electronico.
 $check=enviarNotificacionCorreo($inputEmail,$asunto,$cuerpo);
     if($check==false) {

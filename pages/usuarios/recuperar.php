@@ -28,11 +28,13 @@ $inputEmail=$datosUser['corr_usu'];
     #encriptacion de clave
     $clave_enc = sha1(md5($clave));
     #se prepara correo electronico a enviar.
-    $asunto = 'Recuperacion  de cuenta y acceso a sistema DACE';
-    $cuerpo ="Usted ha solicitado recuperar los datos de acceso a la Aplicación para la Gestión del Rendimiento Académico del DACE de la UPT Aragua. Por favor acceda con el siguiente usuario y clave. gracias \n";
-    $cuerpo .= "Usuario: $inputCedula \n";
-    $cuerpo .= "\nClave: $clave \n";
-    $cuerpo .="\n";
+    $asunto = 'Recuperación  de cuenta y acceso a sistema DACE';
+    $cuerpo = '<p>Usted ha solicitado recuperar los datos de acceso a la Aplicación para la Gestión del Rendimiento Académico del DACE de la UPT Aragua.</p>'
+            . '<p>Por favor acceda con el siguiente usuario y clave:</p>'
+            . '<p>Usuario: '.$inputCedula.'</p>'
+            . '<p>Clave: '.$clave.'</p>'
+            . '<br>'
+            . '<p>Gracias</p>';
     #envio el correo electronico.
     $check=enviarNotificacionCorreo($inputEmail,$asunto,$cuerpo);
     if($check==false) {
