@@ -16,12 +16,12 @@ if (isset($_GET['codigo'])||isset($_POST['ok'])){
        }    
     #chequeo si el codigo de activacion existe.
     if(empty($conn->getRow("SELECT id FROM usuarios WHERE clave_activacion = '$idval'"))){
-        mensajeError("Código de activación incorrecto.",'inicio','Ir a Inicio');
+        mensajeError("Código de activación incorrecto.",null);
         goto error;
     }
     #chequeo si el codigo ya ha sido activado
     if(!empty($conn->getRow("SELECT id FROM usuarios WHERE clave_activacion = '$idval' AND activo=1"))){
-        mensajeError("Este código ya se ha activado.",'inicio','Ir a Inicio');
+        mensajeError("Este código ya se ha activado.",null);
         goto error;
     }
     #actualizo registro en la base de datos.  

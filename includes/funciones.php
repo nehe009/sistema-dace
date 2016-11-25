@@ -68,7 +68,7 @@ function auditoriaUsuarios($cedula,$accion,$conn) {
 function enviarNotificacionCorreo($correo,$asunto,$mensaje) {
     $mail = new PHPMailer;
     $mail->isSMTP();              // Set mailer to use SMTP
-    $mail->SMTPDebug = 3;
+    //$mail->SMTPDebug = 3;
     $mail->Host = mail_host;  // Specify SMTP servers
     $mail->SMTPAuth = true;             // Enable SMTP authentication
     $mail->SMTPOptions = array('ssl' => array('verify_peer' => false, 'verify_peer_name' => false, 'allow_self_signed' => true));
@@ -90,6 +90,6 @@ function enviarNotificacionCorreo($correo,$asunto,$mensaje) {
 }
 #funcion que revisa dominio
 function chequeaURL() {
-   if ($_SERVER['SERVER_NAME']!= site_url){ die("URL Incorrecta");}
+   if ($_SERVER['SERVER_NAME']!= site_url){ die("URL solicitada  no coincide con el nombre del Sitio Web");}
 }
 ?>

@@ -43,7 +43,7 @@ if(isset($_POST['ok'])){
         goto error;
     }
     #chequeo si el usuario ha superados el limite de inicios de sesion fallidos.
-    if($iduser["inicio_sesion_fallidos"]>=6){
+    if($iduser["inicio_sesion_fallidos"]>=3){
         mensajeError("Este usuario ha superado el límite de intento de sesiones fallidos.",'usuarios.recuperar','Recuperar datos de acceso');
         goto error;
     }

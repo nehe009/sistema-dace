@@ -42,17 +42,23 @@ echo '
     <tbody>';
 #Muestro los datos en la tabla
 foreach ($datos as &$usuarios) {
+    #codigo html para abrir ventana modal para confirmar eliminacion de usuario
+    echo '
+        <div id="eliminarUsuario-'.$usuarios["ced_usu"].'" class="modal fade" role="dialog"><div class="modal-dialog modal-sm">
+        <div class="modal-content"><div class="modal-body"><p>Desea eliminar  este usuario?</p></div>
+        <div class="modal-footer"><a href="index.php?page=usuarios.eliminar&amp;id='.$usuarios["ced_usu"].'" class="btn btn-success">Si</a><a href="#" data-dismiss="modal" class="btn btn-success">No</a>
+        </div></div></div></div>';
     #chequeo los estados de cada cuenta.
     if($usuarios["bloqueo"]==1){
         $estado="Bloqueado";
-        $acciones='<a class="glyphicon glyphicon-lock" title="Desbloquear" href="index.php?page=usuarios.desbloquear&amp;id='.$usuarios["ced_usu"].'"></a>';
+        $acciones='<a class="glyphicon glyphicon-lock" title="Desbloquear Usuario" href="index.php?page=usuarios.desbloquear&amp;id='.$usuarios["ced_usu"].'"></a>';
         } else {
             $estado="Activo";
-            $acciones='<a class="glyphicon glyphicon-lock" title="Bloquear" href="index.php?page=usuarios.bloquear&amp;id='.$usuarios["ced_usu"].'"></a>';
+            $acciones='<a class="glyphicon glyphicon-lock" title="Bloquear Usuario" href="index.php?page=usuarios.bloquear&amp;id='.$usuarios["ced_usu"].'"></a>';
             
         }
     #muestro la informacion de cada cuenta
-    echo '<tr><td><a class="glyphicon glyphicon-user" title="Permisos de usuario" href="index.php?page=usuarios.permisos&amp;id='.$usuarios["ced_usu"].'"></a>&nbsp;'.$acciones.'&nbsp;<a class="glyphicon glyphicon-remove" title="Eliminar" href="index.php?page=usuarios.eliminar&amp;id='.$usuarios["ced_usu"].'"></a></td><td>'.$usuarios["ced_usu"].'</td><td>'.$usuarios["corr_usu"].'</td><td>'.$usuarios["usuario"].'</td><td>'.$usuarios["fecha_registro"].'</td><td>'.$usuarios["fecha_activacion"].'</td><td>'.$usuarios["fecha_ultimo_acceso"].'</td><td>'.$estado.'</td></tr>';
+    echo '<tr><td><a class="glyphicon glyphicon-user" title="Permisos de usuario" href="index.php?page=usuarios.permisos&amp;id='.$usuarios["ced_usu"].'"></a>&nbsp;'.$acciones.'&nbsp;<a data-toggle="modal" data-target="#eliminarUsuario-'.$usuarios["ced_usu"].'" class="glyphicon glyphicon-remove" title="Eliminar Usuario" ></a></td><td>'.$usuarios["ced_usu"].'</td><td>'.$usuarios["corr_usu"].'</td><td>'.$usuarios["usuario"].'</td><td>'.$usuarios["fecha_registro"].'</td><td>'.$usuarios["fecha_activacion"].'</td><td>'.$usuarios["fecha_ultimo_acceso"].'</td><td>'.$estado.'</td></tr>';
  unset($usuarios);
 }
 #cierro la tabla
