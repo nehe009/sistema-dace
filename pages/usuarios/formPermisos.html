@@ -1,0 +1,32 @@
+<center><h4 class="form-signin-heading">Permisos de usuario</h4></center>
+<form class="navbar-form" action="<?=$_SERVER['REQUEST_URI']?>" method="post" >
+<div class="row">
+    <div class="col-sm-4">
+    <ul class="list-group">
+        <li class="list-group-item active"><label><input id="estudiante" name="estudiante" class="estudiante" type="checkbox" value="<?=$estudiante?>"> Permisos como Estudiante</label></li>
+        <li class="list-group-item"><label><input id="activo" name="activo" class="estudiante" type="checkbox" value="<?=$activo?>"> Estudiante Activo</label></li>
+        <li class="list-group-item"><label><input id="inactivo" name="inactivo" class="estudiante" type="checkbox" value="<?=$inactivo?>"> Estudiante Inactivo</label></li>
+        <li class="list-group-item"><label><input id="graduado" name="graduado" class="estudiante" type="checkbox" value="<?=$graduado?>"> Estudiante Graduado</label></li>
+    </ul>   
+    </div>
+    <div class="col-sm-4">
+    <ul class="list-group">
+        <li class="list-group-item active"><label><input id="profesor" name="profesor" class="profesor" type="checkbox" value="<?=$profesor?>"> Permisos como Profesor</label></li>
+        <li class="list-group-item"><label><input id="evaluador" name="evaluador" class="profesor" type="checkbox" value="<?=$evaluador?>"> Profesor Evaluador</label></li>
+        <li class="list-group-item"><label><input id="jefe_dpto" name="jefe_dpto" class="profesor" type="checkbox" value="<?=$jefe_dpto?>"> Jefe de Departamento Académico</label></li>
+        <li class="list-group-item"><label><input id="jefe_adm" name="jefe_adm" class="profesor" type="checkbox" value="<?=$jefe_adm?>"> Jefe de Departamento Administrativo</label></li>
+    </ul>   
+    </div>
+    <div class="col-sm-4">
+    <ul class="list-group">
+        <li class="list-group-item active"><label><input id="administrativo" name="administrativo" class="administrativo" type="checkbox" value="<?=$administrativo?>"> Permisos como Administrativo</label></li>
+        <li class="list-group-item"><label><input id="operador" name="operador" class="administrativo" type="checkbox" value="<?=$operador?>"> Operador</label></li>
+        <li class="list-group-item"><label><input id="taquilla" name="taquilla" class="administrativo" type="checkbox" value="<?=$taquilla?>"> Taquilla</label></li>
+        <li class="list-group-item"><label><input id="control_total" name="control_total" class="administrativo" type="checkbox" value="<?=$control_total?>"> Administrador</label></li>
+    </ul>   
+    </div>
+</div>
+    <center><button type="submit" class="btn btn-success" name="ok">Guardar</button>&nbsp;&nbsp;&nbsp;<a href="index.php?page=usuarios.buscarUsuario" class="btn btn-success">Cancelar</a></center>
+</form>
+<br>
+

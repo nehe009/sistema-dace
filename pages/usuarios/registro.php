@@ -65,7 +65,7 @@ if(isset($_POST['ok'])){
         . "NOW(), '', '', "
         . "'0', '0', '0')"; 
     #preparo la consulta sql para permisos
-    $sql_permisos="INSERT INTO `usuarios_permisos` (`id`, `cedula_usuario`, `estudiante`, `activo`, `inactivo`, `graduado`, `profesor`, `evaluador`, `jefe_dpto`, `jefe_adm`, `administrativo`, `operador`, `taquilla`, `control_total`) VALUES (NULL, '$inputCedula', b'$estudiante', b'0', b'0', b'0', b'$profesor', b'0', b'0', b'0', b'$administrativo', b'0', b'0', b'0')";
+    $sql_permisos="INSERT INTO `usuarios_permisos` (`id`, `cedula_usuario`, `estudiante`, `activo`, `inactivo`, `graduado`, `profesor`, `evaluador`, `jefe_dpto`, `jefe_adm`, `administrativo`, `operador`, `taquilla`, `control_total`) VALUES (NULL, '$inputCedula', b'$estudiante', b'$estudiante', b'0', b'0', b'$profesor', b'$profesor', b'0', b'0', b'$administrativo', b'0', b'0', b'0')";
 #se prepara correo electronico a enviar.
 $asunto = 'Activación de cuenta y acceso a sistema DACE';
 $cuerpo = '<p>Ha sido registrado como usuario de la Aplicación para la Gestión del Rendimiento Académico del DACE de la UPT Aragua.</p>'

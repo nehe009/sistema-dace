@@ -9,5 +9,6 @@
 <script src="js/funciones.js"></script>
 <script src="js/formDatosPersonalesEst.js"></script>
 <script src="js/formEstudioSocioEconomico.js"></script>
+<script src="js/formPermisos.js"></script>
 </body>
 </html>

@@ -25,7 +25,7 @@ if(isset($_GET['id']) && is_numeric($_GET['id'])){
         mensajeError("No puedes eliminar este usuario.", "usuarios.buscarUsuario","Atras");
         goto error;
     }
-    #consulta para eliminar usuario  permisos
+    #consulta para eliminar usuario y permisos
     $conn->getRow("DELETE FROM usuarios_permisos WHERE cedula_usuario='$id'");
     $consulta=$conn->getRow("DELETE FROM usuarios WHERE ced_usu='$id'");
         if(empty($consulta)){

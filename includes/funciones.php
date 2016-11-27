@@ -54,7 +54,7 @@ $ip = "";
     else if ( $_SERVER [ 'REMOTE_ADDR' ]) $ip = $_SERVER [ 'REMOTE_ADDR' ];
 return $ip ;
 }
-#funcion que guarda auditoria d usuarios
+#funcion que guarda auditoria de usuarios
 function auditoriaUsuarios($cedula,$accion,$conn) {
     #direccion ip del visitante
     @$ip = obtenerIP();
@@ -68,7 +68,7 @@ function auditoriaUsuarios($cedula,$accion,$conn) {
 function enviarNotificacionCorreo($correo,$asunto,$mensaje) {
     $mail = new PHPMailer;
     $mail->isSMTP();              // Set mailer to use SMTP
-    //$mail->SMTPDebug = 3;
+    $mail->SMTPDebug = 0;
     $mail->Host = mail_host;  // Specify SMTP servers
     $mail->SMTPAuth = true;             // Enable SMTP authentication
     $mail->SMTPOptions = array('ssl' => array('verify_peer' => false, 'verify_peer_name' => false, 'allow_self_signed' => true));
@@ -81,6 +81,7 @@ function enviarNotificacionCorreo($correo,$asunto,$mensaje) {
     $mail->addReplyTo(mail_from, "No responder");
     $mail->Subject = $asunto;
     $mail->MsgHTML($mensaje);
+    $mail->CharSet = 'UTF-8';
     #Envio el correo electronico.
     if(!$mail->Send()) {
         return false;
