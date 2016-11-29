@@ -28,12 +28,10 @@ mostrarMenuUsuarios($array);
 if($permisos_usuario["jefe_dpto"]==1){
     #menus asignados a esta categoria
     $array = array(
-        '', 
         'menuRegistrodeCalificaciones.html',
-        '',
-        '',
-        'menuAsistencia.html',
-        '',
+        'menuRectificacioneInclusiondeCalificaciones.html',
+        'menuReportes.html', 
+        'menuAsistencia.html'
         );
         echo '<h4>Menú de Jefe de Departamento/h4>';
 mostrarMenuUsuarios($array);
@@ -41,12 +39,10 @@ mostrarMenuUsuarios($array);
 if($permisos_usuario["jefe_adm"]==1){
     #menus asignados a esta categoria
     $array = array(
-        '', 
-        '',
-        '',
-        '',
-        '',
-        '',
+        'menuRegistrodeCalificaciones.html',
+        'menuRectificacioneInclusiondeCalificaciones.html',
+        'menuReportes.html', 
+        'menuAsistencia.html'
         );
         echo '<h4>Menú de Jefe Administrativo</h4>';
 mostrarMenuUsuarios($array);

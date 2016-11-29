@@ -17,12 +17,12 @@ include 'funcionesMenu.php';
 if($permisos_usuario["control_total"]==1){
     #menus asignados a esta categoria
     $array = array(
+        'menuUsuarios.html',
         'menuActualizaciones.html', 
         'menuConsultasyReportes.html',
         'menuProcesos.html',
         'menuProcesosCNU.html',
-        'menuProcesosdeInscripciones.html',
-        'menuUsuarios.html',
+        'menuProcesosdeInscripciones.html'        
         );
         echo '<h4>Menú de administrador</h4>';
 mostrarMenuUsuarios($array);
@@ -30,12 +30,7 @@ mostrarMenuUsuarios($array);
 if($permisos_usuario["taquilla"]==1){
     #menus asignados a esta categoria
     $array = array(
-        '', 
-        '',
-        '',
-        '',
-        '',
-        '',
+        'menuUsuarios.html'
         );
         echo '<h4>Menú de Taquilla</h4>';
 mostrarMenuUsuarios($array);
@@ -43,12 +38,7 @@ mostrarMenuUsuarios($array);
 if($permisos_usuario["operador"]==1){
     #menus asignados a esta categoria
     $array = array(
-        '', 
-        '',
-        '',
-        '',
-        '',
-        '',
+        'menuUsuarios.html'
         );
         echo '<h4>Menú de Operador</h4>';
 mostrarMenuUsuarios($array);

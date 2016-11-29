@@ -29,7 +29,7 @@ if(isset($_GET['id']) && is_numeric($_GET['id'])){
     $conn->getRow("DELETE FROM usuarios_permisos WHERE cedula_usuario='$id'");
     $consulta=$conn->getRow("DELETE FROM usuarios WHERE ced_usu='$id'");
         if(empty($consulta)){
-            auditoriaUsuarios($sesion_usuario['ced_usu'],'desbloquear usuario '.$id.'',$conn);
+           auditoriaUsuarios($sesion_usuario['ced_usu'],'eliminar usuario '.$id.'',$conn);
            mensajeSuccess("Usuario eliminado correctamente.", "usuarios.buscarUsuario","Atras");
         } else {
             mensajeError("No se ha podido eliminar al usuario.", "usuarios.buscarUsuario","Atras");
