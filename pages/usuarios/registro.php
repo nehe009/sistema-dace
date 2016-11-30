@@ -73,7 +73,7 @@ $cuerpo = '<p>Ha sido registrado como usuario de la Aplicación para la Gestión
         . '<p>Usuario: '.$inputCedula.'</p>'
         . '<p>Clave: '.$clave.'</p>'
         . '<p>Codigo de activación: '.$clave_act.'</p>'
-        . '<p>Enlace de activación: <a href='.site_url.'/index.php?page=usuarios.activacion&amp;codigo="'.$clave_act.'">ACTIVAR CUENTA</a></p>'
+        . '<p>Enlace de activación: <a href="'.site_url.'/index.php?page=usuarios.activacion&amp;codigo='.$clave_act.'">ACTIVAR CUENTA</a></p>'
         . '<p>Por favor haga clik en el enlace indicado para activar su cuenta.</p>';
 #envio el correo electronico.
 $check=enviarNotificacionCorreo($inputEmail,$asunto,$cuerpo);
