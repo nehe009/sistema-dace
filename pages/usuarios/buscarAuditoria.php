@@ -22,7 +22,7 @@ include("formBuscarAuditoria.html");
 if(isset($_POST['ok'])){
     #extraigo variables POST
     extract($_POST);
-    $sql="SELECT * FROM auditoria_usuarios WHERE cedula_usuario LIKE '%$inputBuscar%'";
+    $sql="SELECT * FROM auditoria_usuarios WHERE cedula_usuario LIKE '%$inputBuscar%' ORDER BY fecha DESC";
     #realizo consulta a la base de datos
 $datos = $conn->getAll($sql);
 
