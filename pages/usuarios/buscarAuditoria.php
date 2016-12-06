@@ -34,11 +34,9 @@ $datos = $conn->getAll($sql);
 echo '
 <div class="table-responsive">
 <table class="table table-bordered table-hover table-condensed">
-    <thead>
-    <tr>
+    <thead><tr>
     <th>Cedula de Identidad</th><th>Dirección IP</th><th>Navegador Web</th><th>Sistema Operativo</th><th>Fecha de Registro</th><th>Acción realizada</th>
-    </tr>
-    </thead>
+    </tr></thead>
     <tbody>';
 #Muestro los datos en la tabla
 foreach ($datos as &$usuarios) {

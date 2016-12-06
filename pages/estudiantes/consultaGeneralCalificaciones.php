@@ -11,11 +11,11 @@ if(!$permisos_usuario["estudiante"]==1){
     mensajeError("No tienes permiso para entrar a este módulo.",'inicio','Ir a Inicio');
     goto error;
 }
-
+#consulta de calificaciones del estudiante
 $sql="SELECT * FROM calificaciones WHERE ced_est='$sesion_usuario[ced_usu]' ORDER BY calificaciones.per_ins DESC, calificaciones.cod_uca";
 #realizo consulta a la base de datos
 $datos = $conn->getAll($sql);
-
+#chequeo si la consulta obtuvo resultados
 if(empty($datos)){
      mensajeError("Este usuario no tiene registros de calificaciones.", "inicio");
     goto error;
@@ -25,11 +25,9 @@ echo '
 <h4 align="center">Historial de Fases de Unidades Curriculares</h4>
 <div class="table-responsive">
 <table class="table table-bordered table-hover table-condensed">
-    <thead>
-    <tr>
-    <th>Codigo(U.C)</th><th>Fase de la Unidad Curricular</th><th>Logro Obtenido</th><th>Período</th><th>Obs.</th>
-    </tr>
-    </thead>
+    <thead><tr>
+    <th>Codigo (U.C)</th><th>Fase de la Unidad Curricular</th><th>Logro Obtenido</th><th>Período</th><th>Obs.</th>
+    </tr></thead>
     <tbody>';
 #Muestro los datos en la tabla
 foreach ($datos as &$fila) {
