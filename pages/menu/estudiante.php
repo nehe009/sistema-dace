@@ -19,18 +19,13 @@ if($permisos_usuario["activo"]==1){
     $array = array(
         'menuConsultasEstudiantiles.html', 
         );
-        echo '<h4></h4>';
+        echo '<h4>Menú de Estudiante Regular</h4>';
 mostrarMenuUsuarios($array);
 }
 if($permisos_usuario["inactivo"]==1){
     #menus asignados a esta categoria
     $array = array(
-        '', 
-        '',
-        '',
-        '',
-        '',
-        '',
+        'menuConsultasEstudiantiles.html'
         );
         echo '<h4>Menú de Estudiante Inactivo</h4>';
 mostrarMenuUsuarios($array);
@@ -38,12 +33,7 @@ mostrarMenuUsuarios($array);
 if($permisos_usuario["graduado"]==1){
     #menus asignados a esta categoria
     $array = array(
-        '', 
-        '',
-        '',
-        '',
-        '',
-        '',
+        'menuConsultasEstudiantiles.html',
         );
         echo '<h4>Menú de Estudiante Graduado</h4>';
 mostrarMenuUsuarios($array);

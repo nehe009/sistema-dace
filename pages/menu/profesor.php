@@ -23,6 +23,7 @@ if($permisos_usuario["evaluador"]==1){
         'menuReportes.html', 
         'menuAsistencia.html'
         );
+    echo '<h4>Menú de Profesor Evaluador</h4>';
 mostrarMenuUsuarios($array);
 }
 if($permisos_usuario["jefe_dpto"]==1){
@@ -33,7 +34,7 @@ if($permisos_usuario["jefe_dpto"]==1){
         'menuReportes.html', 
         'menuAsistencia.html'
         );
-        echo '<h4>Menú de Jefe de Departamento/h4>';
+        echo '<h4>Menú de Jefe de Departamento</h4>';
 mostrarMenuUsuarios($array);
 }
 if($permisos_usuario["jefe_adm"]==1){
