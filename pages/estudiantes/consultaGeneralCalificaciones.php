@@ -59,6 +59,13 @@ unset($fila);
 }
 #cierro la tabla
 echo '</tbody></table></div>';
+    #codigo html para abrir ventana modal para confirmar impresion de reporte
+    echo '
+        <div align="center"><a href="" role="button" data-toggle="modal" data-target="#imprimirReporte-'.$sesion_usuario["ced_usu"].'" class="glyphicon glyphicon-print btn btn-lg btn-success" title="Imprimir reporte" > Imprimir</a></div><br>
+        <div id="imprimirReporte-'.$sesion_usuario["ced_usu"].'" class="modal fade" role="dialog"><div class="modal-dialog modal-sm">
+        <div class="modal-content"><div class="modal-body"><p>Esta seguro que desea imprimir este reporte?</p></div>
+        <div class="modal-footer"><a href="index.php?page=usuarios.eliminar&amp;id='.$sesion_usuario["ced_usu"].'" class="btn btn-success">Si</a><a href="#" data-dismiss="modal" class="btn btn-success">No</a>
+        </div></div></div></div>';
 #salida para los errores.
 error:
 ?>

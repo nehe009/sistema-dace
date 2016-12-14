@@ -8,9 +8,9 @@
 <label for="inputCedula" class="">Cédula</label>
 <input type="text" id="inputCedula" name="inputCedula" pattern="[0-9]{7,8}" class="form-control" placeholder="Cédula" value="<?=$ced_est?>" required disabled>
 <label for="inputApellidos" class="">Apellidos</label>
-<input type="text" id="inputApellidos" name="inputApellidos" pattern="[A-Z a-z]{1,32}" class="form-control" placeholder="Apellidos" value="<?=$ape_est?>" onKeyUp='this.value=this.value.toUpperCase()' required>
+<input type="text" id="inputApellidos" name="inputApellidos" pattern="[A-Z a-záÁéÉíÍóÓúÚñÑ]{1,32}" class="form-control" placeholder="Apellidos" value="<?=$ape_est?>" onKeyUp='this.value=this.value.toUpperCase()' required>
 <label for="inputNombres" class="">Nombres</label>
-<input type="text" id="inputNombres" name="inputNombres" pattern="[A-Z a-z]{1,32}" class="form-control" placeholder="Nombres" value="<?=$nom_est?>" onKeyUp='this.value=this.value.toUpperCase()' required>
+<input type="text" id="inputNombres" name="inputNombres" pattern="[A-Z a-záÁéÉíÍóÓúÚñÑ]{1,32}" class="form-control" placeholder="Nombres" value="<?=$nom_est?>" onKeyUp='this.value=this.value.toUpperCase()' required>
 </div>
 <div class="col-md-4 form-signin">
 <label for="inputFechaNacimiento" class="">Fecha de nacimiento</label>
@@ -51,25 +51,25 @@
 <div class="col-md-4 form-signin">
 <h4 class="form-signin-heading">LUGAR DE NACIMIENTO</h4>
 <label for="inputPaisNacimiento" class="">Pais de Nacimiento</label>
-<input type="text" id="inputPaisNacimiento" value="<?=$pais?>" name="inputPaisNacimiento" pattern="[A-Z a-z]{1,32}" class="form-control" placeholder="País de nacimiento" onchange="PaisNacimiento();" required>
+<input type="text" id="inputPaisNacimiento" value="<?=$pais?>" name="inputPaisNacimiento" pattern="[A-Z a-záÁéÉíÍóÓúÚñÑ]{1,32}" class="form-control" placeholder="País de nacimiento" onchange="PaisNacimiento();" required>
 <label for="inputEstadoNacimiento" class="">Estado</label>
-<input type="text" id="inputEstadoNacimiento" value="<?=$edo_nac?>" name="inputEstadoNacimiento" pattern="[A-Z a-z]{1,32}" class="form-control" placeholder="Estado de Nacimiento" required>    
+<input type="text" id="inputEstadoNacimiento" value="<?=$edo_nac?>" name="inputEstadoNacimiento" pattern="[A-Z a-záÁéÉíÍóÓúÚñÑ]{1,32}" class="form-control" placeholder="Estado de Nacimiento" required>    
 <label for="inputCiudadNacimiento" class="">Ciudad</label>
-<input type="text" id="inputCiudadNacimiento" value="<?=$lugarn?>" name="inputCiudadNacimiento" pattern="[A-Z a-z]{1,32}" class="form-control" placeholder="Ciudad de Nacimiento" required> 
+<input type="text" id="inputCiudadNacimiento" value="<?=$lugarn?>" name="inputCiudadNacimiento" pattern="[A-Z a-záÁéÉíÍóÓúÚñÑ]{1,32}" class="form-control" placeholder="Ciudad de Nacimiento" required> 
 </div>
 <div class="col-md-4 form-signin">    
 <h4 class="form-signin-heading">DIRECCIÓN DE HABITACIÓN</h4>
 <label for="inputEstadoHabitacion" class="">Estado</label>
-<input type="text" id="inputEstadoHabitacion" value="<?=$estado_direccion?>" name="inputEstadoHabitacion" pattern="[A-Z a-z]{1,32}" class="form-control" placeholder="Estado de Habitación" required>    
+<input type="text" id="inputEstadoHabitacion" value="<?=$estado_direccion?>" name="inputEstadoHabitacion" pattern="[A-Z a-záÁéÉíÍóÓúÚñÑ]{1,32}" class="form-control" placeholder="Estado de Habitación" required>    
 <label for="inputMunicipioHabitacion" class="">Municipio</label>
-<input type="text" id="inputMunicipioHabitacion" value="<?=$mun_direccion?>" name="inputMunicipioHabitacion" pattern="[A-Z a-z]{1,32}" class="form-control" placeholder="Municipio" required>
+<input type="text" id="inputMunicipioHabitacion" value="<?=$mun_direccion?>" name="inputMunicipioHabitacion" pattern="[A-Z a-záÁéÉíÍóÓúÚñÑ]{1,32}" class="form-control" placeholder="Municipio" required>
 <label for="inputParroquiaHabitacion" class="">Parroquia</label>
-<input type="text" id="inputParroquiaHabitacion" value="" name="inputParroquiaHabitacion" pattern="[A-Z a-z]{1,32}" class="form-control" placeholder="Parroquia" required disabled>    
+<input type="text" id="inputParroquiaHabitacion" value="" name="inputParroquiaHabitacion" pattern="[A-Z a-záÁéÉíÍóÓúÚñÑ]{1,32}" class="form-control" placeholder="Parroquia" required disabled>    
 </div>
 <div class="col-md-4 form-signin">
 <h4 class="form-signin-heading">DIRECCIÓN DE HABITACIÓN</h4>
 <label for="inputCiudadHabitacion" class="">Ciudad</label>
-<input type="text" id="inputCiudadHabitacion" value="<?=$ciuh?>" name="inputCiudadHabitacion" pattern="[A-Z a-z]{1,32}" class="form-control" placeholder="Ciudad" required>    
+<input type="text" id="inputCiudadHabitacion" value="<?=$ciuh?>" name="inputCiudadHabitacion" pattern="[A-Z a-záÁéÉíÍóÓúÚñÑ]{1,32}" class="form-control" placeholder="Ciudad" required>    
 <label for="inputDireccion" class="">Dirección</label>
 <textarea name="inputDireccion" maxlength="200" class="form-control"  placeholder="Dirección de Habitación" required ><?=$dir_est?></textarea>   
 </div>

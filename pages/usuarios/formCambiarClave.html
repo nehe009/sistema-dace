@@ -1,7 +1,7 @@
     <form class="form-signin" action="<?=$_SERVER['REQUEST_URI']?>" method="post" autocomplete="off">
         <center>
         <h4 class="form-signin-heading">Cambio de Contraseña</h4>
-	<p>La contraseña debe tener de 8 a 32 caracteres compuestos por letras y números.</p>
+	<p>El contraseña debe tener de 8 a 32 caracteres alfanuméricos, sin acentos, espacios ni caracteres especiales.</p>
         <label for="inputPassword" class="sr-only">Contraseña actual</label>
 	<input type="password" id="inputPassword" name="inputPassword" pattern="[A-Za-z0-9]{8,32}" class="form-control" placeholder="Contraseña actual" required>
         <label for="inputNewPassword1" class="sr-only">Nueva Contraseña</label>

@@ -37,7 +37,7 @@ if(isset($_POST['ok'])){
            auditoriaUsuarios($sesion_usuario['ced_usu'],'cambio usuario',$conn);
            #envio notificacion de correo.
            enviarNotificacionCorreo($sesion_usuario['corr_usu'],'Notificacion DACE','<p>Usted ha cambiado el usuario de su cuenta.</p>');
-           mensajeSuccess("El usuario se ha cambiado correctamente. Se recomienda cerrar y abrir la sesión nuevamente.",'usuarios.cerrarsesion','Cerrar sesión');
+           mensajeSuccess("El usuario se ha cambiado correctamente.",'usuarios.perfil','Atras');
        }    
 } else { #si no se pulso ok se muestra formulario de registro
     include("formCambiarUsuario.html");

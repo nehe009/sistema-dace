@@ -3,9 +3,9 @@ function Nacionalidad(){
     var lista = document.getElementById("inputNacionalidad");
     var valorSeleccionado = lista.options[lista.selectedIndex].value;
     if(valorSeleccionado=="V"){
-        $('#inputPaisNacimiento').attr({readonly: true, value: 'Venezuela'});   
+        $('#inputPaisNacimiento').attr({value: 'Venezuela'});   
     }else if (valorSeleccionado=="E") {
-        $('#inputPaisNacimiento').attr({readonly: false, value: ''});         
+        $('#inputPaisNacimiento').attr({value: ''});         
     } 
 }
 function PaisNacimiento(){    

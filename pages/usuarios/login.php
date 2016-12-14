@@ -47,8 +47,6 @@ if(isset($_POST['ok'])){
         mensajeError("Este usuario ha superado el límite de intento de sesiones fallidos.",'usuarios.recuperar','Recuperar datos de acceso');
         goto error;
     }
-    #actualiza numero de sesion, fecha de ultimo acceso y resetea intentos fallidos de inicio.
-    $conn->getRow("UPDATE usuarios SET num_sesion=num_sesion+1, fecha_ultimo_acceso=NOW(),inicio_sesion_fallidos=0 WHERE id='$iduser[id]'");
     #consulto datos de interes para generar la sesion de la tabla de usuarios
     $datos_usuario=$conn->getRow("SELECT id, usuario, ced_usu, num_sesion, corr_usu FROM usuarios WHERE id='$iduser[id]'");
     #consulto el nombre y apellido de usuario y demas informacion de interes.    
@@ -59,17 +57,19 @@ if(isset($_POST['ok'])){
             $datos_tabla=$conn->getRow("SELECT nom_adm as nombre, ape_adm as apellido FROM administrativo WHERE ced_adm=$datos_usuario[ced_usu]");
         }
     }
-    $datos_usuario =  array_merge($datos_usuario,$datos_tabla);
-    #consulta permisos de usuario
+    #consulta si tiene permisos de usuario en la tabla de permisos
     $permisos_usuario=$conn->getRow("SELECT * FROM usuarios_permisos WHERE cedula_usuario='$datos_usuario[ced_usu]'");    
     if(empty($permisos_usuario)){
         mensajeError("Este usuario no tiene permisos asignados.",null);
         goto error;
     }
+    $datos_usuario =  array_merge($datos_usuario,$datos_tabla);
     #almaceno los datos del usuario en un objeto sesion.
-    $_SESSION["sesion_usuario"] = $datos_usuario;
+    $_SESSION["sesion_usuario"] = $datos_usuario;    
     #almaceno los permisos del usuario en un objeto sesion.
     $_SESSION["permisos_usuario"] = $permisos_usuario;
+    #actualiza numero de sesion, fecha de ultimo acceso y resetea intentos fallidos de inicio.
+    $conn->getRow("UPDATE usuarios SET num_sesion=num_sesion+1, fecha_ultimo_acceso=NOW(),inicio_sesion_fallidos=0 WHERE id='$iduser[id]'");
     #auditoria de usuarios
     auditoriaUsuarios($datos_usuario["ced_usu"],'inicio sesion',$conn);
     #Vuelve a la pagina principal

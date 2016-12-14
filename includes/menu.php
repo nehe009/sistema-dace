@@ -27,10 +27,12 @@ if (isset($sesion_usuario)){
           </ul>
 <?php
                     if (isset($sesion_usuario)){
+                        $nombre = explode(" ", $sesion_usuario['nombre']);
+                        $apellido= explode(" ", $sesion_usuario['apellido']);
                         echo ('<ul class="nav navbar-nav navbar-right"><li><a href="index.php?page=usuarios.perfil">Bienvenido(a). ');
-                        echo $sesion_usuario['nombre'];
+                        echo $nombre[0];
                         echo "&nbsp;";
-                        echo $sesion_usuario['apellido'];
+                        echo $apellido[0];
                         echo ('</a></li></ul>');
                     }
 ?>

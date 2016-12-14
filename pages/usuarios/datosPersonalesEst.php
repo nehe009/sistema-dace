@@ -24,7 +24,7 @@ if(isset($_POST['ok'])){
        } else {
            #guardo auditoria.
            auditoriaUsuarios($sesion_usuario['ced_usu'],'actualizar datos',$conn);
-           mensajeSuccess("Los datos se han actualizado correctamente. Se recomienda cerrar y abrir la sesión nuevamente.",'usuarios.cerrarsesion','Cerrar sesión');
+           mensajeSuccess("Los datos se han actualizado correctamente.",'usuarios.perfil','Atras');
        }
 } else {
     #consulto datos de la tabla estudiantes para cargarlos en el formulario.

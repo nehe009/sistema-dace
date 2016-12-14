@@ -23,7 +23,7 @@ if(isset($_POST['ok'])){
     $conn->Execute($sql2);
     #guardo auditoria.
     auditoriaUsuarios($sesion_usuario['ced_usu'],'actualizar estudio socioeconomico',$conn);
-    mensajeSuccess("Los datos se han actualizado correctamente. Se recomienda cerrar y abrir la sesión nuevamente.",'usuarios.cerrarsesion','Cerrar sesión');
+    mensajeSuccess("Los datos se han actualizado correctamente.",'usuarios.perfil','Atras');
 } else {
     #consulto datos de la tabla estudiantes para cargarlos en el formulario.
     $datos1=$conn->getRow("SELECT * FROM estudiantes WHERE ced_est='$sesion_usuario[ced_usu]'");

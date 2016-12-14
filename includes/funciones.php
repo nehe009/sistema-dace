@@ -235,4 +235,5 @@ function getBrowser(){
 		else
 			return 'Unknown';
 	}
+       
 ?>

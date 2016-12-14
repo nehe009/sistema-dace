@@ -35,7 +35,7 @@ if(isset($_POST['ok'])){
            auditoriaUsuarios($sesion_usuario['ced_usu'],'cambio clave',$conn);
            #envio notificacion de correo.
            enviarNotificacionCorreo($sesion_usuario['corr_usu'],'Notificacion DACE','<p>Usted ha cambiado la contraseña de su cuenta.</p>');
-           mensajeSuccess("La contraseña se ha cambiado correctamente.",'inicio','Ir a Inicio');
+           mensajeSuccess("La contraseña se ha cambiado correctamente.",'usuarios.perfil','Atras');
        }    
 } else { #si no se pulso ok se muestra formulario de registro
     include("formCambiarClave.html");
