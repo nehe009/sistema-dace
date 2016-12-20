@@ -1,3 +1,4 @@
+$(document).ready(function(){
 if($('#estudiante').val()==1){ $('#estudiante').attr({checked: true});} else {$('input.estudiante').attr({disabled: true});}
 if($('#activo').val()==1){ $('#activo').attr({checked: true});}
 if($('#inactivo').val()==1){ $('#inactivo').attr({checked: true});}
@@ -10,3 +11,4 @@ if($('#administrativo').val()==1){ $('#administrativo').attr({checked: true});} 
 if($('#operador').val()==1){ $('#operador').attr({checked: true});}
 if($('#taquilla').val()==1){ $('#taquilla').attr({checked: true});}
 if($('#control_total').val()==1){ $('#control_total').attr({checked: true});}
+});

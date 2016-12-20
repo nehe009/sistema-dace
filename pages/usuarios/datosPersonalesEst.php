@@ -16,7 +16,7 @@ if(isset($_POST['ok'])){
     #extraigo variables POST
     extract($_POST);
     #consulta de actualizacion de datos
-    $sql="UPDATE estudiantes SET ape_est='$inputApellidos', nom_est='$inputNombres', fecha_nac='$inputFechaNacimiento', nac_est='$inputNacionalidad', sexo='$inputSexo', edo_civil='$inputEstadoCivil', afrodes='$inputAfrodescendiente', telf_est='$inputTelefono', pais='$inputPaisNacimiento', edo_nac='$inputEstadoNacimiento', lugarn='$inputCiudadNacimiento', estado_direccion='$inputEstadoHabitacion', mun_direccion='$inputMunicipioHabitacion', ciuh='$inputCiudadHabitacion', dir_est='$inputDireccion' WHERE ced_est='$sesion_usuario[ced_usu]'";
+    $sql="UPDATE estudiantes SET ape_est='$inputApellidos', nom_est='$inputNombres', fecha_nac='$inputFechaNacimiento', nac_est='$inputNacionalidad', sexo='$inputSexo', edo_civil='$inputEstadoCivil', afrodes='$inputAfrodescendiente', telf_est='$inputTelefono', pais='$inputPaisNacimiento', edo_nac='$inputEstadoNacimiento', lugarn='$inputCiudadNacimiento', estado_direccion='$inputEstadoHabitacion', mun_direccion='$inputMunicipioHabitacion', parroquia_direccion='$inputParroquiaHabitacion', ciuh='$inputCiudadHabitacion', dir_est='$inputDireccion' WHERE ced_est='$sesion_usuario[ced_usu]'";
     #inserto datos en la base de datos.    
     if ($conn->Execute($sql) == false){ 
         mensajeError("Actualizacion de datos fallida, contacte un administrador.",null);

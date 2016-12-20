@@ -1,3 +1,4 @@
+<script src="js/formDatosPersonalesEst.js"></script>
 <form class="" action="<?=$_SERVER['REQUEST_URI']?>" method="post" name="formDatosPersonales" id="formDatosPersonales" autocomplete="off">
 <div class="row">
 <center>
@@ -16,7 +17,7 @@
 <label for="inputFechaNacimiento" class="">Fecha de nacimiento</label>
 <input type="text" id="inputFechaNacimiento" name="inputFechaNacimiento" class="form-control" placeholder="Fecha de nacimiento" value="<?=$fecha_nac?>" required>
 <label for="inputNacionalidad" class="">Nacionalidad</label>
-<select id="inputNacionalidad" name="inputNacionalidad" class="form-control" onchange="Nacionalidad();" required>
+<select id="inputNacionalidad" name="inputNacionalidad" class="form-control" required>
     <option value="<?=$nac_est?>">Seleccione</option>
     <option value="V">Venezolana</option>
     <option value="E">Extranjera</option>
@@ -51,29 +52,43 @@
 <div class="col-md-4 form-signin">
 <h4 class="form-signin-heading">LUGAR DE NACIMIENTO</h4>
 <label for="inputPaisNacimiento" class="">Pais de Nacimiento</label>
-<input type="text" id="inputPaisNacimiento" value="<?=$pais?>" name="inputPaisNacimiento" pattern="[A-Z a-záÁéÉíÍóÓúÚñÑ]{1,32}" class="form-control" placeholder="País de nacimiento" onchange="PaisNacimiento();" required>
-<label for="inputEstadoNacimiento" class="">Estado</label>
-<input type="text" id="inputEstadoNacimiento" value="<?=$edo_nac?>" name="inputEstadoNacimiento" pattern="[A-Z a-záÁéÉíÍóÓúÚñÑ]{1,32}" class="form-control" placeholder="Estado de Nacimiento" required>    
-<label for="inputCiudadNacimiento" class="">Ciudad</label>
-<input type="text" id="inputCiudadNacimiento" value="<?=$lugarn?>" name="inputCiudadNacimiento" pattern="[A-Z a-záÁéÉíÍóÓúÚñÑ]{1,32}" class="form-control" placeholder="Ciudad de Nacimiento" required> 
+<select id="inputPaisNacimiento" name="inputPaisNacimiento" class="form-control" required>
+        <option value="<?=$pais?>"><?=$pais?></option>
+</select>
+<label for="inputEstadoNacimiento" class="">Estado de Nacimiento</label>
+<select id="inputEstadoNacimiento" name="inputEstadoNacimiento" class="form-control" required>    
+        <option value="<?=$edo_nac?>"><?=$edo_nac?></option>
+</select>
+<label for="inputCiudadNacimiento" class="">Ciudad de Nacimiento</label>
+<select id="inputCiudadNacimiento" name="inputCiudadNacimiento" class="form-control" required> 
+        <option value="<?=$lugarn?>"><?=$lugarn?></option>
+</select>
 </div>
 <div class="col-md-4 form-signin">    
 <h4 class="form-signin-heading">DIRECCIÓN DE HABITACIÓN</h4>
 <label for="inputEstadoHabitacion" class="">Estado</label>
-<input type="text" id="inputEstadoHabitacion" value="<?=$estado_direccion?>" name="inputEstadoHabitacion" pattern="[A-Z a-záÁéÉíÍóÓúÚñÑ]{1,32}" class="form-control" placeholder="Estado de Habitación" required>    
+<select id="inputEstadoHabitacion" name="inputEstadoHabitacion" class="form-control" required>    
+        <option value="<?=$estado_direccion?>"><?=$estado_direccion?></option>
+</select>
 <label for="inputMunicipioHabitacion" class="">Municipio</label>
-<input type="text" id="inputMunicipioHabitacion" value="<?=$mun_direccion?>" name="inputMunicipioHabitacion" pattern="[A-Z a-záÁéÉíÍóÓúÚñÑ]{1,32}" class="form-control" placeholder="Municipio" required>
+<select id="inputMunicipioHabitacion" name="inputMunicipioHabitacion" class="form-control" required>
+        <option value="<?=$mun_direccion?>"><?=$mun_direccion?></option>
+</select>
 <label for="inputParroquiaHabitacion" class="">Parroquia</label>
-<input type="text" id="inputParroquiaHabitacion" value="" name="inputParroquiaHabitacion" pattern="[A-Z a-záÁéÉíÍóÓúÚñÑ]{1,32}" class="form-control" placeholder="Parroquia" required disabled>    
+<select id="inputParroquiaHabitacion" name="inputParroquiaHabitacion"  class="form-control" required>    
+        <option value="<?=$parroquia_direccion?>"><?=$parroquia_direccion?></option>
+</select>
 </div>
 <div class="col-md-4 form-signin">
 <h4 class="form-signin-heading">DIRECCIÓN DE HABITACIÓN</h4>
 <label for="inputCiudadHabitacion" class="">Ciudad</label>
-<input type="text" id="inputCiudadHabitacion" value="<?=$ciuh?>" name="inputCiudadHabitacion" pattern="[A-Z a-záÁéÉíÍóÓúÚñÑ]{1,32}" class="form-control" placeholder="Ciudad" required>    
+<select id="inputCiudadHabitacion" name="inputCiudadHabitacion" class="form-control" required>    
+        <option value="<?=$ciuh?>"><?=$ciuh?></option>
+</select>
 <label for="inputDireccion" class="">Dirección</label>
 <textarea name="inputDireccion" maxlength="200" class="form-control"  placeholder="Dirección de Habitación" required ><?=$dir_est?></textarea>   
 </div>
 </div>
-<button class="btn btn-lg btn-success btn-block form-signin" type="submit" name="ok" >Entrar</button>
+<button class="btn btn-lg btn-success btn-block form-signin" type="submit" name="ok" >Guardar datos</button>
 <br>
 </form>

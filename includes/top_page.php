@@ -23,6 +23,7 @@
       <script src="js/html5shiv.min.js"></script>
       <script src="js/respond.min.js"></script>
     <![endif]-->    
+    <script src="js/jquery.min.js"></script>
   </head>
 <body>
 <noscript><meta http-equiv="refresh" content="0; nojs.php" /></noscript>

@@ -30,7 +30,7 @@
               <h3 class="panel-title">Paso #3</h3>
             </div>
             <div class="panel-body">
-                <li>Una vez activada la cuenta puede ingresar al sistema usando su nombre de usuario y contraseña temporal.</li>
+                <li>Una vez activada la cuenta puede ingresar al sistema usando el menu "Iniciar Sesión", escribiendo en dicho formulario su nombre de usuario, contraseña temporal y resolviendo la operacion matematica.</li>
                 <li>El nombre de usuario y la contraseña temporal puede ser cambiada luego en el menú “Mi Perfil”.</li>
             </div>
           </div>

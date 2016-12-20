@@ -1,3 +1,4 @@
+<script src="js/formEstudioSocioEconomico.js"></script>
 <form class="" action="<?=$_SERVER['REQUEST_URI']?>" method="post" name="formEstudioSocioEconomico" id="formEstudioSocioEconomico" autocomplete="off">
 <div class="row">
 <center>
@@ -8,7 +9,7 @@
 <div class="col-md-4 form-signin">
 <h4 class="form-signin-heading">DATOS LABORALES</h4>
 <label for="inputTrabaja" class="">Trabaja?</label>
-<select onchange="trabaja();" id="inputTrabaja" name="inputTrabaja" class="form-control" required >
+<select id="inputTrabaja" name="inputTrabaja" class="form-control" required >
     <option value="<?=$trabajo?>">Seleccione</option>
     <option value="0">No</option>
     <option value="1">SI</option>
@@ -27,13 +28,13 @@
 <div class="col-md-4 form-signin">    
 <h4 class="form-signin-heading">SALUD</h4>
 <label for="inputDiscapacidad" class="">Presenta alguna Discapacidad?</label>
-<select onchange="Discapacidad();" id="inputDiscapacidad" name="inputDiscapacidad" class="form-control" required >
+<select id="inputDiscapacidad" name="inputDiscapacidad" class="form-control" required >
     <option value="<?=$disca_est?>">Seleccione</option>
     <option value="0">No</option>
     <option value="1">SI</option>
 </select>
 <label for="inputTipoDiscapacidad" class="">Tipo</label>
-<select onchange="tipoDiscapacidad();" id="inputTipoDiscapacidad" name="inputTipoDiscapacidad" class="form-control" required >
+<select id="inputTipoDiscapacidad" name="inputTipoDiscapacidad" class="form-control" required >
     <option value="<?=$tipo_disc?>">Seleccione</option>
     <option value="Motora">Motora</option>
     <option value="Auditiva">Auditiva</option>
@@ -45,6 +46,6 @@
 </select>
 </div>
 </div>
-<button class="btn btn-lg btn-success btn-block form-signin" type="submit" name="ok" >Entrar</button>
+<button class="btn btn-lg btn-success btn-block form-signin" type="submit" name="ok" >Guardar datos</button>
 <br>
 </form>
