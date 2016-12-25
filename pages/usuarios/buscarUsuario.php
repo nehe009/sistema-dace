@@ -55,7 +55,6 @@ foreach ($datos as &$usuarios) {
         } else {
             $estado="Activo";
             $acciones='<a class="glyphicon glyphicon-lock" title="Bloquear Usuario" href="index.php?page=usuarios.bloquear&amp;id='.$usuarios["ced_usu"].'"></a>';
-            
         }
     #muestro la informacion de cada cuenta
     echo '<tr><td><a class="glyphicon glyphicon-user" title="Permisos de usuario" href="index.php?page=usuarios.permisos&amp;id='.$usuarios["ced_usu"].'"></a>&nbsp;'.$acciones.'&nbsp;<a href="" data-toggle="modal" data-target="#eliminarUsuario-'.$usuarios["ced_usu"].'" class="glyphicon glyphicon-remove" title="Eliminar Usuario" ></a></td><td>'.$usuarios["ced_usu"].'</td><td>'.$usuarios["corr_usu"].'</td><td>'.$usuarios["usuario"].'</td><td>'.$usuarios["fecha_registro"].'</td><td>'.$usuarios["fecha_activacion"].'</td><td>'.$usuarios["fecha_ultimo_acceso"].'</td><td>'.$estado.'</td></tr>';
