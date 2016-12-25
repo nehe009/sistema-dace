@@ -1,0 +1,48 @@
+<center>
+    <h4 class="form-signin-heading">Estudio Socio-Económico</h4>
+    <p>Todos los campos del formulario son obligatorios.</p>
+</center>
+<form class="" action="<?=$_SERVER['REQUEST_URI']?>" method="post" name="formEstudioSocioEconomico" id="formEstudioSocioEconomico" autocomplete="off">
+<div class="row">    
+<div class="col-md-4 form-signin">
+<label for="cedula_familiar" class="">Cedula de identidad</label>
+<input id="cedula_familiar" value="<?=$cedula_familiar?>" class="form-control" placeholder="Cedula de identidad" type="text" name="cedula_familiar" pattern="[0-9]{7,8}">
+<label for="nombres_familiar" class="">Nombres</label>
+<input id="nombres_familiar" value="<?=$nombres_familiar?>" class="form-control" placeholder="Nombres" type="text" name="nombres_familiar" pattern="[A-Z a-záÁéÉíÍóÓúÚñÑ]{1,32}" required>
+<label for="apellidos_familiar" class="">Apellidos</label>
+<input id="apellidos_familiar" value="<?=$apellidos_familiar?>" class="form-control" placeholder="Apellidos" type="text" name="apellidos_familiar" pattern="[A-Z a-záÁéÉíÍóÓúÚñÑ]{1,32}" required>
+<label for="parentesco_familiar" class="">Parentesco familiar</label>
+<select id="parentesco_familiar" name="parentesco_familiar" class="form-control" required>
+    <option value="<?=$parentesco_familiar?>"><?=$parentesco_familiar?></option>
+    <option value="Padre">Padre</option>
+    <option value="Madre">Madre</option>
+    <option value="Hermano(a)">Hermano(a)</option>
+    <option value="">Hijo(a)</option>
+</select>
+<label for="fecha_nacimiento_familiar" class="">Fecha de nacimiento</label>
+<input id="fecha_nacimiento_familiar" value="<?=$fecha_nacimiento_familiar?>" class="form-control" placeholder="Fecha de nacimiento" type="text" name="fecha_nacimiento_familiar" required>
+<label for="sexo_familiar" class="">Sexo</label>
+<select id="sexo_familiar" name="sexo_familiar" class="form-control" required>
+    <option value="<?=$sexo_familiar?>"><?=$sexo_familiar?></option>
+    <option value="Masculino">Masculino</option>
+    <option value="Femenino">Femenino</option>
+</select>
+<label for="estudios_familiar" class="">Grado académico</label>
+<select id="estudios_familiar" name="estudios_familiar" class="form-control" required>
+    <option value="<?=$estudios_familiar?>"><?=$estudios_familiar?></option> 
+    <option value="Ninguno">Ninguno</option> 
+    <option value="Primaria">Primaria</option>
+    <option value="Secundaria">Secundaria</option> 
+    <option value="Bachiller">Bachiller</option>
+    <option value="Técnico medio">Técnico medio</option>
+    <option value="Técnico superior universitario">Técnico superior universitario</option>
+    <option value="Ingeniero">Ingeniero</option> 
+</select>
+<label for="ocupacion_familiar" class="">Ocupación u oficio</label>
+<input id="ocupacion_familiar" value="<?=$ocupacion_familiar?>" class="form-control" placeholder="Ocupación u oficio" type="text" name="ocupacion_familiar" pattern="[A-Z a-záÁéÉíÍóÓúÚñÑ]{1,32}" required>
+</div>
+</div>
+
+<button class="btn btn-lg btn-success btn-block form-signin" type="submit" name="ok" >Guardar datos</button>
+<br>
+</form>

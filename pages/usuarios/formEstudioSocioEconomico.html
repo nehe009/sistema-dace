@@ -1,11 +1,10 @@
 <script src="js/formEstudioSocioEconomico.js"></script>
-<form class="" action="<?=$_SERVER['REQUEST_URI']?>" method="post" name="formEstudioSocioEconomico" id="formEstudioSocioEconomico" autocomplete="off">
-<div class="row">
 <center>
     <h4 class="form-signin-heading">Estudio Socio-Económico</h4>
     <p>Todos los campos del formulario son obligatorios.</p>
 </center>
-    
+<form class="" action="<?=$_SERVER['REQUEST_URI']?>" method="post" name="formEstudioSocioEconomico" id="formEstudioSocioEconomico" autocomplete="off">
+<div class="row">    
 <div class="col-md-4 form-signin">
 <h4 class="form-signin-heading">DATOS LABORALES</h4>
 <label for="inputTrabaja" class="">Trabaja?</label>
@@ -24,6 +23,31 @@
 <input type="text" id="inputEmpresaDepartamento" value="<?=$departamento?>" name="inputEmpresaDepartamento" pattern="[A-Z a-z.,0-9áÁéÉíÍóÓúÚñÑ]{1,32}" class="form-control" placeholder="Departamento" required>
 <label for="inputEmpresaCargo" class="">Cargo</label>
 <input type="text" id="inputEmpresaCargo" value="<?=$cargo?>" name="inputEmpresaCargo" pattern="[A-Z a-z.,0-9áÁéÉíÍóÓúÚñÑ]{1,32}" class="form-control" placeholder="Cargo" required>
+</div>
+<div class="col-md-4 form-signin">
+<h4 class="form-signin-heading">DATOS ECONÓMICOS</h4>
+<label for="inputSueldoMensual" class="">Ingreso mensual</label>
+<input type="text" id="inputSueldoMensual" value="<?=$ingreso_mensual?>" name="inputSueldoMensual" pattern="[0-9]{1,10}" class="form-control" placeholder="Salario base + Bono alimentación" title="Solo números" required>
+<label for="inputIngresoFamiliarMensual" class="">Ingreso familiar  mensual</label>
+<input type="text" id="inputIngresoFamiliarMensual" value="<?=$ingreso_mensual_familiar?>" name="inputIngresoFamiliarMensual" pattern="[0-9]{1,10}" class="form-control" placeholder="Suma de los aportes familiares" title="Solo números" required>
+<label for="inputTenenciaVivienda" class="">Tenencia de la Vivienda</label>
+<select id="inputTenenciaVivienda" name="inputTenenciaVivienda" class="form-control" required >
+    <option value="<?=$tenencia_vivienda?>"><?=$tenencia_vivienda?></option>
+    <option value="Propia">Propia</option>
+    <option value="Alquilada">Alquilada</option>
+    <option value="Arrimado">Arrimado</option>
+    <option value="Invasion">Invasion</option>
+    <option value="Conserjeria">Conserjeria</option>
+</select>
+<label for="inputCondicionesVivienda" class="">Condiciones de la Vivienda</label>
+<select id="inputCondicionesVivienda" name="inputCondicionesVivienda" class="form-control" required >
+    <option value="<?=$condiciones_vivienda?>"><?=$condiciones_vivienda?></option>
+    <option value="Excelente">Excelente</option>
+    <option value="Buena">Buena</option>
+    <option value="Regular">Regular</option>
+    <option value="Mala">Mala</option>
+    <option value="Refugio">Refugio</option>
+</select>
 </div>
 <div class="col-md-4 form-signin">    
 <h4 class="form-signin-heading">SALUD</h4>

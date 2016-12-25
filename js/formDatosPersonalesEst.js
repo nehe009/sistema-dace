@@ -1,6 +1,31 @@
 $(document).ready(function(){
     //Calendario de bootstrap-datepicker
     $('#inputFechaNacimiento').datepicker({pickTime: false,format: "yyyy-mm-dd",startView: 2,autoclose: true,language: 'es'});
+    //asigna valores a los select, con los datos leidos de la base de datos.
+    //nacionalidad
+    if($('#inputNacionalidad').val()=="V"){$("#inputNacionalidad option[value='V']").attr("selected",true);}
+    if($('#inputNacionalidad').val()=="E"){$("#inputNacionalidad option[value='E']").attr("selected",true);} 
+    //sexo
+    if($('#inputSexo').val()=="M"){$("#inputSexo option[value='M']").attr("selected",true);}
+    if($('#inputSexo').val()=="F"){$("#inputSexo option[value='F']").attr("selected",true);}
+    //estado civil
+    if($('#inputEstadoCivil').val()=="S"){$("#inputEstadoCivil option[value='S']").attr("selected",true);}
+    if($('#inputEstadoCivil').val()=="C"){$("#inputEstadoCivil option[value='C']").attr("selected",true);} 
+    if($('#inputEstadoCivil').val()=="D"){$("#inputEstadoCivil option[value='D']").attr("selected",true);}
+    if($('#inputEstadoCivil').val()=="V"){$("#inputEstadoCivil option[value='V']").attr("selected",true);} 
+    //Afrodescendiente
+    if($('#inputAfrodescendiente').val()=="0"){$("#inputAfrodescendiente option[value='0']").attr("selected",true);}
+    if($('#inputAfrodescendiente').val()=="1"){$("#inputAfrodescendiente option[value='1']").attr("selected",true);}
+    //estado de campos que dependen de la nacionalidad
+        if($('#inputPaisNacimiento').val()=="240"){
+            $('#inputEstadoNacimiento').attr({disabled:false});
+            $('#inputCiudadNacimiento').attr({disabled:false});  
+            $("#inputNacionalidad option[value='V']").attr({selected:true});
+        } else {
+            $('#inputEstadoNacimiento').attr({disabled:true});
+            $('#inputCiudadNacimiento').attr({disabled:true});  
+            $("#inputNacionalidad option[value='E']").attr("selected",true);
+        } 
     //evento para cargar pais de nacimiento
     $('#inputPaisNacimiento').focus(function(){ 
         $.ajax({
@@ -98,21 +123,4 @@ $(document).ready(function(){
                     }
             });             
     });
-
-//asigna valores a los select, con los datos leidos de la base de datos.
-    //nacionalidad
-    if($('#inputNacionalidad').val()=="V"){$("#inputNacionalidad option[value='V']").attr("selected",true);}
-    if($('#inputNacionalidad').val()=="E"){$("#inputNacionalidad option[value='E']").attr("selected",true);} 
-    //sexo
-    if($('#inputSexo').val()=="M"){$("#inputSexo option[value='M']").attr("selected",true);}
-    if($('#inputSexo').val()=="F"){$("#inputSexo option[value='F']").attr("selected",true);}
-    //estado civil
-    if($('#inputEstadoCivil').val()=="S"){$("#inputEstadoCivil option[value='S']").attr("selected",true);}
-    if($('#inputEstadoCivil').val()=="C"){$("#inputEstadoCivil option[value='C']").attr("selected",true);} 
-    if($('#inputEstadoCivil').val()=="D"){$("#inputEstadoCivil option[value='D']").attr("selected",true);}
-    if($('#inputEstadoCivil').val()=="V"){$("#inputEstadoCivil option[value='V']").attr("selected",true);} 
-    //Afrodescendiente
-    if($('#inputAfrodescendiente').val()=="0"){$("#inputAfrodescendiente option[value='0']").attr("selected",true);}
-    if($('#inputAfrodescendiente').val()=="1"){$("#inputAfrodescendiente option[value='1']").attr("selected",true);}
-    
 });

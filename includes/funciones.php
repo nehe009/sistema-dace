@@ -5,6 +5,7 @@ function iniciarBD() {
     global $conn;
     $conn = &ADONewConnection(db_engine);  
     @$conn->PConnect(db_host,db_user,db_password,db_database);# connect to MySQL
+    $conn->setCharset('utf8');
     if (!$conn->isConnected()){ die("Problema con la BD");}
 }
 #funcion que genera mensaje de error
