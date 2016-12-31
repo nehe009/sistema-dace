@@ -26,12 +26,13 @@ echo '
 <div class="table-responsive">
 <table class="table table-bordered table-hover table-condensed">
     <thead><tr>
-    <th>Codigo (U.C)</th><th>Fase de la Unidad Curricular</th><th>Logro Obtenido</th><th>Período</th><th>Obs.</th>
+    <th class="col1">Codigo (U.C)</th><th class="col2">Fase de la Unidad Curricular</th><th class="col3">Logro Obtenido</th><th class="col4">Período</th><th class="col5">Observaciones</th>
     </tr></thead>
     <tbody>';
 #Muestro los datos en la tabla
+$tabla = '';
 foreach ($datos as &$fila) {
-    #muestro la informacion de cada cuenta
+    #muestro la informacion de cada materia
     $per=$fila["per_ins"];
     $cod_fase=$fila["cod_uca"];
     $cargauc=$fila["cod_carga"];
@@ -42,30 +43,30 @@ foreach ($datos as &$fila) {
         $listauc=$conn->getRow($sqluc);	
 	$nom=$listauc["nom_uc"];
         $cod=$listauc["cod_uc"];
-	}else{
+    } else {
 		$mat=substr($cod_fase,0,7);
 		$sqluc = "SELECT * FROM uc WHERE cod_mat='$mat'";
         	$listauc=$conn->getRow($sqluc);
 		$nom=$listauc["nom_mat"];
-                $cod=$listauc["cod_mat"];
-        }    
-    if ($faseuc=='-'){$nom=$nom." FASE ".substr($cargauc,14,1);} 
-    else {$nom=$nom." FASE ".$faseuc; }
-    $per=$per.$faseuc;    
+                $cod=$listauc["cod_mat"];                
+                if ($faseuc == '-'){
+                    $nom = $nom.' FASE '.substr($cargauc,14,1);        
+                } else {
+                    $nom = $nom.' FASE '.$faseuc;       
+                }
+                $per=$per.$faseuc; 
+    }
     $n100=$fila["n100"]; 
     $obs=$fila["obs"];
-echo '<tr><td>'.$cod_fase.'</td><td>'.$nom.'</td><td>'.$n100.' %</td><td>'.$per.'</td><td>'.$obs.'</td></tr>';
+$tabla .= '<tr><td class="col1">'.$cod_fase.'</td><td class="col2">'.$nom.'</td><td class="col3">'.$n100.' %</td><td class="col4">'.$per.'</td><td class="col5">'.$obs.'</td></tr>';
 unset($fila);
 }
+print_r($tabla);
 #cierro la tabla
 echo '</tbody></table></div>';
     #codigo html para abrir ventana modal para confirmar impresion de reporte
     echo '
-        <div align="center"><a href="" role="button" data-toggle="modal" data-target="#imprimirReporte-'.$sesion_usuario["ced_usu"].'" class="glyphicon glyphicon-print btn btn-lg btn-success" title="Imprimir reporte" > Imprimir</a></div><br>
-        <div id="imprimirReporte-'.$sesion_usuario["ced_usu"].'" class="modal fade" role="dialog"><div class="modal-dialog modal-sm">
-        <div class="modal-content"><div class="modal-body"><p>Esta seguro que desea imprimir este reporte?</p></div>
-        <div class="modal-footer"><a href="index.php?page=usuarios.eliminar&amp;id='.$sesion_usuario["ced_usu"].'" class="btn btn-success">Si</a><a href="#" data-dismiss="modal" class="btn btn-success">No</a>
-        </div></div></div></div>';
+        <div align="center"><a target="_blank" href="index.php?page=reportes.reporteGeneralCalificacionesEstudiante" role="button" class="glyphicon glyphicon-print btn btn-lg btn-success" title="Imprimir reporte" > Imprimir</a></div><br>';
 #salida para los errores.
 error:
 ?>

@@ -49,19 +49,23 @@ if(isset($_POST['ok'])){
     }
     #consulto datos de interes para generar la sesion de la tabla de usuarios
     $datos_usuario=$conn->getRow("SELECT id, usuario, ced_usu, num_sesion, corr_usu FROM usuarios WHERE id='$iduser[id]'");
-    #consulto el nombre y apellido de usuario y demas informacion de interes.    
-    $datos_tabla=$conn->getRow("SELECT nom_est as nombre, ape_est as apellido FROM estudiantes WHERE ced_est=$datos_usuario[ced_usu]");
-    if(empty($datos_tabla)){
-        $datos_tabla=$conn->getRow("SELECT nom_prof as nombre, ape_prof as apellido FROM profesores WHERE ced_prof=$datos_usuario[ced_usu]");
-        if(empty($datos_tabla)){
-            $datos_tabla=$conn->getRow("SELECT nom_adm as nombre, ape_adm as apellido FROM administrativo WHERE ced_adm=$datos_usuario[ced_usu]");
-        }
-    }
     #consulta si tiene permisos de usuario en la tabla de permisos
     $permisos_usuario=$conn->getRow("SELECT * FROM usuarios_permisos WHERE cedula_usuario='$datos_usuario[ced_usu]'");    
     if(empty($permisos_usuario)){
         mensajeError("Este usuario no tiene permisos asignados.",null);
         goto error;
+    }    
+    #consulto el nombre y apellido de usuario y demas informacion de interes. 
+    if($permisos_usuario["estudiante"]==1){
+        $datos_est=$conn->getRow("SELECT nom_est as nombre, ape_est as apellido FROM estudiantes WHERE ced_est=$datos_usuario[ced_usu]");
+        $datos_est_sit=$conn->getRow("SELECT * FROM est_situacion WHERE ced_est=$datos_usuario[ced_usu]");
+        $datos_tabla=array_merge($datos_est,$datos_est_sit);
+    }
+    if($permisos_usuario["profesor"]==1){
+       $datos_tabla=$conn->getRow("SELECT nom_prof as nombre, ape_prof as apellido FROM profesores WHERE ced_prof=$datos_usuario[ced_usu]");  
+    }
+    if($permisos_usuario["administrativo"]==1){
+        $datos_tabla=$conn->getRow("SELECT nom_adm as nombre, ape_adm as apellido FROM administrativo WHERE ced_adm=$datos_usuario[ced_usu]");
     }
     $datos_usuario =  array_merge($datos_usuario,$datos_tabla);
     #almaceno los datos del usuario en un objeto sesion.
