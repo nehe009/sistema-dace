@@ -19,7 +19,7 @@
               <h3 class="panel-title">Paso #2</h3>
             </div>
             <div class="panel-body">
-                <li>EL sistema le enviara un correo electrónico indicando el nombre de usuario y la contraseña temporal con la que podrá iniciar sesión.</li>
+                <li>El sistema le enviara un correo electrónico indicando el nombre de usuario y la contraseña temporal con la que podrá iniciar sesión.</li>
                 <li>Antes debe activar el registro, ya sea abriendo el link recibido en el correo o copiando el código de activación recibido en el correo y pegándolo en el formulario que se encuentra en el menú “Activar Cuenta”.</li>
             </div>
           </div>

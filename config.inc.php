@@ -18,4 +18,6 @@ define("mail_encrypt", "tls");
 define("mail_user", "root");
 define("mail_pass", "");
 define("mail_from", "root@localhost");
+/* configuracion de zona horaria */
+date_default_timezone_set('America/Caracas');
 ?>

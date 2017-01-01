@@ -150,10 +150,12 @@ $html = <<<EOD
 EOD;
 // Print text using writeHTML()
 $pdf->writeHTML($html, true, false, true, false, '');
-ob_end_clean();
+#auditoria para generacion de reporte.
+auditoriaUsuarios($sesion_usuario['ced_usu'],'reporte general calificaciones',$conn);
 // Close and output PDF document
+// Limpio buffer de codigo html previo
+ob_end_clean();
 $pdf->Output($sesion_usuario["ced_usu"].'_reporte_general_calificaciones.pdf', 'I');
-
 #salida para los errores.
 error:
 ?>

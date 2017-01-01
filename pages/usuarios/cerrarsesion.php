@@ -13,6 +13,8 @@ session_unset();
 session_destroy();
 #auditoria para cierre de sesion.
 auditoriaUsuarios($sesion_usuario['ced_usu'],'cerro sesion',$conn);
+#desactivo bandera de usuario online
+$conn->Execute("UPDATE usuarios SET online=0 WHERE ced_usu='$sesion_usuario[ced_usu]'");
 header("Location: index.php");
 error:
 ?>

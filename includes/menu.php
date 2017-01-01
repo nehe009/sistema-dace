@@ -33,7 +33,7 @@ if (isset($sesion_usuario)){
                         echo $nombre[0];
                         echo "&nbsp;";
                         echo $apellido[0];
-                        echo ('</a></li></ul>');
+                        echo ('</a><div id="cedulausuario" class="hide">'.$sesion_usuario['ced_usu'].'</div></li></ul>');
                     }
 ?>
         </div>

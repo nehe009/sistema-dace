@@ -73,7 +73,7 @@ if(isset($_POST['ok'])){
     #almaceno los permisos del usuario en un objeto sesion.
     $_SESSION["permisos_usuario"] = $permisos_usuario;
     #actualiza numero de sesion, fecha de ultimo acceso y resetea intentos fallidos de inicio.
-    $conn->getRow("UPDATE usuarios SET num_sesion=num_sesion+1, fecha_ultimo_acceso=NOW(),inicio_sesion_fallidos=0 WHERE id='$iduser[id]'");
+    $conn->Execute("UPDATE usuarios SET num_sesion=num_sesion+1, fecha_ultimo_acceso=NOW(),inicio_sesion_fallidos=0, online=1 WHERE id='$iduser[id]'");
     #auditoria de usuarios
     auditoriaUsuarios($datos_usuario["ced_usu"],'inicio sesion',$conn);
     #Vuelve a la pagina principal
