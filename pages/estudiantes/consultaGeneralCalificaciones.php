@@ -64,9 +64,8 @@ unset($fila);
 print_r($tabla);
 #cierro la tabla
 echo '</tbody></table></div>';
-    #codigo html para abrir ventana modal para confirmar impresion de reporte
-    echo '
-        <div align="center"><a target="_blank" href="index.php?page=reportes.reporteGeneralCalificacionesEstudiante" role="button" class="glyphicon glyphicon-print btn btn-lg btn-success" title="Imprimir reporte" > Imprimir</a></div><br>';
+#codigo html para abrir reporte en pdf
+echo '<div align="center"><a target="_blank" href="index.php?page=reportes.reporteGeneralCalificacionesEstudiante" role="button" class="glyphicon glyphicon-print btn btn-lg btn-success" title="Imprimir reporte" > Imprimir</a></div><br>';
 #salida para los errores.
 error:
 ?>

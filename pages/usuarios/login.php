@@ -56,20 +56,20 @@ if(isset($_POST['ok'])){
         goto error;
     }    
     #consulto el nombre y apellido de usuario y demas informacion de interes. 
-    if($permisos_usuario["estudiante"]==1){
-        $datos_est=$conn->getRow("SELECT nom_est as nombre, ape_est as apellido FROM estudiantes WHERE ced_est=$datos_usuario[ced_usu]");
-        $datos_est_sit=$conn->getRow("SELECT * FROM est_situacion WHERE ced_est=$datos_usuario[ced_usu]");
-        $datos_tabla=array_merge($datos_est,$datos_est_sit);
-    }
     if($permisos_usuario["profesor"]==1){
        $datos_tabla=$conn->getRow("SELECT nom_prof as nombre, ape_prof as apellido FROM profesores WHERE ced_prof=$datos_usuario[ced_usu]");  
     }
     if($permisos_usuario["administrativo"]==1){
         $datos_tabla=$conn->getRow("SELECT nom_adm as nombre, ape_adm as apellido FROM administrativo WHERE ced_adm=$datos_usuario[ced_usu]");
     }
-    $datos_usuario =  array_merge($datos_usuario,$datos_tabla);
+    if($permisos_usuario["estudiante"]==1){
+        $datos_est=$conn->getRow("SELECT nom_est as nombre, ape_est as apellido FROM estudiantes WHERE ced_est=$datos_usuario[ced_usu]");
+        $datos_est_sit=$conn->getRow("SELECT * FROM est_situacion WHERE ced_est=$datos_usuario[ced_usu]");
+        $datos_tabla=array_merge($datos_est,$datos_est_sit);
+    }
+    $datos_finales =  array_merge($datos_usuario,$datos_tabla);
     #almaceno los datos del usuario en un objeto sesion.
-    $_SESSION["sesion_usuario"] = $datos_usuario;    
+    $_SESSION["sesion_usuario"] = $datos_finales;
     #almaceno los permisos del usuario en un objeto sesion.
     $_SESSION["permisos_usuario"] = $permisos_usuario;
     #actualiza numero de sesion, fecha de ultimo acceso y resetea intentos fallidos de inicio.

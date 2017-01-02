@@ -26,10 +26,12 @@ echo '
 <div class="table-responsive">
 <table class="table table-bordered table-hover table-condensed">
     <thead><tr>
-    <th>Codigo (U.C)</th><th>Unidad Curricular</th><th>Nota Final</th><th>Nota PER</th><th>Período</th>
+    <th>Nro</th><th>Codigo (U.C)</th><th>Unidad Curricular</th><th>Nota Final</th><th>Nota PER</th><th>Período</th><th>Observaciones</th>
     </tr></thead>
     <tbody>';
 #Muestro los datos en la tabla
+$i=0;
+$tabla = '';
 foreach ($datos as &$fila) {
 #muestro la informacion de cada cuenta
     $cod_fase=$fila["cod_mat"];
@@ -37,11 +39,16 @@ foreach ($datos as &$fila) {
     $n100=$fila["nota_final_100"];
     $n20=$fila["nota_final"]; 
     $per=$fila["periodo"];
-echo '<tr><td>'.$cod_fase.'</td><td>'.$nom.'</td><td>'.$n20.' Pts</td><td></td><td>'.$per.'</td></tr>';
+    $obs=$fila["obs"];
+    $i++;
+$tabla .= '<tr><td>'.$i.'</td><td>'.$cod_fase.'</td><td>'.$nom.'</td><td>'.$n20.' Pts</td><td></td><td>'.$per.'</td><td>'.$obs.'</td></tr>';
 unset($fila);
 }
+print_r($tabla);
 #cierro la tabla
 echo '</tbody></table></div>';
+#codigo html para abrir reporte en pdf
+echo '<div align="center"><a target="_blank" href="index.php?page=reportes.reporteCalificacionesFinalesUC" role="button" class="glyphicon glyphicon-print btn btn-lg btn-success" title="Imprimir reporte" > Imprimir</a></div><br>';
 #salida para los errores.
 error:
 ?>

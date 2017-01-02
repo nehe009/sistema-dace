@@ -16,7 +16,7 @@ require_once('lib/tcpdf/config/tcpdf_config.php');
 require_once('lib/tcpdf/lang/spa.php');
 //-------------------- Codigo para generar datos de reporte -------------------//
 #consulta de calificaciones del estudiante
-$sql="SELECT * FROM calificaciones WHERE ced_est='$sesion_usuario[ced_usu]' ORDER BY calificaciones.per_ins DESC, calificaciones.cod_uca";
+$sql="SELECT * FROM notas_uc, uc WHERE notas_uc.ced_est='$sesion_usuario[ced_usu]' and notas_uc.cod_mat = uc.cod_mat ORDER BY  notas_uc.periodo, notas_uc.cod_mat";
 #realizo consulta a la base de datos
 $datos = $conn->getAll($sql);
 #chequeo si la consulta obtuvo resultados
@@ -25,35 +25,18 @@ if(empty($datos)){
     goto error;
  }
 #Muestro los datos en la tabla
+$i=0;
 $tabla = '';
 foreach ($datos as &$fila) {
-    #muestro la informacion de cada materia
-    $per=$fila["per_ins"];
-    $cod_fase=$fila["cod_uca"];
-    $cargauc=$fila["cod_carga"];
-    $faseuc=substr($cargauc,13,1);
-    $periodo=substr($per,0,4);    
-    if ($periodo<=2013){
-	$sqluc = "SELECT * FROM curriculares WHERE curriculares.cod_uc='$cod_fase'";
-        $listauc=$conn->getRow($sqluc);	
-	$nom=$listauc["nom_uc"];
-        $cod=$listauc["cod_uc"];
-    } else {
-		$mat=substr($cod_fase,0,7);
-		$sqluc = "SELECT * FROM uc WHERE cod_mat='$mat'";
-        	$listauc=$conn->getRow($sqluc);
-		$nom=$listauc["nom_mat"];
-                $cod=$listauc["cod_mat"];                
-                if ($faseuc == '-'){
-                    $nom = $nom.' FASE '.substr($cargauc,14,1);        
-                } else {
-                    $nom = $nom.' FASE '.$faseuc;       
-                }
-                $per=$per.$faseuc; 
-    }
-    $n100=$fila["n100"]; 
+#muestro la informacion de cada cuenta
+    $cod_fase=$fila["cod_mat"];
+    $nom=$fila["nom_mat"];
+    $n100=$fila["nota_final_100"];
+    $n20=$fila["nota_final"]; 
+    $per=$fila["periodo"];
     $obs=$fila["obs"];
-$tabla .= '<tr><td class="col1">'.$cod_fase.'</td><td class="col2">'.$nom.'</td><td class="col3">'.$n100.' %</td><td class="col4">'.$per.'</td><td class="col5">'.$obs.'</td></tr>';
+    $i++;
+$tabla .=  '<tr><td class="col1">'.$i.'</td><td class="col2">'.$cod_fase.'</td><td class="col3">'.$nom.'</td><td class="col4">'.$n20.' Pts</td><td class="col5">'.$per.'</td><td class="col6">'.$obs.'</td></tr>';
 unset($fila);
 }
 #variable de turno de estudio
@@ -66,9 +49,9 @@ $pdf = new MYPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8',
 // set document information
 $pdf->SetCreator(PDF_CREATOR);
 $pdf->SetAuthor('DACE');
-$pdf->SetTitle('Reporte general de calificaciones');
-$pdf->SetSubject('Reporte general de calificaciones');
-$pdf->SetKeywords('Reporte general de calificaciones');
+$pdf->SetTitle('Reporte general notas uc');
+$pdf->SetSubject('Reporte general notas uc');
+$pdf->SetKeywords('Reporte general notas uc');
 // set default header data
 $pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE, PDF_HEADER_STRING, array(0,64,255), array(0,64,128));
 $pdf->setFooterData(array(0,64,0), array(0,64,128));
@@ -103,17 +86,17 @@ $html = <<<EOD
 
  <style>
 	.col1 {
-        width: 75px;
+        width: 30px;
         text-align: center; 
         vertical-align: middle;
 	}
         .col2 {
-        width: 370px;
+        width: 70px;
         text-align: center; 
         vertical-align: middle;
 	}
         .col3 {
-        width: 80px;
+        width: 350px;
         text-align: center; 
         vertical-align: middle;
 	}
@@ -126,13 +109,18 @@ $html = <<<EOD
         width: 75px;
         text-align: center; 
         vertical-align: middle;
-	}        
+	}
+        .col6 {
+        width: 75px;
+        text-align: center; 
+        vertical-align: middle;
+	}
         th {
             font-weight: bold;
         }
 </style>
 <table border="0">
-<tr align="center" valign="middle"><td width="660px"><b>HISTORIAL DE FASES DE UNIDADES CURRICULARES </b></td></tr>
+<tr align="center" valign="middle"><td width="660px"><b>CALIFICACIONES FINALES DE UNIDADES CURRICULARES</b></td></tr>
 <tr align="center" valign="middle"><td width="660px"></td></tr>
 <tr align="left" valign="middle"><td width="411px"><b>ESTUDIANTE: </b>$sesion_usuario[nombre] $sesion_usuario[apellido]</td><td width="150px"></td></tr>
         <tr align="left" valign="middle"><td width="411px"><b>CEDULA DE IDENTIDAD: </b> $sesion_usuario[ced_usu]</td><td width="150px"></td></tr>
@@ -142,7 +130,7 @@ $html = <<<EOD
 </table>
 <br><br>
 <table border="1" >
-<thead><tr><th class="col1">Codigo (U.C)</th><th class="col2">Fase de la Unidad Curricular</th><th class="col3">Logro Obtenido</th><th class="col4">Período</th><th class="col5">Observaciones</th></tr></thead>
+<thead><tr><th class="col1">Nro</th><th class="col2">Codigo (U.C)</th><th class="col3">Unidad Curricular</th><th class="col4">Nota Final</th><th class="col5">Período</th><th class="col6">Observaciones</th></tr></thead>
 <tbody>'$tabla'</tbody>
 </table>
 <br><br>         
@@ -151,15 +139,17 @@ $html = <<<EOD
 <b>Observaciones = "A" ó "I": indica calificaciòn modificada con ACTA, "CV": Convalidaciones, "EQ": Equivalencias, "TR": Traslados </b> 
 <br><br> 
 <b>NOTA: Este reporte es s&oacute;lo para fines informativos.</b>
+<br><br> 
+<b>Escala de Calificaciones: períodos anteriores al 2012, la mínima aprobatoria es de 10 ptos. para todas las UC, a partir del período 2012, la mínima aprobatoria es 12 ptos. para todas la UC, excepto la UC Proyecto, cuya mínima aprobatoria es de 16 ptos.</b>
 EOD;
 // Print text using writeHTML()
 $pdf->writeHTML($html, true, false, true, false, '');
 #auditoria para generacion de reporte.
-auditoriaUsuarios($sesion_usuario['ced_usu'],'reporte general calificaciones',$conn);
+auditoriaUsuarios($sesion_usuario['ced_usu'],'reporte general notas uc',$conn);
 // Close and output PDF document
 // Limpio buffer de codigo html previo
 ob_end_clean();
-$pdf->Output($sesion_usuario["ced_usu"].'_reporte_general_calificaciones.pdf', 'I');
+$pdf->Output($sesion_usuario["ced_usu"].'_reporte_general_notas_uc.pdf', 'I');
 #salida para los errores.
 error:
 ?>
