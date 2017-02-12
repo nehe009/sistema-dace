@@ -12,4 +12,4 @@
               }
       });  
   }  
-setInterval(getUserOnline,60000);
+setInterval(getUserOnline,10000);
