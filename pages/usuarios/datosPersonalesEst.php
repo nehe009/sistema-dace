@@ -25,20 +25,20 @@ if(isset($_POST['ok'])){
         goto error;
        } else {
            #guardo auditoria.
-           auditoriaUsuarios($sesion_usuario['ced_usu'],'actualizar datos',$conn);
+           auditoriaUsuarios($sesion_usuario['ced_usu'],'actualizar datos',$conn2);
            mensajeSuccess("Los datos se han actualizado correctamente.",'usuarios.perfil','Atras');
        }
 } else {
     #consulto datos de la tabla estudiantes para cargarlos en el formulario.
     $datosestudiantes=$conn->getRow("SELECT * FROM estudiantes WHERE ced_est='$sesion_usuario[ced_usu]'");
     extract($datosestudiantes);
-    $nombrepaisnacimiento = $conn->getOne("SELECT pais FROM localidad_paises WHERE id_pais='$pais'");
-    $nombreestadonacimiento = $conn->getOne("SELECT estado FROM localidad_estados WHERE id_estado='$edo_nac'");
-    $nombreciudadnacimiento = $conn->getOne("SELECT ciudad FROM localidad_ciudades WHERE id_ciudad='$lugarn'");
-    $estadohabitacion = $conn->getOne("SELECT estado FROM localidad_estados WHERE id_estado='$estado_direccion'");
-    $municipiohabitacion = $conn->getOne("SELECT municipio FROM localidad_municipios WHERE id_municipio='$mun_direccion'");
-    $parroquiahabitacion = $conn->getOne("SELECT parroquia FROM localidad_parroquias WHERE id_parroquia='$parroquia_direccion'");
-    $ciudadhabitacion = $conn->getOne("SELECT ciudad FROM localidad_ciudades WHERE id_ciudad='$ciuh'");
+    $nombrepaisnacimiento = $conn2->getOne("SELECT pais FROM localidad_paises WHERE id_pais='$pais'");
+    $nombreestadonacimiento = $conn2->getOne("SELECT estado FROM localidad_estados WHERE id_estado='$edo_nac'");
+    $nombreciudadnacimiento = $conn2->getOne("SELECT ciudad FROM localidad_ciudades WHERE id_ciudad='$lugarn'");
+    $estadohabitacion = $conn2->getOne("SELECT estado FROM localidad_estados WHERE id_estado='$estado_direccion'");
+    $municipiohabitacion = $conn2->getOne("SELECT municipio FROM localidad_municipios WHERE id_municipio='$mun_direccion'");
+    $parroquiahabitacion = $conn2->getOne("SELECT parroquia FROM localidad_parroquias WHERE id_parroquia='$parroquia_direccion'");
+    $ciudadhabitacion = $conn2->getOne("SELECT ciudad FROM localidad_ciudades WHERE id_ciudad='$ciuh'");
     include("formDatosPersonalesEst.html");
 }
 error:

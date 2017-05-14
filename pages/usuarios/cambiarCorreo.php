@@ -16,25 +16,25 @@ if(isset($_POST['ok'])){
         goto error;
     }
     #chequea el correo actual en la base de datos.
-    $user=$conn->getRow("SELECT corr_usu FROM usuarios WHERE ced_usu='$sesion_usuario[ced_usu]'");
+    $user=$conn2->getRow("SELECT corr_usu FROM usuarios WHERE ced_usu='$sesion_usuario[ced_usu]'");
     if($user["corr_usu"]!= $inputEmail){
         mensajeError("El correo actual es incorrecto.",null);
         goto error;
     }
     #chequea si el nuevo correo existe en la base de datos.
-    if(!empty($conn->getRow("SELECT corr_usu FROM usuarios WHERE corr_usu='$inputEmail1'"))){
+    if(!empty($conn2->getRow("SELECT corr_usu FROM usuarios WHERE corr_usu='$inputEmail1'"))){
         mensajeError("Este correo ya está registrado.",null);
         goto error;
     }
     #consulta de actualizacion de nuevo usuario
     $sql="UPDATE usuarios SET corr_usu='$inputEmail1' WHERE ced_usu='$sesion_usuario[ced_usu]'";
     #inserto nueva clave en la base de datos.    
-    if ($conn->Execute($sql) == false){ 
+    if ($conn2->Execute($sql) == false){ 
         mensajeError("El cambio de correo electrónico ha fallado, contacte un administrador.",null);
         goto error;
        } else {
            #guardo auditoria.
-           auditoriaUsuarios($sesion_usuario['ced_usu'],'cambio correo',$conn);
+           auditoriaUsuarios($sesion_usuario['ced_usu'],'cambio correo',$conn2);
            #envio notificacion de correo.
            enviarNotificacionCorreo($inputEmail1,'Notificacion DACE','<p>Usted ha cambiado el correo electrónico de su cuenta.</p>');
            mensajeSuccess("El correo electrónico se ha cambiado correctamente.",'usuarios.perfil','Atras');

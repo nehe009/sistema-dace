@@ -3,12 +3,18 @@
 define("web_title", "Sistema integral de control de estudios de la UPT Aragua");
 define("web_description", "");
 define("web_author", "");
-/* configuracion de la base de datos */
-define("db_host", "localhost");
-define("db_engine", "mysqli");
-define("db_user", "root");
-define("db_password", "");
-define("db_database", "departamento");
+/* configuracion de la base de datos #1 */
+define("db_host_1", "localhost");
+define("db_engine_1", "mysqli");
+define("db_user_1", "root");
+define("db_password_1", "");
+define("db_database_1", "departamento");
+/* configuracion de la base de datos #2 */
+define("db_host_2", "localhost");
+define("db_engine_2", "mysqli");
+define("db_user_2", "root");
+define("db_password_2", "");
+define("db_database_2", "sistema_dace");
 /* configuracion del sitio */
 define("site_url", "localhost");
 /* configuracion para envio de correo electronico */

@@ -24,7 +24,7 @@ if(isset($_POST['ok'])){
     extract($_POST);
     $sql="SELECT * FROM auditoria_usuarios WHERE cedula_usuario LIKE '%$inputBuscar%' ORDER BY fecha DESC";
     #realizo consulta a la base de datos
-$datos = $conn->getAll($sql);
+$datos = $conn2->getAll($sql);
 
  if(empty($datos)){
      mensajeError("Este usuario no tiene registros para auditar.", "inicio");

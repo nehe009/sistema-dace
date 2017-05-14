@@ -18,17 +18,17 @@ if(isset($_POST['ok'])){
     #consulta de actualizacion de datos
     $sql="UPDATE estudio_socioeconomico SET trabajo='$inputTrabaja', empresa='$inputEmpresa', direccion='$inputEmpresaDireccion', telefono='$inputEmpresaTelefono', cargo='$inputEmpresaCargo', departamento='$inputEmpresaDepartamento', disca_est='$inputDiscapacidad', tipo_disc='$inputTipoDiscapacidad',ingreso_mensual='$inputSueldoMensual', ingreso_mensual_familiar='$inputIngresoFamiliarMensual', tenencia_vivienda='$inputTenenciaVivienda', condiciones_vivienda='$inputCondicionesVivienda' WHERE cedula_estudiante='$sesion_usuario[ced_usu]'";
     #inserto datos en la base de datos.    
-    $conn->Execute($sql);
+    $conn2->Execute($sql);
     #guardo auditoria.
-    auditoriaUsuarios($sesion_usuario['ced_usu'],'actualizar estudio socioeconomico',$conn);
+    auditoriaUsuarios($sesion_usuario['ced_usu'],'actualizar estudio socioeconomico',$conn2);
     mensajeSuccess("Los datos se han actualizado correctamente.",'usuarios.perfil','Atras');
 } else {
     #consulto datos de la tabla estudiantes para cargarlos en el formulario.
     #chequeo si este usuario tiene datos guardados en la tabla estudio_socioeconomico, si no, creo el registro en dicha tabla
-    if(empty($conn->getRow("SELECT * FROM estudio_socioeconomico WHERE ced_est='$sesion_usuario[ced_usu]'"))){ 
-        $conn->Execute("INSERT INTO `estudio_socioeconomico` (`id`, `cedula_estudiante`, `trabajo`, `empresa`, `direccion`, `telefono`, `cargo`, `departamento`, `ingreso_mensual`, `ingreso_mensual_familiar`, `tenencia_vivienda`, `condiciones_vivienda`, `disca_est`, `tipo_disc`) VALUES (NULL, '$sesion_usuario[ced_usu]', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL)");
+    if(empty($conn2->getRow("SELECT * FROM estudio_socioeconomico WHERE ced_est='$sesion_usuario[ced_usu]'"))){ 
+        $conn2->Execute("INSERT INTO `estudio_socioeconomico` (`id`, `cedula_estudiante`, `trabajo`, `empresa`, `direccion`, `telefono`, `cargo`, `departamento`, `ingreso_mensual`, `ingreso_mensual_familiar`, `tenencia_vivienda`, `condiciones_vivienda`, `disca_est`, `tipo_disc`) VALUES (NULL, '$sesion_usuario[ced_usu]', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL)");
     }     
-    $estudiosocioeconomico=$conn->getRow("SELECT * FROM estudio_socioeconomico WHERE cedula_estudiante='$sesion_usuario[ced_usu]'");
+    $estudiosocioeconomico=$conn2->getRow("SELECT * FROM estudio_socioeconomico WHERE cedula_estudiante='$sesion_usuario[ced_usu]'");
     extract($estudiosocioeconomico);
     include("formEstudioSocioEconomico.html");
 }

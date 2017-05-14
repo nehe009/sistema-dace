@@ -1,12 +1,18 @@
 <?php
 #Funcion que inicia conexion con la base de datos.
 function iniciarBD() {
-    #Revisa y ejecuta conexion con la base de datos.
+    #Revisa y ejecuta conexion con la base de datos #1.
     global $conn;
-    $conn = &ADONewConnection(db_engine);  
-    @$conn->PConnect(db_host,db_user,db_password,db_database);# connect to MySQL
-    $conn->setCharset('utf8');
-    if (!$conn->isConnected()){ die("Problema con la BD");}
+    $conn = &ADONewConnection(db_engine_1);  
+    @$conn->PConnect(db_host_1,db_user_1,db_password_1,db_database_1);# connect to MySQL
+    $conn->setCharset('utf8');    
+    if (!$conn->isConnected()){ die("Problema con la BD #1");}
+    #Revisa y ejecuta conexion con la base de datos #2.
+    global $conn2;
+    $conn2 = &ADONewConnection(db_engine_2);  
+    @$conn2->PConnect(db_host_2,db_user_2,db_password_2,db_database_2);# connect to MySQL
+    $conn2->setCharset('utf8');
+    if (!$conn2->isConnected()){ die("Problema con la BD #2");}
 }
 #funcion que genera mensaje de error
 function mensajeError($mensaje, $url, $title=null) {
@@ -56,14 +62,14 @@ $ip = "";
 return $ip ;
 }
 #funcion que guarda auditoria de usuarios
-function auditoriaUsuarios($cedula,$accion,$conn) {
+function auditoriaUsuarios($cedula,$accion,$conn2) {
     #direccion ip del visitante
     @$ip = obtenerIP();
     $navegador = getBrowser();
     $so = getPlatform();
     $sql="INSERT INTO `auditoria_usuarios` (id, cedula_usuario, ip, navegador, so, fecha, accion) VALUES ('NULL', '$cedula', '$ip', '$navegador', '$so', NOW(), '$accion')";
     #inserto registro en la base de datos.    
-    if ($conn->Execute($sql) === false){
+    if ($conn2->Execute($sql) === false){
         mensajeError("Registro de auditoria ha fallado.", 'inicio');
     }
 }

@@ -34,12 +34,12 @@ if(isset($_POST['ok'])){
         goto error; 
     }   
     #chequeo si la cedula esta registrada en la bd de usuarios
-    if(!empty($conn->getRow("SELECT id FROM usuarios WHERE ced_usu=$inputCedula"))){
+    if(!empty($conn2->getRow("SELECT id FROM usuarios WHERE ced_usu=$inputCedula"))){
         mensajeError("Esta cedula de identidad ya se encuentra registrada.",null);
         goto error;
     } 
     #chequeo si el email esta registrado en la bd de usuarios
-    if(!empty($conn->getRow("SELECT id FROM usuarios WHERE corr_usu='$inputEmail'"))){
+    if(!empty($conn2->getRow("SELECT id FROM usuarios WHERE corr_usu='$inputEmail'"))){
         mensajeError("Este correo electrónico ya se encuentra registrado.",null);
         goto error;
     }       
@@ -82,19 +82,19 @@ $check=enviarNotificacionCorreo($inputEmail,$asunto,$cuerpo);
         goto error;
     }    
 #inserto registro de usuario en la base de datos.    
-    if ($conn->Execute($sql_usuario) == false){ 
+    if ($conn2->Execute($sql_usuario) == false){ 
         mensajeError("El registro de usuario ha fallado.",null);
         goto error;
        }
 #inserto registro de permisos en la base de datos.    
-    if ($conn->Execute($sql_permisos) == false){ 
+    if ($conn2->Execute($sql_permisos) == false){ 
         mensajeError("El registro de permisos de usuario ha fallado, contacte un administrador.",null);
         goto error;
        } else {
             mensajeSuccess("Para terminar el proceso de registro revise su correo electrónico.",'usuarios.activacion','Activar cuenta');
         }
 #auditoria de usuarios
-auditoriaUsuarios($inputCedula,'registro usuario',$conn);
+auditoriaUsuarios($inputCedula,'registro usuario',$conn2);
 } else { #si no se pulso ok se muestra formulario de registro
     include("formRegistro.html");
     }

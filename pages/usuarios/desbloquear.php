@@ -21,9 +21,9 @@ if(isset($_GET['id']) && is_numeric($_GET['id'])){
     #extrae valor de la variable
     extract($_GET);
     #consulta para desbloquear usuario
-    $consulta=$conn->getRow("UPDATE usuarios SET bloqueo=0 WHERE ced_usu='$id'");
+    $consulta=$conn2->getRow("UPDATE usuarios SET bloqueo=0 WHERE ced_usu='$id'");
         if(empty($consulta)){
-            auditoriaUsuarios($sesion_usuario['ced_usu'],'desbloquear usuario '.$id.'',$conn);
+            auditoriaUsuarios($sesion_usuario['ced_usu'],'desbloquear usuario '.$id.'',$conn2);
            mensajeSuccess("Usuario desbloqueado correctamente.", "usuarios.buscarUsuario","Atras");
         } else {
             mensajeError("No se ha podido desbloquear al usuario.", "usuarios.buscarUsuario","Atras");

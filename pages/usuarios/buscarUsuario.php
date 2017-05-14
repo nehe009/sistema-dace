@@ -24,7 +24,7 @@ if(isset($_POST['ok'])){
     extract($_POST);
     $sql="SELECT id, usuario, ced_usu, corr_usu, fecha_registro, fecha_activacion, fecha_ultimo_acceso, bloqueo FROM usuarios WHERE ced_usu LIKE '%$inputBuscar%'";
     #realizo consulta a la base de datos
-$datos = $conn->getAll($sql);
+$datos = $conn2->getAll($sql);
 
  if(empty($datos)){
      mensajeError("Este usuario no está registrado.", "inicio");

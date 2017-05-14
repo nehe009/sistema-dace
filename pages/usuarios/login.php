@@ -20,15 +20,15 @@ if(isset($_POST['ok'])){
     #calcula el hash de la clave introducida
     $inputPassword=sha1(md5($inputPassword)); 
     #chequea si el usuario existen en la base de datos.
-    if(empty($conn->getRow("SELECT id FROM usuarios WHERE usuario='$inputUser'"))){
+    if(empty($conn2->getRow("SELECT id FROM usuarios WHERE usuario='$inputUser'"))){
         mensajeError("Este usuario no está registrado.",null);
         goto error;
     }
     #chequea si el usuario y la contraseña coinciden en la base de datos.
-    $iduser=$conn->getRow("SELECT id, activo, bloqueo, inicio_sesion_fallidos FROM usuarios WHERE usuario='$inputUser' AND cla_usu='$inputPassword'");
+    $iduser=$conn2->getRow("SELECT id, activo, bloqueo, inicio_sesion_fallidos FROM usuarios WHERE usuario='$inputUser' AND cla_usu='$inputPassword'");
     if(empty($iduser)){
         #actualiza numero de sesion fallida
-        $conn->getRow("UPDATE usuarios SET inicio_sesion_fallidos=inicio_sesion_fallidos+1 WHERE usuario='$inputUser'");
+        $conn2->getRow("UPDATE usuarios SET inicio_sesion_fallidos=inicio_sesion_fallidos+1 WHERE usuario='$inputUser'");
         mensajeError("La contraseña es incorrecta.",null);
         goto error;
     }
@@ -48,9 +48,9 @@ if(isset($_POST['ok'])){
         goto error;
     }
     #consulto datos de interes para generar la sesion de la tabla de usuarios
-    $datos_usuario=$conn->getRow("SELECT id, usuario, ced_usu, num_sesion, corr_usu FROM usuarios WHERE id='$iduser[id]'");
+    $datos_usuario=$conn2->getRow("SELECT id, usuario, ced_usu, num_sesion, corr_usu FROM usuarios WHERE id='$iduser[id]'");
     #consulta si tiene permisos de usuario en la tabla de permisos
-    $permisos_usuario=$conn->getRow("SELECT * FROM usuarios_permisos WHERE cedula_usuario='$datos_usuario[ced_usu]'");    
+    $permisos_usuario=$conn2->getRow("SELECT * FROM usuarios_permisos WHERE cedula_usuario='$datos_usuario[ced_usu]'");    
     if(empty($permisos_usuario)){
         mensajeError("Este usuario no tiene permisos asignados.",null);
         goto error;
@@ -73,9 +73,9 @@ if(isset($_POST['ok'])){
     #almaceno los permisos del usuario en un objeto sesion.
     $_SESSION["permisos_usuario"] = $permisos_usuario;
     #actualiza numero de sesion, fecha de ultimo acceso y resetea intentos fallidos de inicio.
-    $conn->Execute("UPDATE usuarios SET num_sesion=num_sesion+1, fecha_ultimo_acceso=NOW(),inicio_sesion_fallidos=0, online=1 WHERE id='$iduser[id]'");
+    $conn2->Execute("UPDATE usuarios SET num_sesion=num_sesion+1, fecha_ultimo_acceso=NOW(),inicio_sesion_fallidos=0, online=1 WHERE id='$iduser[id]'");
     #auditoria de usuarios
-    auditoriaUsuarios($datos_usuario["ced_usu"],'inicio sesion',$conn);
+    auditoriaUsuarios($datos_usuario["ced_usu"],'inicio sesion',$conn2);
     #Vuelve a la pagina principal
     header('Location: index.php');   
 } else { #si no se pulso ok se muestra formulario de registro

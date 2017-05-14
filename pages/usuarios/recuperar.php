@@ -44,14 +44,14 @@ $inputEmail=$datosUser['corr_usu'];
     #Preparo consulta de actualizacion de datos.
     $sql_recuperar="UPDATE usuarios SET usuario='$inputCedula', cla_usu='$clave_enc', inicio_sesion_fallidos=0 WHERE ced_usu='$inputCedula'";
     #actualizo el usuario y la contraseña nuevamente.    
-    if ($conn->Execute($sql_recuperar) == false){ 
+    if ($conn2->Execute($sql_recuperar) == false){ 
         mensajeError("La recuperacion de datos de usuario ha fallado, contacte un administrador.",'inicio','Ir a Inicio');
         goto error;
        } else {
             mensajeSuccess("Se ha enviado un correo electrónico a $inputEmail.",'inicio','Ir a Inicio');
         }
 #auditoria de usuarios
-auditoriaUsuarios($inputCedula,'recuperacion usuario',$conn);
+auditoriaUsuarios($inputCedula,'recuperacion usuario',$conn2);
 } else { #si no se pulso ok se muestra formulario de registro
     include("formRecuperar.html");
     }

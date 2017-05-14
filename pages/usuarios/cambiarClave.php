@@ -27,12 +27,12 @@ if(isset($_POST['ok'])){
     #consulta de acrualizacion de nueva clave
     $sql="UPDATE usuarios SET cla_usu='$nueva_clave' WHERE ced_usu='$sesion_usuario[ced_usu]'";
     #inserto nueva clave en la base de datos.    
-    if ($conn->Execute($sql) === false){ 
+    if ($conn2->Execute($sql) === false){ 
         mensajeError("El cambio de contraseña ha fallado, contacte un administrador.",null);
         goto error;
        } else {
            #guardo auditoria.
-           auditoriaUsuarios($sesion_usuario['ced_usu'],'cambio clave',$conn);
+           auditoriaUsuarios($sesion_usuario['ced_usu'],'cambio clave',$conn2);
            #envio notificacion de correo.
            enviarNotificacionCorreo($sesion_usuario['corr_usu'],'Notificacion DACE','<p>Usted ha cambiado la contraseña de su cuenta.</p>');
            mensajeSuccess("La contraseña se ha cambiado correctamente.",'usuarios.perfil','Atras');

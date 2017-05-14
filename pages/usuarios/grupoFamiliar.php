@@ -16,16 +16,16 @@ if(isset($_POST['ok'])){
     #extraigo variables POST
     extract($_POST);
     #si el registro es nuevo lo crea, si ya existe lo modifica
-    if(empty($conn->getRow("SELECT * FROM grupo_familiar WHERE cedula_estudiante='$sesion_usuario[ced_usu]' AND id='$id'"))){
-        $conn->Execute("INSERT INTO grupo_familiar (`id`, `cedula_estudiante`, `cedula_familiar`, `nombres_familiar`,`apellidos_familiar`, `parentesco_familiar`, `fecha_nacimiento_familiar`, `sexo_familiar`, `estudios_familiar`, `ocupacion_familiar`) VALUES (NULL, '$sesion_usuario[ced_usu]', '$cedula_familiar', '$nombres_familiar', '$apellidos_familiar', '$parentesco_familiar', '$fecha_nacimiento_familiar', '$sexo_familiar', '$estudios_familiar', '$ocupacion_familiar')");
+    if(empty($conn2->getRow("SELECT * FROM grupo_familiar WHERE cedula_estudiante='$sesion_usuario[ced_usu]' AND id='$id'"))){
+        $conn2->Execute("INSERT INTO grupo_familiar (`id`, `cedula_estudiante`, `cedula_familiar`, `nombres_familiar`,`apellidos_familiar`, `parentesco_familiar`, `fecha_nacimiento_familiar`, `sexo_familiar`, `estudios_familiar`, `ocupacion_familiar`) VALUES (NULL, '$sesion_usuario[ced_usu]', '$cedula_familiar', '$nombres_familiar', '$apellidos_familiar', '$parentesco_familiar', '$fecha_nacimiento_familiar', '$sexo_familiar', '$estudios_familiar', '$ocupacion_familiar')");
     }else{
-        $conn->Execute("UPDATE grupo_familiar SET `cedula_familiar`='$cedula_familiar', `nombres_familiar`='$nombres_familiar', `apellidos_familiar`='$apellidos_familiar', `parentesco_familiar`='$parentesco_familiar', `fecha_nacimiento_familiar`='$fecha_nacimiento_familiar', `sexo_familiar`='$sexo_familiar', `estudios_familiar`='$estudios_familiar', `ocupacion_familiar`='$ocupacion_familiar' WHERE cedula_estudiante='$sesion_usuario[ced_usu]' AND id='$id'");
+        $conn2->Execute("UPDATE grupo_familiar SET `cedula_familiar`='$cedula_familiar', `nombres_familiar`='$nombres_familiar', `apellidos_familiar`='$apellidos_familiar', `parentesco_familiar`='$parentesco_familiar', `fecha_nacimiento_familiar`='$fecha_nacimiento_familiar', `sexo_familiar`='$sexo_familiar', `estudios_familiar`='$estudios_familiar', `ocupacion_familiar`='$ocupacion_familiar' WHERE cedula_estudiante='$sesion_usuario[ced_usu]' AND id='$id'");
     }
     auditoriaUsuarios($sesion_usuario['ced_usu'],'actualizar grupo familiar',$conn);
 header("Location: index.php?page=usuarios.grupoFamiliar");    
 }
 #consulto si ha existen familiares en la tabla
-$datos = $conn->getAll("SELECT * FROM grupo_familiar WHERE cedula_estudiante='$sesion_usuario[ced_usu]'");
+$datos = $conn2->getAll("SELECT * FROM grupo_familiar WHERE cedula_estudiante='$sesion_usuario[ced_usu]'");
 if(empty($datos)){
         mensajeError("No tienes familiares registrados en el sistema.", "inicio");
     } else {
@@ -47,9 +47,9 @@ if(empty($datos)){
 #controla acciones de modificacion y eliminacion de registro de familiar
 if(isset($_GET['accion']) && $_GET['accion']=='1' && is_numeric($_GET['id'])){
     #opcion para editar registro de familiar
-    $datosfamiliares=$conn->getRow("SELECT * FROM grupo_familiar WHERE cedula_estudiante='$sesion_usuario[ced_usu]' AND id='$_GET[id]'");
+    $datosfamiliares=$conn2->getRow("SELECT * FROM grupo_familiar WHERE cedula_estudiante='$sesion_usuario[ced_usu]' AND id='$_GET[id]'");
 } elseif (isset($_GET['accion']) and $_GET['accion']=='2' && is_numeric($_GET['id'])) {
-    $conn->getRow("DELETE FROM grupo_familiar WHERE cedula_estudiante='$sesion_usuario[ced_usu]' AND id='$_GET[id]'");
+    $conn2->getRow("DELETE FROM grupo_familiar WHERE cedula_estudiante='$sesion_usuario[ced_usu]' AND id='$_GET[id]'");
     header("Location: index.php?page=usuarios.grupoFamiliar"); 
 } else {
     #carga plantilla con campos vacios

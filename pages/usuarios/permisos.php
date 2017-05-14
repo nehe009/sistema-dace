@@ -24,11 +24,11 @@ if(isset($_POST['ok'])){
     $array=array_reverse($_POST);
     array_shift($array);
     #borro permisos en la base de datos antes de aplicar los nuevos.
-    $conn->getRow("UPDATE usuarios_permisos SET estudiante=0, activo=0, inactivo=0, graduado=0, profesor=0, evaluador=0, jefe_dpto=0, jefe_adm=0, administrativo=0, operador=0, taquilla=0, control_total=0 WHERE cedula_usuario='$id'");
+    $conn2->getRow("UPDATE usuarios_permisos SET estudiante=0, activo=0, inactivo=0, graduado=0, profesor=0, evaluador=0, jefe_dpto=0, jefe_adm=0, administrativo=0, operador=0, taquilla=0, control_total=0 WHERE cedula_usuario='$id'");
     #Recorro elementos (permisos) para guardarlos en la base de datos.
     foreach ($array as $key => $value){
         $mykey=$key;
-        $conn->getRow("UPDATE usuarios_permisos SET $mykey=1 WHERE cedula_usuario='$id'");
+        $conn2->getRow("UPDATE usuarios_permisos SET $mykey=1 WHERE cedula_usuario='$id'");
     }
     mensajeSuccess("Permisos asignados correctamente.", "usuarios.buscarUsuario","Atras");
 } else {
@@ -40,7 +40,7 @@ if(isset($_POST['ok'])){
     #extrae valor de la variable id
     extract($_GET);
     #consulta permisos de usuario
-    $permisos=$conn->getRow("SELECT * FROM usuarios_permisos WHERE cedula_usuario='$id'");    
+    $permisos=$conn2->getRow("SELECT * FROM usuarios_permisos WHERE cedula_usuario='$id'");    
         if(empty($permisos)){
             mensajeError("Este usuario no tiene ningún permiso asignado.","usuarios.buscarUsuario","Atras");
             goto error;
