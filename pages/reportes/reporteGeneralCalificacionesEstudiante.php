@@ -155,7 +155,7 @@ EOD;
 // Print text using writeHTML()
 $pdf->writeHTML($html, true, false, true, false, '');
 #auditoria para generacion de reporte.
-auditoriaUsuarios($sesion_usuario['ced_usu'],'reporte general calificaciones',$conn);
+auditoriaUsuarios($sesion_usuario['ced_usu'],'reporte general calificaciones',$conn2);
 // Close and output PDF document
 // Limpio buffer de codigo html previo
 ob_end_clean();
