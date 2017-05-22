@@ -11,15 +11,45 @@ if(!$permisos_usuario["estudiante"]==1){
     mensajeError("No tienes permiso para entrar a este módulo.",'inicio','Ir a Inicio');
     goto error;
 }
+//-------------------- Codigo para generar datos de reporte -------------------//
+#periodo actual academico
+$periodo= date('Y');
+#fecha de generacion de contancia
+$fecha=date('d-m-Y');
+#consulta datos necesarios para la constancia de estudios.
+$sql="SELECT 
+departamentos.nombre AS nombre_pnf, 
+est_situacion.turno, 
+sedes.nom_sede, 
+titulos.titulo, 
+trayectos.nom_tray,
+jefe_dace.ape_nom AS jefe_dace
+FROM est_situacion, departamentos, inscripciones, sedes, titulos, trayectos, jefe_dace 
+WHERE est_situacion.ced_est = inscripciones.ced_est
+AND departamentos.codigo = est_situacion.pnf
+AND est_situacion.sede = sedes.cod_sede
+AND est_situacion.titulo = titulos.id
+AND inscripciones.per_ins = '$periodo'
+AND est_situacion.ced_est = '$sesion_usuario[ced_usu]'
+AND est_situacion.status='AC'
+AND trayectos.cod_tray=substr(cod_uc,5,1)
+AND jefe_dace.sede=est_situacion.sede
+AND jefe_dace.status='AC'
+GROUP BY inscripciones.ced_est, inscripciones.per_ins order by substr(cod_uc,5,1) desc";
+$datos=$conn->getRow($sql);
+if(empty($datos)){
+    mensajeError("No cumples los requisitos para solicitar la constancia de estudios.",'inicio','Ir a Inicio');
+    goto error;
+}
+#variable de turno de estudio
+if ($sesion_usuario[turno]==1){$turno="DIURNO";} else{$turno="NOCTURNO";}
+#genera codigo y guarda datos del reporte en base de datos
+$codigo=generarCodigoReporte($sesion_usuario[ced_usu],'CONSTANCIA DE ESTUDIOS',$conn2);
+//-----------------------------------------------------------------------------//
 #librerias necesarias para generar documento en pdf
 require_once('lib/tcpdf/tcpdf.php');
 require_once('lib/tcpdf/config/tcpdf_config.php');
 require_once('lib/tcpdf/lang/spa.php');
-//-------------------- Codigo para generar datos de reporte -------------------//
-#variable de turno de estudio
-if ($sesion_usuario[turno]==1){$turno="DIURNO";} else{$turno="NOCTURNO";}
-#variable de sede de estudio
-if ($sesion_usuario[sede]=='LV'){$sede="LA VICTORIA";} elseif ($sesion_usuario[sede]=='MY'){$sede="MARACAY";}else{$sede="BARBACOAS";}
 //-----------------------------------------------------------------------------//
 // create new PDF document
 $pdf = new MYPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
@@ -73,20 +103,46 @@ $html = <<<EOD
 
 <p align="center"><h2>CONSTANCIA DE ESTUDIOS</h2></p><br>
 <br><br>
-<p align="justify"  fill="true" line-height: 200%;>Quien suscribe, Prof. <b></b>, Jefe del Departamento de Admisión y Control de Estudios <b>'.$nsede.'</b> de la <b>Universidad Politécnica Territorial del Estado Aragua "FEDERICO BRITO FIGUEROA", </b> hace constar por medio de la presente que el Ciudadano <u>nEHEMIAS EBEB VELASQUEZ VILLZANA</u>, Titular de la Cédula de Identidad Nº. <i></i>, es estudiante regular de esta universidad y actualmente cursa el  'trayecto.', período académico<i> '.periodo.'</i> en el  ''. régimen '' para optar al título de ''.</p>
+<p align="justify"  fill="true" line-height: 200%;>Quien suscribe, Prof. <b>$datos[jefe_dace]</b>, Jefe del Departamento de Admisión y Control de Estudios <b>$datos[nom_sede]</b> de la <b>Universidad Politécnica Territorial del Estado Aragua "FEDERICO BRITO FIGUEROA", </b> hace constar por medio de la presente que el Ciudadano <u>$sesion_usuario[apellido], $sesion_usuario[nombre]</u>, Titular de la Cédula de Identidad Nº. <b>$sesion_usuario[ced_usu]</b>, es estudiante regular de esta universidad y actualmente cursa el $datos[nom_tray], período académico <b>$periodo</b> en el $datos[nombre_pnf] regimen $turno para optar al título de $datos[titulo].</p>
 <br>
-<p align="justify"  fill="true" line-height: 200%;>Constancia que se expide a solicitud de la parte interesada en la Ciudad de La Victoria, '.$dia.' '.$mes.' de '.$anio.' </p>       
-
-<br><br>         
+<p align="justify"  fill="true" line-height: 200%;>Constancia electrónica que se expide a solicitud de la parte interesada mediante el Sistema Integral de Control de Estudios (SICE) en la siguiente fecha: $fecha, la cual es válida por el año: $periodo.</p>       
+<br><br><br><br>
+<p align="center">
+<b>_________________________________</b><br>
+<b>PROF. $datos[jefe_dace]<br>
+Jefe del Dpto. de Admisión y Control de Estudios de <br>$datos[nom_sede]</b></p>
+<br><br><br>
+<p align="justify" style="line-height:12px; font-size:12px;"><b>Nota: </b>Este documento contiene un código de barra único que certifica la veracidad del mismo, este código puede verificarse en la página web del Sistema Integral de Control de Estudios (SICE), dirigiéndose a la página web http://sice.upta.edu.ve/.</p>
+<br><br>
 EOD;
+$pdf->Image('images/upta_fondo.png', 45, 70, 120, 100, '', '', '', false, 200, '', false, false, 0);
 // Print text using writeHTML()
 $pdf->writeHTML($html, true, false, true, false, '');
+//estilo del codigo de barra
+$style = array(
+                    'position' => 'C',
+                    'align' => 'C',
+                    'stretch' => false,
+                    'fitwidth' => true,
+                    'cellfitalign' => '',
+                    'border' => false,
+                    'padding' => 0,
+                    'fgcolor' => array(0,0,0),
+                    'bgcolor' => false,
+                    'text' => true,
+                    'font' => 'helvetica',
+                    'fontsize' => 10,
+                    'stretchtext' => 4
+                    );
+$pdf->Ln(3);
+//Codigo de barra centrado
+$pdf->write1DBarcode($codigo, 'C128', '', '', '', 15, 0.4, $style, 'N');
 #auditoria para generacion de reporte.
-auditoriaUsuarios($sesion_usuario['ced_usu'],'reporte general notas uc',$conn2);
-// Close and output PDF document
+auditoriaUsuarios($sesion_usuario['ced_usu'],'constancia estudios',$conn2);
 // Limpio buffer de codigo html previo
 ob_end_clean();
-$pdf->Output($sesion_usuario["ced_usu"].'_reporte_general_notas_uc.pdf', 'I');
+// Close and output PDF document
+$pdf->Output($sesion_usuario["ced_usu"].'_constancia_estudios.pdf', 'I');
 #salida para los errores.
 error:
 ?>

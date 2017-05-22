@@ -70,7 +70,7 @@ define('K_TCPDF_THROW_EXCEPTION_ERROR', false);
 class MYPDF extends TCPDF {
     // Page footer
 	public function Footer() {
-            // define barcode style
+            // define barcode style            
             $style = array(
                     'position' => '',
                     'align' => 'C',
@@ -93,10 +93,8 @@ class MYPDF extends TCPDF {
                 $pagenumtxt = $this->l['w_page'].' '.$this->getPageNumGroupAlias().' / '.$this->getPageGroupAlias(); 
             }
             $this->Cell(0, 0, 'Fecha y hora del reporte: '.$timestamp, 'T', 0, 'C');
-            
             $this->Cell(0, 0, $pagenumtxt, 'T', 0, 'R');
-            $this->SetY(-25);
-            $this->write1DBarcode('0123456789', 'C128', '', '', '', 18, 0.4, $style, 'N');
+            //$this->SetY(-25);
+            //$this->write1DBarcode($codigo, 'C128', '', '', '', 18, 0.4, $style, 'N');
 	}
 }
-//-----------------------------------------------------------------------------//

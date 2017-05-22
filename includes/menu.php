@@ -9,7 +9,7 @@
           <a class="navbar-brand visible-xs" href="index.php">Inicio</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
+        <ul class="nav navbar-nav">
             <li class="hidden-xs"><a href="index.php">Inicio</a></li>
 <?php
 if (isset($sesion_usuario)){
@@ -24,7 +24,8 @@ if (isset($sesion_usuario)){
     echo('<li><a href="index.php?page=usuarios.login">Iniciar Sesión</a></li>');
 }
 ?>
-          </ul>
+        <li><a href="index.php?page=documentos.verificar">Verificar Documento</a></li>
+        </ul>
 <?php
                     if (isset($sesion_usuario)){
                         $nombre = explode(" ", $sesion_usuario['nombre']);

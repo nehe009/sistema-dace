@@ -11,9 +11,6 @@ if(!$permisos_usuario["estudiante"]==1){
     mensajeError("No tienes permiso para entrar a este módulo.",'inicio','Ir a Inicio');
     goto error;
 }
-require_once('lib/tcpdf/tcpdf.php');
-require_once('lib/tcpdf/config/tcpdf_config.php');
-require_once('lib/tcpdf/lang/spa.php');
 //-------------------- Codigo para generar datos de reporte -------------------//
 #consulta de calificaciones del estudiante
 $sql="SELECT * FROM notas_uc, uc WHERE notas_uc.ced_est='$sesion_usuario[ced_usu]' and notas_uc.cod_mat = uc.cod_mat ORDER BY  notas_uc.periodo, notas_uc.cod_mat";
@@ -43,6 +40,11 @@ unset($fila);
 if ($sesion_usuario[turno]==1){$turno="DIURNO";} else{$turno="NOCTURNO";}
 #variable de sede de estudio
 if ($sesion_usuario[sede]=='LV'){$sede="LA VICTORIA";} elseif ($sesion_usuario[sede]=='MY'){$sede="MARACAY";}else{$sede="BARBACOAS";}
+//-----------------------------------------------------------------------------//
+#librerias necesarias para generar documento en pdf
+require_once('lib/tcpdf/tcpdf.php');
+require_once('lib/tcpdf/config/tcpdf_config.php');
+require_once('lib/tcpdf/lang/spa.php');
 //-----------------------------------------------------------------------------//
 // create new PDF document
 $pdf = new MYPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);

@@ -1,0 +1,11 @@
+<form class="form-signin" action="<?=$_SERVER['REQUEST_URI']?>" method="post" autocomplete="off">
+    <center>
+    <h4 class="form-signin-heading">Código de Documento</h4>
+    <p>Ingrese el código de barra del documento.</p>
+    <label for="codigo" class="sr-only">Código de barras del documento</label>
+    <input type="text" id="codigo" name="codigo" pattern="[A-Za-z0-9]{8,32}" class="form-control" placeholder="Código de barras del documento" required autofocus>
+    <br>
+    <button class="btn btn-lg btn-success btn-block" type="submit" name="ok">Buscar</button>
+    <br>
+    </center>
+</form>

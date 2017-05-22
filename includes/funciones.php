@@ -71,7 +71,7 @@ function auditoriaUsuarios($cedula,$accion,$conn2) {
     #inserto registro en la base de datos.    
     if ($conn2->Execute($sql) === false){
         mensajeError("Registro de auditoria ha fallado.", 'inicio');
-    }
+    } 
 }
 #funcion que envia notificaciones de correo.
 function enviarNotificacionCorreo($correo,$asunto,$mensaje) {
@@ -242,5 +242,15 @@ function getBrowser(){
 		else
 			return 'Unknown';
 	}
-       
+#funcion que genera codigos de reportes
+function generarCodigoReporte($cedulaUsuario,$tipoReporte,$conn2) {
+    $codigo=generateCode('8');
+    $sql="INSERT INTO `reportes` (id, tipo_reporte, codigo_reporte, fecha_reporte, cedula_usuario) VALUES ('NULL', '$tipoReporte', '$codigo', NOW(), '$cedulaUsuario')";
+    #inserto registro en la base de datos.    
+    if ($conn2->Execute($sql) === false){
+        mensajeError("Registro de reporte ha fallado.", 'inicio');
+        $codigo='No Validad';
+    }
+    return $codigo;
+}      
 ?>
